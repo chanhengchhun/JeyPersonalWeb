@@ -1,6 +1,6 @@
 # Chanh's Personal Website
 
-A modern, responsive personal website built with Vue.js and Vite. This portfolio showcases skills, projects, and provides a way for visitors to get in touch.
+A modern, responsive personal website built with Vue.js and Vite. This portfolio showcases skills, education, and provides a way for visitors to get in touch.
 
 ## 🚀 Features
 
@@ -9,8 +9,8 @@ A modern, responsive personal website built with Vue.js and Vite. This portfolio
 - **Fast Performance**: Built with Vite for lightning-fast development and optimized builds
 - **Vue 3**: Uses the latest Vue.js features and best practices
 - **Contact Form**: Interactive contact form for visitor inquiries
-- **Skills Showcase**: Visual representation of technical skills
-- **Project Portfolio**: Dedicated section for showcasing projects
+- **Skills Showcase**: Visual representation of technical and soft skills
+- **Education Timeline**: Professional education history and achievements
 
 ## 🛠️ Tech Stack
 
@@ -60,8 +60,8 @@ src/
 │   ├── Header.vue      # Navigation header
 │   ├── Hero.vue        # Landing section
 │   ├── About.vue       # About me section
+│   ├── Education.vue   # Education timeline
 │   ├── Skills.vue      # Skills and technologies
-│   ├── Projects.vue    # Project portfolio
 │   ├── Contact.vue     # Contact form and info
 │   └── Footer.vue      # Footer section
 ├── App.vue             # Main application component

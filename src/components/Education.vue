@@ -6,7 +6,7 @@
 
         <div class="education-item">
           <div class="education-date">
-            <span>2020 - 2025</span>
+            <span>2022 - 2025</span>
           </div>
           <div class="education-content">
             <h3>AS in Computer and Information Science</h3>
@@ -53,10 +53,13 @@ export default {
 
 <style scoped>
 .education {
-  padding: 80px 20px;
+  padding: 160px 20px 80px 20px; /* Top padding accounts for header */
   background: #f8f9fa;
   width: 100%;
   box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
 .container {

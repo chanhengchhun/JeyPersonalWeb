@@ -105,8 +105,11 @@ export default {
 
 <style scoped>
 .skills {
-  padding: 80px 5%;
+  padding: 160px 5% 80px 5%; /* Top padding accounts for header */
   background: white;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
 .container {

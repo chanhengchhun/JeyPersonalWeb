@@ -16,14 +16,6 @@
           </p>
           <div class="about-stats">
             <div class="stat">
-              <h3>2+</h3>
-              <p>Years Experience</p>
-            </div>
-            <div class="stat">
-              <h3>10+</h3>
-              <p>Projects Completed</p>
-            </div>
-            <div class="stat">
               <h3>5+</h3>
               <p>Technologies</p>
             </div>
@@ -47,10 +39,13 @@ export default {
 
 <style scoped>
 .about {
-  padding: 80px 20px;
+  padding: 160px 20px 80px 20px; /* Top padding accounts for header */
   background: #f8f9fa;
   width: 100%;
   box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
 .container {

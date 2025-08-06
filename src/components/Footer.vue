@@ -12,25 +12,13 @@
         <div class="footer-section brand">
           <h3>Chanheng</h3>
           <p>Crafting digital experiences with passion and precision</p>
-          <div class="footer-stats">
-            <div class="stat">
-              <span class="stat-number">2+</span>
-              <span class="stat-label">Years Experience</span>
-            </div>
-            <div class="stat">
-              <span class="stat-number">10+</span>
-              <span class="stat-label">Projects</span>
-            </div>
-          </div>
         </div>
         <div class="footer-section">
           <h4>Navigation</h4>
           <ul>
-            <li><a href="#home">🏠 Home</a></li>
             <li><a href="#about">👨‍💻 About</a></li>
             <li><a href="#education">🎓 Education</a></li>
             <li><a href="#skills">⚡ Skills</a></li>
-            <li><a href="#projects">💼 Projects</a></li>
             <li><a href="#contact">📬 Contact</a></li>
           </ul>
         </div>
@@ -52,7 +40,7 @@
           </div>
           <div class="footer-cta">
             <p>Ready to work together?</p>
-            <a href="#contact" class="cta-button">Start a Project</a>
+            <a href="#contact" class="cta-button">Get In Touch</a>
           </div>
         </div>
       </div>

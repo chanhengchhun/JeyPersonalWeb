@@ -73,7 +73,7 @@ export default {
   methods: {
     handleSubmit() {
       // Handle form submission here
-      console.log('Form submitted:', this.form)
+      // You can integrate with email services like EmailJS, Netlify Forms, etc.
       alert('Thank you for your message! I\'ll get back to you soon.')
       // Reset form
       this.form = {
@@ -89,9 +89,12 @@ export default {
 
 <style scoped>
 .contact {
-  padding: 80px 5%;
+  padding: 160px 5% 40px 5%; /* Reduced bottom padding to allow footer access */
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   position: relative;
+  min-height: calc(100vh - 200px); /* Slightly less than full height */
+  display: flex;
+  align-items: center;
 }
 
 .contact::before {

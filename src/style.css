@@ -6,6 +6,13 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y proximity; /* Changed from mandatory to proximity */
+}
+
+/* Full page snap for sections, but allow scrolling past them */
+section {
+  scroll-snap-align: start;
+  min-height: 100vh;
 }
 
 body {
