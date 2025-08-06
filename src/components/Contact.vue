@@ -10,22 +10,17 @@
         <div class="contact-info">
           <div class="contact-item">
             <h3>📧 Email</h3>
-            <p>your.email@example.com</p>
-          </div>
-          <div class="contact-item">
-            <h3>📱 Phone</h3>
-            <p>+1 (555) 123-4567</p>
+            <p>chhun.chanheng@icloud.com</p>
           </div>
           <div class="contact-item">
             <h3>📍 Location</h3>
-            <p>Your City, Country</p>
+            <p>Columbus, Ohio</p>
           </div>
           <div class="social-links">
-            <h3>Connect with me</h3>
+            <h3>📎 Socials</h3>
             <div class="social-icons">
-              <a href="#" class="social-link">GitHub</a>
-              <a href="#" class="social-link">LinkedIn</a>
-              <a href="#" class="social-link">Twitter</a>
+              <a href="https://github.com/chanhengchhun" class="social-link">GitHub</a>
+              <a href="https://www.linkedin.com/in/chanheng-chh/" class="social-link">LinkedIn</a>
             </div>
           </div>
         </div>

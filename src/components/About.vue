@@ -5,7 +5,7 @@
       <div class="about-content">
         <div class="about-text">
           <p>
-            Hello! I'm Chanh, a passionate web developer with a love for creating 
+            Hello! I'm Chanheng, a passionate web developer with a love for creating 
             digital experiences that are both beautiful and functional. I enjoy 
             working with modern technologies and constantly learning new skills.
           </p>

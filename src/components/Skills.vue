@@ -1,10 +1,10 @@
 <template>
   <section id="skills" class="skills">
     <div class="container">
-      <h2>Skills & Technologies</h2>
+      <h2>Skills & Expertise</h2>
       <div class="skills-grid">
         <div class="skill-category">
-          <h3>Frontend</h3>
+          <h3>Technical Skills</h3>
           <div class="skills-list">
             <div class="skill-item">
               <span class="skill-name">Vue.js</span>
@@ -25,47 +25,47 @@
               </div>
             </div>
             <div class="skill-item">
-              <span class="skill-name">React</span>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 75%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="skill-category">
-          <h3>Backend</h3>
-          <div class="skills-list">
-            <div class="skill-item">
-              <span class="skill-name">Node.js</span>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 80%"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">Python</span>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 70%"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">MongoDB</span>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 75%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="skill-category">
-          <h3>Tools</h3>
-          <div class="skills-list">
-            <div class="skill-item">
               <span class="skill-name">Git</span>
               <div class="skill-bar">
                 <div class="skill-progress" style="width: 85%"></div>
               </div>
             </div>
+          </div>
+        </div>
+        
+        <div class="skill-category">
+          <h3>Soft Skills</h3>
+          <div class="skills-list">
+            <div class="skill-item">
+              <span class="skill-name">Problem Solving</span>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 90%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <span class="skill-name">Communication</span>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 85%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <span class="skill-name">Team Collaboration</span>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 88%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <span class="skill-name">Adaptability</span>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 92%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="skill-category">
+          <h3>Tools & Platforms</h3>
+          <div class="skills-list">
             <div class="skill-item">
               <span class="skill-name">VS Code</span>
               <div class="skill-bar">
@@ -75,7 +75,19 @@
             <div class="skill-item">
               <span class="skill-name">Figma</span>
               <div class="skill-bar">
-                <div class="skill-progress" style="width: 70%"></div>
+                <div class="skill-progress" style="width: 75%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <span class="skill-name">GitHub</span>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 85%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <span class="skill-name">Vite</span>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 80%"></div>
               </div>
             </div>
           </div>

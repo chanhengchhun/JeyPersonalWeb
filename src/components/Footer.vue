@@ -3,7 +3,7 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-section">
-          <h3>Chanh</h3>
+          <h3>Chanheng</h3>
           <p>Web Developer & Designer</p>
         </div>
         <div class="footer-section">
