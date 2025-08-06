@@ -9,18 +9,27 @@
       <div class="contact-content">
         <div class="contact-info">
           <div class="contact-item">
-            <h3>📧 Email</h3>
+            <div class="contact-icon">📧</div>
+            <h3>Email</h3>
             <p>chhun.chanheng@icloud.com</p>
           </div>
           <div class="contact-item">
-            <h3>📍 Location</h3>
+            <div class="contact-icon">📍</div>
+            <h3>Location</h3>
             <p>Columbus, Ohio</p>
           </div>
-          <div class="social-links">
-            <h3>📎 Socials</h3>
+          <div class="contact-item social-links">
+            <div class="contact-icon">🌐</div>
+            <h3>Connect With Me</h3>
             <div class="social-icons">
-              <a href="https://github.com/chanhengchhun" class="social-link">GitHub</a>
-              <a href="https://www.linkedin.com/in/chanheng-chh/" class="social-link">LinkedIn</a>
+              <a href="https://github.com/chanhengchhun" class="social-link github" target="_blank">
+                <span class="social-icon">🐙</span>
+                GitHub
+              </a>
+              <a href="https://www.linkedin.com/in/chanheng-chh/" class="social-link linkedin" target="_blank">
+                <span class="social-icon">💼</span>
+                LinkedIn
+              </a>
             </div>
           </div>
         </div>
@@ -81,12 +90,26 @@ export default {
 <style scoped>
 .contact {
   padding: 80px 5%;
-  background: white;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  position: relative;
+}
+
+.contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23ffffff" stroke-width="0.5" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  pointer-events: none;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .contact h2 {
@@ -110,92 +133,197 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
+  align-items: start;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .contact-item {
-  margin-bottom: 2rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.contact-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.15);
+}
+
+.contact-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
 }
 
 .contact-item h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
   color: #333;
+  font-weight: 600;
 }
 
 .contact-item p {
   color: #666;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
 .social-links h3 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
   color: #333;
 }
 
 .social-icons {
   display: flex;
+  flex-direction: column;
   gap: 1rem;
 }
 
 .social-link {
-  color: #667eea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 1rem 1.5rem;
+  background: #f8f9fa;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  color: #333;
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.social-link:hover {
-  color: #764ba2;
+.social-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transition: left 0.5s;
+}
+
+.social-link:hover::before {
+  left: 100%;
+}
+
+.social-link.github:hover {
+  background: #333;
+  color: white;
+  border-color: #333;
+  transform: translateY(-2px);
+}
+
+.social-link.linkedin:hover {
+  background: #0077b5;
+  color: white;
+  border-color: #0077b5;
+  transform: translateY(-2px);
+}
+
+.social-icon {
+  font-size: 1.2rem;
 }
 
 .contact-form {
-  background: #f8f9fa;
-  padding: 2rem;
-  border-radius: 10px;
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(102, 126, 234, 0.1);
+  position: relative;
+}
+
+.contact-form::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 20px 20px 0 0;
 }
 
 .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  position: relative;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
   color: #333;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
-  padding: 0.8rem;
+  padding: 1rem 1.2rem;
   border: 2px solid #e9ecef;
-  border-radius: 5px;
+  border-radius: 12px;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+  box-sizing: border-box;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
   border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  transform: translateY(-2px);
 }
 
 .submit-btn {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 12px 30px;
+  padding: 15px 40px;
   border: none;
-  border-radius: 30px;
-  font-size: 1rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
   width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transition: left 0.5s;
 }
 
 .submit-btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+}
+
+.submit-btn:hover::before {
+  left: 100%;
 }
 
 @media (max-width: 768px) {

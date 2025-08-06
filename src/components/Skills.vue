@@ -9,13 +9,13 @@
             <div class="skill-item">
               <span class="skill-name">Vue.js</span>
               <div class="skill-bar">
-                <div class="skill-progress" style="width: 90%"></div>
+                <div class="skill-progress" style="width: 40%"></div>
               </div>
             </div>
             <div class="skill-item">
-              <span class="skill-name">JavaScript</span>
+              <span class="skill-name">Python</span>
               <div class="skill-bar">
-                <div class="skill-progress" style="width: 85%"></div>
+                <div class="skill-progress" style="width: 60%"></div>
               </div>
             </div>
             <div class="skill-item">
@@ -27,7 +27,7 @@
             <div class="skill-item">
               <span class="skill-name">Git</span>
               <div class="skill-bar">
-                <div class="skill-progress" style="width: 85%"></div>
+                <div class="skill-progress" style="width: 75%"></div>
               </div>
             </div>
           </div>
