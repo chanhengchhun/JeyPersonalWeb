@@ -20,7 +20,7 @@
       <div class="image-box">
         <div class="profile-image">
           <!-- Your actual image -->
-          <img src="/profile.jpg" alt="Chanheng's Profile Picture" class="profile-photo" />
+          <img :src="profileImage" alt="Chanheng's Profile Picture" class="profile-photo" />
         </div>
       </div>
     </div>
@@ -28,10 +28,13 @@
 </template>
 
 <script>
+import profileImage from '../assets/images/profile.jpg'
+
 export default {
   name: 'Hero',
   data() {
     return {
+      profileImage,
       roles: ['Data Enthusiast', 'Problem Solver', 'Lifelong Learner'],
       currentRole: '',
       roleIndex: 0,
