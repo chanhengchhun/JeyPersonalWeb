@@ -359,11 +359,7 @@ export default {
 .mobile-menu-toggle {
   display: none;
 }
-@media (max-width: 1100px) {
-  .mobile-menu-toggle {
-    display: flex;
-  }
-}
+
 
 .nav-menu a {
   color: #222;
@@ -378,6 +374,7 @@ export default {
   border: 1.5px solid rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(12px);
   white-space: nowrap;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.18), 0 2px 12px 0 rgba(87,204,153,0.13);
 }
 
 /* Glassmorphism nav hover/active: clean, consistent, finished edge */
@@ -632,6 +629,9 @@ export default {
     transition: left 0.3s ease;
     overflow-x: visible;
     white-space: normal;
+  }
+  .nav-menu.active {
+    left: 0;
   }
   
   /* Mobile dropdown styles */
