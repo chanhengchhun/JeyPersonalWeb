@@ -4,11 +4,11 @@
       <!-- Text Box -->
       <div class="text-box">
         <div class="greeting">👋 Hello, I'm</div>
-        <h1 class="name">Chanheng</h1>
+        <h1 class="name">Chanheng (Jey)</h1>
         <h2 class="role">{{ currentRole }}<span class="cursor">|</span></h2>
         <p class="description">
-          Passionate about creating beautiful, functional, and user-friendly web experiences. 
-          I turn ideas into reality through clean code and thoughtful design.
+          Enthusiastic about uncovering insights through data analysis and solving complex problems with innovative solutions. 
+          I'm passionate about learning new technologies and methodologies that help transform data into meaningful discoveries.
         </p>
         <div class="buttons">
           <a href="#skills" class="btn btn-primary">Explore My Skills</a>
@@ -32,7 +32,7 @@ export default {
   name: 'Hero',
   data() {
     return {
-      roles: ['Web Developer', 'UI/UX Designer', 'Frontend Developer', 'Problem Solver'],
+      roles: ['Data Enthusiast', 'Problem Solver', 'Lifelong Learner'],
       currentRole: '',
       roleIndex: 0,
       charIndex: 0,
@@ -75,75 +75,90 @@ export default {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: transparent;
   position: relative;
-  padding-top: 80px; /* Account for fixed header */
+  padding: 120px 20px 80px 20px;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(38, 70, 83, 0.05) 0%,
+    rgba(42, 157, 143, 0.08) 25%,
+    rgba(233, 196, 106, 0.05) 50%,
+    rgba(244, 162, 97, 0.08) 75%,
+    rgba(231, 111, 81, 0.05) 100%);
+  backdrop-filter: blur(20px);
+  z-index: 1;
 }
 
 .hero-container {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
   width: 100%;
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 3rem;
-  align-items: stretch;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+  z-index: 2;
 }
 
 /* Text Box */
 .text-box {
-  color: white;
-  padding: 3rem;
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(20px);
   border-radius: 25px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 3rem;
+  box-shadow: 0 15px 45px rgba(38, 70, 83, 0.1);
   transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 500px;
+  animation: slideInLeft 1s ease-out;
 }
 
 .text-box:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 25px 60px rgba(38, 70, 83, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .greeting {
   font-size: 1.3rem;
+  color: var(--color-secondary);
   font-weight: 500;
   margin-bottom: 1rem;
   opacity: 0.9;
 }
 
 .name {
-  font-size: 3.5rem;
-  font-weight: 800;
-  margin: 0 0 1rem 0;
-  line-height: 1.1;
-  background: linear-gradient(45deg, #fff, #f0f8ff);
+  font-size: 3.8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  margin: 0.5rem 0;
+  line-height: 1.1;
 }
 
 .role {
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   font-weight: 600;
-  margin: 0 0 2rem 0;
-  color: #f0f8ff;
-  min-height: 2.5rem;
-  display: flex;
-  align-items: center;
+  color: var(--color-accent);
+  margin-bottom: 1.5rem;
+  min-height: 3rem;
 }
 
 .cursor {
   animation: blink 1s infinite;
-  margin-left: 2px;
+  color: var(--color-secondary);
 }
 
 @keyframes blink {
@@ -152,50 +167,77 @@ export default {
 }
 
 .description {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: var(--color-text);
+  margin-bottom: 2.5rem;
   opacity: 0.9;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .buttons {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   flex-wrap: wrap;
 }
 
 .btn {
-  padding: 0.8rem 2rem;
+  padding: 1rem 2.5rem;
   border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
   font-size: 1rem;
   transition: all 0.3s ease;
   display: inline-block;
+  border: 2px solid transparent;
+  backdrop-filter: blur(10px);
 }
 
 .btn-primary {
-  background: white;
-  color: #667eea;
-  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+  background: rgba(38, 70, 83, 0.9);
+  color: white;
+  border-color: var(--color-primary);
+  box-shadow: 0 8px 25px rgba(38, 70, 83, 0.3);
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
-  background: #f8f9ff;
+  background: rgba(42, 157, 143, 0.9);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(42, 157, 143, 0.4);
 }
 
 .btn-secondary {
-  background: transparent;
-  color: white;
-  border: 2px solid white;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  backdrop-filter: blur(15px);
 }
 
 .btn-secondary:hover {
-  background: white;
-  color: #667eea;
-  transform: translateY(-2px);
+  background: rgba(231, 111, 81, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(231, 111, 81, 0.3);
 }
 
 /* Image Box */
@@ -203,20 +245,11 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 3rem;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
-  border-radius: 25px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  min-height: 500px;
+  animation: slideInRight 1s ease-out;
 }
 
 .image-box:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-  background: rgba(255, 255, 255, 0.15);
 }
 
 .profile-image {
