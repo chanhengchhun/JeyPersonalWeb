@@ -147,19 +147,25 @@ export default {
 </script>
 
 <style scoped>
+body {
+  padding-top: 70px; /* Prevent content from hiding under fixed header */
+}
+
 .header {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  z-index: 1000;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 9999 !important;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   overflow: hidden;
+  min-height: 70px;
+  display: block;
 }
 
 .header::before {

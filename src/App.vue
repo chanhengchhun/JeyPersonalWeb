@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header />
+    <HeaderFixed />
     <main>
       <Hero />
       <About />
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Header from './components/Header.vue'
+import HeaderFixed from './components/HeaderFixed.vue'
 import Hero from './components/Hero.vue'
 import About from './components/About.vue'
 import Education from './components/Education.vue'
@@ -24,7 +24,7 @@ import Footer from './components/Footer.vue'
 export default {
   name: 'App',
   components: {
-    Header,
+    HeaderFixed,
     Hero,
     About,
     Education,
@@ -52,6 +52,7 @@ html {
 
 main {
   width: 100%;
+  padding-top: 0; /* Remove main padding since Hero already has enough */
 }
 
 /* Ensure sections don't have horizontal scroll */
