@@ -6,6 +6,7 @@
         <h2 @click="setActiveLink('#home')">Chanheng</h2>
       </div>
       <ul class="nav-menu" :class="{ 'active': mobileMenuOpen }">
+        <li><a href="#home" @click="setActiveLink('#home')" :class="{ 'active': activeLink === '#home' }">Home</a></li>
         <li><a href="#about" @click="setActiveLink('#about')" :class="{ 'active': activeLink === '#about' }">About</a></li>
         <li><a href="#education" @click="setActiveLink('#education')" :class="{ 'active': activeLink === '#education' }">Education</a></li>
         <li><a href="#skills" @click="setActiveLink('#skills')" :class="{ 'active': activeLink === '#skills' }">Skills</a></li>
@@ -28,7 +29,7 @@ export default {
       isScrolled: false,
       mobileMenuOpen: false,
       activeLink: '#home',
-      sections: ['about', 'education', 'skills', 'contact'],
+      sections: ['home', 'about', 'education', 'skills', 'contact'],
       observer: null,
       scrollProgress: 0,
       currentSection: 'home'
@@ -78,8 +79,8 @@ export default {
     initIntersectionObserver() {
       const options = {
         root: null,
-        rootMargin: '-20% 0px -80% 0px', // Trigger when section is 20% from top
-        threshold: 0
+        rootMargin: '-10% 0px -50% 0px', // More responsive detection
+        threshold: 0.1
       };
 
       this.observer = new IntersectionObserver((entries) => {
@@ -98,13 +99,16 @@ export default {
       this.$nextTick(() => {
         setTimeout(() => {
           this.sections.forEach(sectionName => {
-            const section = document.getElementById(sectionName) || 
-                           document.querySelector(`[id="${sectionName}"]`) ||
-                           document.querySelector(`.${sectionName}`) ||
-                           this.findSectionByComponent(sectionName);
+            const section = document.getElementById(sectionName);
             
             if (section) {
               this.observer.observe(section);
+            } else {
+              // Fallback for components that might not have direct IDs
+              const componentElement = this.findSectionByComponent(sectionName);
+              if (componentElement) {
+                this.observer.observe(componentElement);
+              }
             }
           });
         }, 500);
@@ -129,6 +133,14 @@ export default {
         }
       }
       
+      // Special handling for home section
+      if (sectionName === 'home') {
+        const heroSection = document.querySelector('.hero') || 
+                          document.querySelector('[id="home"]') ||
+                          document.querySelector('section');
+        if (heroSection) return heroSection;
+      }
+      
       // Fallback: find by component position
       const components = document.querySelectorAll('main > *');
       const componentMap = {
@@ -148,17 +160,21 @@ export default {
 
 <style scoped>
 .header {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(25px) saturate(1.2);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    0 4px 16px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
   right: 0 !important;
   width: 100% !important;
-  z-index: 99999 !important; /* Keep high z-index */
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 99999 !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   overflow: hidden;
   min-height: 70px;
   display: block;
@@ -171,9 +187,10 @@ export default {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.08), transparent);
-  transition: left 0.6s ease;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
+  z-index: -1;
 }
 
 .header:hover::before {
@@ -185,23 +202,37 @@ export default {
   bottom: 0;
   left: 0;
   height: 3px;
-  background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
-  transition: width 0.1s ease-out;
+  background: linear-gradient(90deg, 
+    rgba(102, 126, 234, 0.9), 
+    rgba(118, 75, 162, 0.9), 
+    rgba(240, 147, 251, 0.9),
+    rgba(42, 157, 143, 0.9));
+  transition: all 0.2s ease-out;
   border-radius: 0 2px 2px 0;
-  box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+  box-shadow: 
+    0 0 15px rgba(102, 126, 234, 0.4),
+    0 2px 8px rgba(102, 126, 234, 0.2);
 }
 
 .header:hover {
-  background: rgba(255, 255, 255, 0.98);
-  box-shadow: 0 8px 40px rgba(102, 126, 234, 0.2);
-  backdrop-filter: blur(20px);
-  border-bottom-color: rgba(102, 126, 234, 0.3);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 12px 48px rgba(0, 0, 0, 0.08),
+    0 6px 24px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(30px) saturate(1.4);
+  border-bottom-color: rgba(255, 255, 255, 0.25);
   transform: translateY(-1px);
 }
 
 .header.scrolled {
-  background: rgba(255, 255, 255, 0.98);
-  box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.1),
+    0 5px 20px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.06);
   animation: headerPulse 2s ease-in-out;
 }
 
@@ -233,6 +264,11 @@ export default {
   50% {
     transform: translateY(-1px);
   }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 @keyframes navItemPop {
@@ -289,26 +325,34 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 5%;
-  max-width: 1200px;
+  padding: 1rem 3rem;
+  max-width: 1400px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .nav-brand h2 {
   color: #333;
   font-size: 1.8rem;
   margin: 0;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, 
+    rgba(102, 126, 234, 1) 0%,
+    rgba(118, 75, 162, 1) 25%,
+    rgba(240, 147, 251, 1) 50%,
+    rgba(42, 157, 143, 1) 75%,
+    rgba(102, 126, 234, 1) 100%);
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
-  padding: 0.5rem;
-  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
   overflow: hidden;
+  animation: gradientShift 4s ease-in-out infinite;
 }
 
 .nav-brand h2::before {
@@ -318,13 +362,17 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.08));
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
   opacity: 0;
   transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   z-index: -1;
   transform: scale(0.9);
-  border-radius: 16px;
-  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .nav-brand h2::after {
@@ -370,14 +418,14 @@ export default {
   color: #333;
   text-decoration: none;
   font-weight: 500;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   padding: 0.7rem 1.2rem;
   border-radius: 25px;
   position: relative;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(102, 126, 234, 0.1);
-  backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
 }
 
 .nav-menu a::before {
@@ -387,9 +435,12 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  background: linear-gradient(135deg, 
+    rgba(102, 126, 234, 0.8) 0%, 
+    rgba(118, 75, 162, 0.8) 50%, 
+    rgba(240, 147, 251, 0.8) 100%);
   opacity: 0;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   z-index: -2;
   transform: scale(0.95);
   border-radius: 25px;
@@ -424,9 +475,12 @@ export default {
 .nav-menu a.active {
   color: white;
   transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  box-shadow: 
+    0 8px 25px rgba(102, 126, 234, 0.3),
+    0 4px 15px rgba(102, 126, 234, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
   border-color: rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .nav-menu a:active {
@@ -439,9 +493,10 @@ export default {
   cursor: pointer;
   padding: 0.6rem;
   border-radius: 16px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  background: rgba(102, 126, 234, 0.05);
-  border: 1px solid rgba(102, 126, 234, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
   position: relative;
   overflow: hidden;
 }
@@ -516,7 +571,7 @@ export default {
 
 @media (max-width: 768px) {
   .nav {
-    padding: 1rem;
+    padding: 1rem 2rem;
   }
   
   .mobile-menu-toggle {
@@ -552,6 +607,10 @@ export default {
 }
 
 @media (max-width: 480px) {
+  .nav {
+    padding: 1rem;
+  }
+  
   .nav-brand h2 {
     font-size: 1.5rem;
   }

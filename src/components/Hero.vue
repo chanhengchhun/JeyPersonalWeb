@@ -86,7 +86,7 @@ export default {
     rgba(42, 157, 143, 0.05) 75%,
     rgba(38, 70, 83, 0.03) 100%);
   position: relative;
-  padding: 120px 20px 80px 20px;
+  padding: 40px 20px 40px 20px;
   overflow: hidden;
 }
 
@@ -134,12 +134,12 @@ export default {
   backdrop-filter: blur(25px) saturate(1.2);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 35px;
-  padding: 4rem clamp(3rem, 8vw, 6rem) 4rem 4rem;
+  padding: 6.5rem clamp(5.5rem, 13vw, 11rem) 6.5rem 6.5rem;
   position: relative;
   z-index: 3;
   width: 100%;
-  max-width: min(1100px, 90vw);
-  min-height: clamp(400px, 50vh, 500px);
+  max-width: min(1600px, 99vw);
+  min-height: clamp(550px, 65vh, 700px);
   display: flex;
   align-items: center;
   box-shadow: 
@@ -257,10 +257,9 @@ export default {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 0.8rem;
   margin-top: 0.2rem;
   min-height: 1.4rem;
-  line-height: 1.1;
+  line-height: 1.3;
   text-shadow: 0 2px 12px rgba(240, 147, 251, 0.2);
   letter-spacing: 0.5px;
 }
@@ -397,6 +396,7 @@ export default {
   top: 50%;
   transform: translateY(-50%);
   z-index: 5;
+  animation: floatProfile 8s ease-in-out infinite;
 }
 
 .image-box::before {
@@ -533,7 +533,7 @@ export default {
 /* Large screens */
 @media (min-width: 1400px) {
   .text-box {
-    max-width: 1200px;
+    max-width: 1700px;
   }
   
   .profile-image {
@@ -722,6 +722,21 @@ export default {
   }
   75% { 
     transform: translateY(-50%) translateY(-15px) rotate(-1deg); 
+  }
+}
+
+@keyframes floatProfile {
+  0%, 100% { 
+    transform: translateY(-50%) translateY(0px) rotate(0deg); 
+  }
+  25% { 
+    transform: translateY(-50%) translateY(-12px) rotate(0.5deg); 
+  }
+  50% { 
+    transform: translateY(-50%) translateY(-8px) rotate(0deg); 
+  }
+  75% { 
+    transform: translateY(-50%) translateY(-18px) rotate(-0.5deg); 
   }
 }
 
