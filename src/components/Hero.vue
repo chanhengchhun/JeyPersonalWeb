@@ -279,30 +279,6 @@ export default {
   border-radius: 22px;
 }
 
-.placeholder {
-  text-align: center;
-  color: white;
-}
-
-.placeholder-icon {
-  font-size: 4rem;
-  margin-bottom: 1rem;
-  opacity: 0.8;
-}
-
-.placeholder p {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin: 0 0 0.5rem 0;
-  opacity: 0.9;
-}
-
-.placeholder small {
-  font-size: 0.9rem;
-  opacity: 0.7;
-  font-style: italic;
-}
-
 /* Responsive Design */
 @media (max-width: 968px) {
   .hero-container {
@@ -391,10 +367,6 @@ export default {
   .btn {
     padding: 0.7rem 1.5rem;
     font-size: 0.9rem;
-  }
-  
-  .placeholder-icon {
-    font-size: 3rem;
   }
 }
 </style>

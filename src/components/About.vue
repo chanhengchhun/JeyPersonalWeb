@@ -22,8 +22,10 @@
           </div>
         </div>
         <div class="about-image">
-          <div class="placeholder-image">
-            <p>Your Photo Here</p>
+          <div class="profile-placeholder">
+            <div class="placeholder-icon">📊</div>
+            <p>Data Visualization</p>
+            <small>Passionate about insights</small>
           </div>
         </div>
       </div>
@@ -101,16 +103,40 @@ export default {
   justify-content: center;
 }
 
-.placeholder-image {
+.profile-placeholder {
   width: 300px;
   height: 300px;
-  background: #e9ecef;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
   border-radius: 50%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #6c757d;
-  font-weight: 500;
+  color: white;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.profile-placeholder:hover {
+  transform: scale(1.05);
+}
+
+.placeholder-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.profile-placeholder p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.profile-placeholder small {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  font-style: italic;
 }
 
 @media (max-width: 768px) {
@@ -129,9 +155,13 @@ export default {
     gap: 1.5rem;
   }
   
-  .placeholder-image {
+  .profile-placeholder {
     width: 200px;
     height: 200px;
+  }
+  
+  .placeholder-icon {
+    font-size: 3rem;
   }
   
   .about h2 {
