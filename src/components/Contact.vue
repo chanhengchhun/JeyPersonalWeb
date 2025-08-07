@@ -43,7 +43,7 @@ export default {
 /* Contact Section Styles (modern glassmorphism) */
 .contact {
   padding: 140px 5% 40px 5%;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%);
   position: relative;
   min-height: calc(100vh - 200px);
   display: flex;
@@ -86,8 +86,8 @@ export default {
 }
 
 .contact-highlight {
-  color: #764ba2;
-  font-weight: 600;
+  color: #a18cd1;
+  font-weight: 500;
   font-size: 1.13rem;
 }
 

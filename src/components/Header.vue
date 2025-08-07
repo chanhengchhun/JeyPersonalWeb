@@ -5,7 +5,8 @@
       <div class="nav-brand">
         <h2 @click="setActiveLink('#home')">Chanheng</h2>
       </div>
-      <ul class="nav-menu" :class="{ 'active': mobileMenuOpen }">
+  <!-- Navigation menu: horizontal on desktop, vertical on mobile -->
+  <ul class="nav-menu" :class="{ 'active': mobileMenuOpen }">
         <li><a href="#home" @click="setActiveLink('#home')" :class="{ 'active': activeLink === '#home' }">Home</a></li>
         <li class="nav-dropdown">
           <a href="#about" @click="setActiveLink('#about')" :class="{ 'active': activeLink === '#about' }">
@@ -338,28 +339,67 @@ export default {
   width: 80%;
 }
 
+
+
+/* Nav menu: horizontal on desktop, switches to vertical (mobile) at 1100px via .active class */
 .nav-menu {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   list-style: none;
-  gap: 2rem;
+  gap: 1.5rem;
   margin: 0;
   padding: 0;
+  min-width: 0;
+  overflow-x: visible;
+  white-space: normal;
+}
+
+/* Hamburger icon: only show on mobile (<=1100px) */
+.mobile-menu-toggle {
+  display: none;
+}
+@media (max-width: 1100px) {
+  .mobile-menu-toggle {
+    display: flex;
+  }
 }
 
 .nav-menu a {
-  color: #333;
+  color: #222;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   padding: 0.7rem 1.2rem;
-  border-radius: 25px;
+  border-radius: 32px;
   position: relative;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.10);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  white-space: nowrap;
 }
 
+/* Glassmorphism nav hover/active: clean, consistent, finished edge */
+.nav-menu a:hover,
+.nav-menu a.active {
+  color: #fff;
+  background: rgba(34, 40, 49, 0.48);
+  border: 1.5px solid rgba(87,204,153,0.32);
+  /* border-radius matches base for smooth transition */
+  box-shadow:
+    0 8px 25px rgba(87,204,153,0.13),
+    0 4px 15px rgba(87,204,153,0.09),
+    0 1px 8px 0 rgba(34,40,49,0.10),
+    0 0 0 1.5px rgba(255,255,255,0.10) inset,
+    0 1.5px 8px 0 rgba(87,204,153,0.10) inset;
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, border 0.2s;
+}
+
+
+/* --- Glassmorphism Effect: Subtle, clean, readable --- */
 .nav-menu a::before {
   content: '';
   position: absolute;
@@ -367,53 +407,27 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, 
-    rgba(102, 126, 234, 0.8) 0%, 
-    rgba(118, 75, 162, 0.8) 50%, 
-    rgba(240, 147, 251, 0.8) 100%);
+  background: linear-gradient(120deg, rgba(255,255,255,0.38) 60%, rgba(87,204,153,0.10) 100%);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
   opacity: 0;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   z-index: -2;
-  transform: scale(0.95);
+  transform: scale(0.96);
   border-radius: 25px;
+  border: 1.5px solid rgba(87,204,153,0.18);
+  box-shadow: 0 4px 24px 0 rgba(87,204,153,0.13), 0 1.5px 8px 0 rgba(87,204,153,0.10), 0 0.5px 0.5px 0 rgba(255,255,255,0.10) inset;
+  pointer-events: none;
 }
 
-.nav-menu a::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  z-index: -1;
-}
 
-.nav-menu a:hover::before,
-.nav-menu a.active::before {
-  opacity: 1;
-  transform: scale(1);
-}
 
 .nav-menu a:hover::after {
   width: 80px;
   height: 80px;
 }
 
-.nav-menu a:hover,
-.nav-menu a.active {
-  color: white;
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 
-    0 8px 25px rgba(102, 126, 234, 0.3),
-    0 4px 15px rgba(102, 126, 234, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  border-color: rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.12);
-}
+/* Removed duplicate/conflicting hover/active style that set color: white and background: rgba(255,255,255,0.12) */
 
 .nav-menu a:active {
   transform: translateY(-2px) scale(1.05);
@@ -594,15 +608,13 @@ export default {
   transform: rotate(45deg) translate(-5px, -6px);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
   .nav {
     padding: 1rem 2rem;
   }
-  
   .mobile-menu-toggle {
     display: flex;
   }
-  
   .nav-menu {
     position: fixed;
     top: 70px;
@@ -612,22 +624,14 @@ export default {
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
     flex-direction: column;
+    flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: center;
     gap: 1rem;
     padding: 2rem 0;
     transition: left 0.3s ease;
-  }
-  
-  .nav-menu.active {
-    left: 0;
-  }
-  
-  .nav-menu a {
-    font-size: 1.2rem;
-    padding: 1rem 2rem;
-    width: 80%;
-    text-align: center;
+    overflow-x: visible;
+    white-space: normal;
   }
   
   /* Mobile dropdown styles */

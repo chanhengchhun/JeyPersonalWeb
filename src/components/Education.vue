@@ -89,18 +89,14 @@ export default {
 
 <style scoped>
 .education {
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, 
-    rgba(102, 126, 234, 0.03) 0%,
-    rgba(118, 75, 162, 0.05) 25%,
-    rgba(240, 147, 251, 0.03) 50%,
-    rgba(42, 157, 143, 0.05) 75%,
-    rgba(38, 70, 83, 0.03) 100%);
+  background: var(--color-light);
   position: relative;
-  padding: 120px 20px 80px 20px;
+  padding: 60px 10px 40px 10px;
   overflow: hidden;
+  box-shadow: 0 2px 16px 0 rgba(37,99,235,0.03);
 }
 
 .education::before {
@@ -144,21 +140,12 @@ export default {
 }
 
 .section-title {
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-size: 2.1rem;
   font-weight: 800;
-  background: linear-gradient(135deg, 
-    rgba(102, 126, 234, 1) 0%,
-    rgba(118, 75, 162, 1) 25%,
-    rgba(240, 147, 251, 1) 50%,
-    rgba(42, 157, 143, 1) 75%,
-    rgba(102, 126, 234, 1) 100%);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-primary);
   margin-bottom: 1rem;
   line-height: 1.2;
-  animation: gradientShift 4s ease-in-out infinite;
+  letter-spacing: 0.5px;
 }
 
 .section-subtitle {
@@ -198,14 +185,11 @@ export default {
   left: 50%;
   top: 0;
   bottom: 0;
-  width: 4px;
-  background: linear-gradient(180deg, 
-    rgba(102, 126, 234, 0.8) 0%,
-    rgba(118, 75, 162, 0.8) 50%,
-    rgba(240, 147, 251, 0.8) 100%);
+  width: 3px;
+  background: var(--color-primary);
+  opacity: 0.12;
   transform: translateX(-50%);
   border-radius: 2px;
-  box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
 }
 
 .education-item {
@@ -244,18 +228,14 @@ export default {
 }
 
 .date-bubble {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(25px) saturate(1.2);
-  border: 2px solid rgba(102, 126, 234, 0.3);
-  border-radius: 25px;
-  padding: 1.2rem 1.5rem;
+  background: var(--color-white);
+  border: 2px solid var(--color-primary);
+  border-radius: 18px;
+  padding: 0.9rem 1.2rem;
   text-align: center;
   position: relative;
-  box-shadow: 
-    0 15px 35px rgba(102, 126, 234, 0.15),
-    0 8px 20px rgba(102, 126, 234, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 2px 8px 0 rgba(37,99,235,0.07);
+  transition: box-shadow 0.2s, border 0.2s;
 }
 
 .date-bubble:hover {
@@ -268,8 +248,8 @@ export default {
 }
 
 .date-bubble.future {
-  background: rgba(240, 147, 251, 0.15);
-  border-color: rgba(240, 147, 251, 0.4);
+  background: var(--color-light);
+  border-color: var(--color-accent);
 }
 
 .date-bubble.future:hover {
@@ -299,15 +279,12 @@ export default {
   content: '';
   position: absolute;
   top: 50%;
-  width: 16px;
-  height: 16px;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 1), rgba(118, 75, 162, 1));
+  width: 13px;
+  height: 13px;
+  background: var(--color-primary);
   border-radius: 50%;
   transform: translateY(-50%);
-  box-shadow: 
-    0 0 0 4px rgba(255, 255, 255, 1),
-    0 0 0 6px rgba(102, 126, 234, 0.3),
-    0 4px 12px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 0 0 3px var(--color-white), 0 0 0 5px var(--color-primary), 0 2px 6px var(--color-primary);
 }
 
 .education-item:nth-child(odd) .date-bubble::after {
@@ -319,11 +296,8 @@ export default {
 }
 
 .date-bubble.future::after {
-  background: linear-gradient(135deg, rgba(240, 147, 251, 1), rgba(118, 75, 162, 1));
-  box-shadow: 
-    0 0 0 4px rgba(255, 255, 255, 1),
-    0 0 0 6px rgba(240, 147, 251, 0.3),
-    0 4px 12px rgba(240, 147, 251, 0.3);
+  background: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-white), 0 0 0 5px var(--color-accent), 0 2px 6px var(--color-accent);
 }
 
 .education-content {
