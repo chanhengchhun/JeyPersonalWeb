@@ -7,9 +7,25 @@
       </div>
       <ul class="nav-menu" :class="{ 'active': mobileMenuOpen }">
         <li><a href="#home" @click="setActiveLink('#home')" :class="{ 'active': activeLink === '#home' }">Home</a></li>
-        <li><a href="#about" @click="setActiveLink('#about')" :class="{ 'active': activeLink === '#about' }">About</a></li>
+        <li class="nav-dropdown">
+          <a href="#about" @click="setActiveLink('#about')" :class="{ 'active': activeLink === '#about' }">
+            About
+            <span class="dropdown-arrow">▼</span>
+          </a>
+          <div class="dropdown-menu">
+            <a href="/blog" @click="navigateToBlog" class="dropdown-item">
+              <span class="dropdown-icon">✍️</span>
+              Blog
+            </a>
+            <a href="/photography" @click="navigateToPhotography" class="dropdown-item">
+              <span class="dropdown-icon">📸</span>
+              Photography
+            </a>
+          </div>
+        </li>
         <li><a href="#education" @click="setActiveLink('#education')" :class="{ 'active': activeLink === '#education' }">Education</a></li>
         <li><a href="#skills" @click="setActiveLink('#skills')" :class="{ 'active': activeLink === '#skills' }">Skills</a></li>
+        <li><a href="#experience" @click="setActiveLink('#experience')" :class="{ 'active': activeLink === '#experience' }">Experience</a></li>
         <li><a href="#contact" @click="setActiveLink('#contact')" :class="{ 'active': activeLink === '#contact' }">Contact</a></li>
       </ul>
       <div class="mobile-menu-toggle" @click="toggleMobileMenu" :class="{ 'active': mobileMenuOpen }">
@@ -29,7 +45,7 @@ export default {
       isScrolled: false,
       mobileMenuOpen: false,
       activeLink: '#home',
-      sections: ['home', 'about', 'education', 'skills', 'contact'],
+      sections: ['home', 'about', 'education', 'skills', 'experience', 'contact'],
       observer: null,
       scrollProgress: 0,
       currentSection: 'home'
@@ -76,6 +92,14 @@ export default {
         });
       }
     },
+    navigateToBlog() {
+      // For now, we'll open a placeholder - you can later replace with actual blog URL
+      window.open('/blog', '_blank') || (window.location.href = '/blog');
+    },
+    navigateToPhotography() {
+      // For now, we'll open a placeholder - you can later replace with actual photography URL
+      window.open('/photography', '_blank') || (window.location.href = '/photography');
+    },
     initIntersectionObserver() {
       const options = {
         root: null,
@@ -84,15 +108,22 @@ export default {
       };
 
       this.observer = new IntersectionObserver((entries) => {
+        let foundActive = false;
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const sectionId = entry.target.id || entry.target.querySelector('[id]')?.id;
             if (sectionId) {
               this.activeLink = `#${sectionId}`;
               this.currentSection = sectionId;
+              foundActive = true;
             }
           }
         });
+        // If at the bottom of the page, force Contact as active
+        if (!foundActive && (window.innerHeight + window.scrollY >= document.body.offsetHeight - 2)) {
+          this.activeLink = '#contact';
+          this.currentSection = 'contact';
+        }
       }, options);
 
       // Start observing sections after a short delay to ensure DOM is ready
@@ -165,19 +196,17 @@ export default {
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.08),
     0 4px 16px rgba(0, 0, 0, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  width: 100% !important;
-  z-index: 99999 !important;
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 99999;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-  overflow: hidden;
+  overflow: visible;
   min-height: 70px;
-  display: block;
 }
 
 .header::before {
@@ -219,11 +248,9 @@ export default {
   box-shadow: 
     0 12px 48px rgba(0, 0, 0, 0.08),
     0 6px 24px rgba(0, 0, 0, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(30px) saturate(1.4);
   border-bottom-color: rgba(255, 255, 255, 0.25);
-  transform: translateY(-1px);
 }
 
 .header.scrolled {
@@ -231,9 +258,7 @@ export default {
   box-shadow: 
     0 10px 40px rgba(0, 0, 0, 0.1),
     0 5px 20px rgba(0, 0, 0, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.06);
-  animation: headerPulse 2s ease-in-out;
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
 /* Section-based header styling */
@@ -253,72 +278,17 @@ export default {
   border-bottom-color: rgba(230, 126, 34, 0.3);
 }
 
-.header.section-contact {
-  border-bottom-color: rgba(231, 76, 60, 0.3);
+.header.section-experience {
+  border-bottom-color: rgba(155, 89, 182, 0.3);
 }
 
-@keyframes headerPulse {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-1px);
-  }
+.header.section-contact {
+  border-bottom-color: rgba(231, 76, 60, 0.3);
 }
 
 @keyframes gradientShift {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
-}
-
-@keyframes navItemPop {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200px 0;
-  }
-  100% {
-    background-position: 200px 0;
-  }
-}
-
-.nav-menu a:focus-visible {
-  outline: 2px solid #667eea;
-  outline-offset: 2px;
-  animation: navItemPop 0.3s ease;
-}
-
-.nav-brand h2:focus-visible {
-  outline: 2px solid #667eea;
-  outline-offset: 4px;
-  border-radius: 8px;
-}
-
-/* Add subtle hover state for entire nav */
-.nav:hover .nav-menu a:not(:hover) {
-  opacity: 0.7;
-  transform: scale(0.98);
-}
-
-.nav:hover .nav-menu a:hover {
-  opacity: 1;
-  transform: translateY(-4px) scale(1.08);
-}
-
-/* Enhanced scroll progress bar */
-.scroll-progress:hover {
-  height: 4px;
-  box-shadow: 0 0 15px rgba(102, 126, 234, 0.5);
 }
 
 .nav {
@@ -353,44 +323,6 @@ export default {
   border-radius: 20px;
   overflow: hidden;
   animation: gradientShift 4s ease-in-out infinite;
-}
-
-.nav-brand h2::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(15px);
-  opacity: 0;
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  z-index: -1;
-  transform: scale(0.9);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 
-    0 4px 16px rgba(0, 0, 0, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-.nav-brand h2::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 50%;
-  width: 0;
-  height: 3px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 2px;
-  transform: translateX(-50%);
-}
-
-.nav-brand h2:hover::before {
-  opacity: 1;
-  transform: scale(1);
 }
 
 .nav-brand h2:hover {
@@ -487,6 +419,123 @@ export default {
   transform: translateY(-2px) scale(1.05);
 }
 
+/* Dropdown Styles */
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown .dropdown-arrow {
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.nav-dropdown:hover .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  min-width: 200px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(25px) saturate(1.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.08),
+    0 8px 25px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  padding: 0.8rem 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 100000;
+  pointer-events: none;
+  margin-top: 10px;
+}
+
+.nav-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(10px);
+  pointer-events: all;
+}
+
+.dropdown-item {
+  display: flex !important;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem 1.5rem !important;
+  color: #333 !important;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-radius: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  backdrop-filter: none !important;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  width: calc(100% - 0rem);
+  box-sizing: border-box;
+}
+
+.dropdown-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    rgba(102, 126, 234, 0.1) 0%, 
+    rgba(118, 75, 162, 0.1) 100%);
+  transition: left 0.4s ease;
+  z-index: -1;
+}
+
+.dropdown-item:hover::before {
+  left: 0;
+}
+
+.dropdown-item:hover {
+  background: rgba(102, 126, 234, 0.08) !important;
+  color: #667eea !important;
+  transform: none !important;
+  box-shadow: none !important;
+  padding-left: 2rem !important;
+}
+
+.dropdown-icon {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-item:hover .dropdown-icon {
+  transform: scale(1.2);
+  opacity: 1;
+}
+
+/* Dropdown arrow animation */
+.dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid rgba(255, 255, 255, 0.95);
+  filter: drop-shadow(0 -2px 4px rgba(0, 0, 0, 0.1));
+}
+
 .mobile-menu-toggle {
   display: none;
   flex-direction: column;
@@ -501,25 +550,10 @@ export default {
   overflow: hidden;
 }
 
-.mobile-menu-toggle::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.2), transparent);
-  transition: left 0.5s ease;
-}
-
-.mobile-menu-toggle:hover::before {
-  left: 100%;
-}
-
 .mobile-menu-toggle:hover {
   background: rgba(102, 126, 234, 0.12);
   border-color: rgba(102, 126, 234, 0.2);
-  transform: scale(1.08) rotate(2deg);
+  transform: scale(1.08);
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
 }
 
@@ -536,20 +570,11 @@ export default {
 
 .mobile-menu-toggle:hover span {
   background: #667eea;
-  transform: scaleX(1.1);
-}
-
-.mobile-menu-toggle:hover span:nth-child(1) {
-  transform: scaleX(0.8) translateX(2px);
-}
-
-.mobile-menu-toggle:hover span:nth-child(3) {
-  transform: scaleX(0.8) translateX(-2px);
 }
 
 .mobile-menu-toggle.active {
   background: rgba(102, 126, 234, 0.15);
-  transform: scale(1.05) rotate(-2deg);
+  transform: scale(1.05);
   border-color: rgba(102, 126, 234, 0.3);
 }
 
@@ -603,6 +628,44 @@ export default {
     padding: 1rem 2rem;
     width: 80%;
     text-align: center;
+  }
+  
+  /* Mobile dropdown styles */
+  .nav-dropdown .dropdown-arrow {
+    display: none;
+  }
+  
+  .dropdown-menu {
+    position: static;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(15px);
+    margin-top: 0.5rem;
+    border-radius: 15px;
+    padding: 0.5rem 0;
+    width: 100%;
+    box-shadow: 
+      0 10px 20px rgba(0, 0, 0, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  
+  .dropdown-menu::before {
+    display: none;
+  }
+  
+  .dropdown-item {
+    padding: 0.8rem 1rem !important;
+    width: calc(100% - 2rem);
+    margin: 0 1rem;
+    border-radius: 10px !important;
+    font-size: 1.1rem;
+  }
+  
+  .dropdown-item:hover {
+    padding-left: 1.2rem !important;
   }
 }
 

@@ -145,8 +145,7 @@ export default {
   box-shadow: 
     0 25px 50px rgba(0, 0, 0, 0.08),
     0 12px 40px rgba(0, 0, 0, 0.05),
-    inset 0 2px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -2px 0 rgba(0, 0, 0, 0.05);
+    inset 0 2px 0 rgba(255, 255, 255, 0.2);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   overflow: visible;
   animation: slideInLeft 1s ease-out, floatSlow 6s ease-in-out infinite 2s;
@@ -200,8 +199,7 @@ export default {
   box-shadow: 
     0 32px 64px rgba(0, 0, 0, 0.08),
     0 16px 48px rgba(0, 0, 0, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
   animation-play-state: paused;
 }
 
@@ -439,9 +437,7 @@ export default {
   box-shadow: 
     0 30px 60px rgba(0, 0, 0, 0.15),
     0 15px 45px rgba(0, 0, 0, 0.1),
-    inset 0 2px 0 rgba(255, 255, 255, 0.3),
-    inset 0 -2px 0 rgba(0, 0, 0, 0.08);
-  /* Enhanced frame effect */
+    inset 0 2px 0 rgba(255, 255, 255, 0.3);
   padding: 15px;
 }
 
@@ -486,21 +482,14 @@ export default {
 
 .profile-image:hover {
   transform: scale(1.05) rotate(1deg);
-  box-shadow: 
-    0 40px 80px rgba(0, 0, 0, 0.12),
-    0 20px 60px rgba(0, 0, 0, 0.08),
-    inset 0 3px 0 rgba(255, 255, 255, 0.3),
-    inset 0 -3px 0 rgba(0, 0, 0, 0.08);
   border-color: rgba(255, 255, 255, 0.4);
   background: rgba(255, 255, 255, 0.12);
-  /* Enhanced frame glow on hover */
   box-shadow: 
     0 40px 80px rgba(0, 0, 0, 0.15),
     0 20px 60px rgba(102, 126, 234, 0.1),
     0 0 0 4px rgba(255, 255, 255, 0.1),
     0 0 0 8px rgba(102, 126, 234, 0.05),
-    inset 0 3px 0 rgba(255, 255, 255, 0.3),
-    inset 0 -3px 0 rgba(0, 0, 0, 0.08);
+    inset 0 3px 0 rgba(255, 255, 255, 0.3);
 }
 
 .profile-image:hover::before {
@@ -516,7 +505,6 @@ export default {
   position: relative;
   z-index: 3;
   transition: transform 0.4s ease;
-  /* Subtle inner shadow for depth */
   box-shadow: 
     inset 0 2px 8px rgba(0, 0, 0, 0.1),
     0 2px 12px rgba(0, 0, 0, 0.05);
@@ -697,32 +685,10 @@ export default {
   }
 }
 
-/* Floating Animation Effects */
-@keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  25% { transform: translateY(-10px) rotate(1deg); }
-  50% { transform: translateY(-5px) rotate(0deg); }
-  75% { transform: translateY(-15px) rotate(-1deg); }
-}
-
+/* Essential Animations */
 @keyframes floatSlow {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-8px); }
-}
-
-@keyframes floatImage {
-  0%, 100% { 
-    transform: translateY(-50%) translateY(0px) rotate(0deg); 
-  }
-  25% { 
-    transform: translateY(-50%) translateY(-10px) rotate(1deg); 
-  }
-  50% { 
-    transform: translateY(-50%) translateY(-5px) rotate(0deg); 
-  }
-  75% { 
-    transform: translateY(-50%) translateY(-15px) rotate(-1deg); 
-  }
 }
 
 @keyframes floatProfile {
@@ -738,6 +704,13 @@ export default {
   75% { 
     transform: translateY(-50%) translateY(-18px) rotate(-0.5deg); 
   }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-10px) rotate(1deg); }
+  50% { transform: translateY(-5px) rotate(0deg); }
+  75% { transform: translateY(-15px) rotate(-1deg); }
 }
 
 /* Glass Particle Effects */
