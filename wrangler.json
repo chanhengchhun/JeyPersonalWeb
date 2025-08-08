@@ -1,0 +1,7 @@
+{
+  "name": "chanheng-website-worker",
+  "compatibility_date": "2025-08-08",
+  "assets": {
+    "directory": "./dist"
+  }
+}
