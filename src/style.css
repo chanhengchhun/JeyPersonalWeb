@@ -17,19 +17,23 @@ html, body {
 }
 
 /* Enhanced Color Variables */
+
 :root {
-  --color-primary: #57cc99; /* Fresh green for top bar and hero */
+  --color-primary: #75ddddff;
   --base-font-size: 15px;
-  --color-secondary: #b91c1c;
-  --color-accent: #06b6d4; /* Stronger cyan */
+  --color-secondary: #dde5b6ff;
+  --color-accent: #a98467ff; /* Stronger cyan */
   --color-warm: #fbbf24;
-  --color-light: #f9fafb; /* Lighter background */
-  --color-white: #ffffff;
-  --color-text: #18181b; /* Near-black for high contrast */
+  /*--color-light: #727882; /* Lighter background 043f40*/ 
+  --color-light: linear-gradient(135deg, #242423 10%, #ffffff 80%);
+  --color-white: #adc178ff;
+  --color-text: #ffffff; /* Near-black for high contrast */
   --color-text-light: #334155; /* Darker slate */
   --color-bg-glass: rgba(6, 182, 212, 0.10); /* More visible cyan glass */
   --color-border-glass: rgba(29, 59, 114, 0.22); /* Stronger blue border */
 }
+
+
 
 html {
   scroll-behavior: smooth;
@@ -92,5 +96,4 @@ a:hover, a:focus {
 .section-subtitle, h4, h5, h6 {
   color: var(--color-text-light) !important;
   font-weight: 600;
-}
 }

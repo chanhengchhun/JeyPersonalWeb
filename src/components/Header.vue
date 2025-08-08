@@ -303,36 +303,37 @@ export default {
 }
 
 .nav-brand h2 {
-  color: #333;
-  font-size: 1.8rem;
+  font-size: 2.1rem;
   margin: 0;
-  background: linear-gradient(135deg, 
-    rgba(102, 126, 234, 1) 0%,
-    rgba(118, 75, 162, 1) 25%,
-    rgba(240, 147, 251, 1) 50%,
-    rgba(42, 157, 143, 1) 75%,
-    rgba(102, 126, 234, 1) 100%);
-  background-size: 200% 200%;
+  font-weight: 800;
+  letter-spacing: 1px;
+  background: linear-gradient(120deg, #67e8f9, #a084ee, #f093fb, #ffbf69, #67e8f9 90%);
+  background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-weight: 700;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
+  padding: 0.6rem 1.5rem;
+  border-radius: 24px;
   overflow: hidden;
-  animation: gradientShift 4s ease-in-out infinite;
+  animation: gradientShift 6s ease-in-out infinite;
+  box-shadow: 0 2px 16px 0 rgba(160, 132, 238, 0.10), 0 1.5px 8px 0 rgba(87,204,153,0.10);
+  background-color: rgba(255,255,255,0.18);
+  backdrop-filter: blur(8px);
 }
 
 .nav-brand h2:hover {
-  transform: translateY(-2px) scale(1.05);
-  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+  transform: translateY(-3px) scale(1.08);
+  background: linear-gradient(120deg, #ff9f1cff, #ffbf69ff, #2ec4b6ff 90%);
+  background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 4px 8px rgba(102, 126, 234, 0.3));
+  filter: drop-shadow(0 0 12px #dbd9df88) drop-shadow(0 2px 12px #67e8f988);
+  box-shadow: 0 4px 32px 0 rgba(160, 132, 238, 0.18), 0 2px 12px 0 rgba(87,204,153,0.13);
+  background-color: rgba(255,255,255,0.28);
 }
 
 .nav-brand h2:hover::after {
@@ -362,7 +363,7 @@ export default {
 
 
 .nav-menu a {
-  color: #222;
+  color: #0e0e0e;
   text-decoration: none;
   font-weight: 600;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -370,7 +371,7 @@ export default {
   border-radius: 32px;
   position: relative;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.10);
+  background: #8fe698;
   border: 1.5px solid rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(12px);
   white-space: nowrap;
@@ -380,8 +381,8 @@ export default {
 /* Glassmorphism nav hover/active: clean, consistent, finished edge */
 .nav-menu a:hover,
 .nav-menu a.active {
-  color: #fff;
-  background: rgba(34, 40, 49, 0.48);
+  color: #b9fbc0;
+  background: #4d504c;
   border: 1.5px solid rgba(87,204,153,0.32);
   /* border-radius matches base for smooth transition */
   box-shadow:

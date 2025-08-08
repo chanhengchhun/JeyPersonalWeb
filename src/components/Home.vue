@@ -126,12 +126,18 @@ export default {
   align-items: center;
   position: relative;
   z-index: 2;
+  background: transparent;
+  backdrop-filter: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
+
 
 /* Main Text Box */
 .text-box {
   background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(25px) saturate(1.2);
+  backdrop-filter: blur(1px) saturate(1.2);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 35px;
   padding: 6.5rem clamp(5.5rem, 13vw, 11rem) 6.5rem 6.5rem;
@@ -225,8 +231,8 @@ export default {
   font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 800;
   background: linear-gradient(135deg, 
-    rgba(102, 126, 234, 1) 0%,
-    rgba(118, 75, 162, 1) 25%,
+    rgb(255, 255, 255) 0%,
+    rgb(129, 255, 166) 25%,
     rgba(240, 147, 251, 1) 50%,
     rgba(42, 157, 143, 1) 75%,
     rgba(102, 126, 234, 1) 100%);
@@ -275,17 +281,12 @@ export default {
 
 .description {
   font-size: 1.1rem;
-  line-height: 1.6;
+  line-height: 1.5;
   color: var(--color-text);
+  margin-top: 2rem;
   margin-bottom: 2rem;
-  opacity: 0.95;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  margin-left: 0rem;
   letter-spacing: 0.25px;
-  background: rgba(255, 255, 255, 0.03);
-  padding: 1rem 0rem 1rem 0;
-  border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
 }
 
 @keyframes slideInLeft {
