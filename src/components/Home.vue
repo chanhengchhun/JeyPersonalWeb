@@ -28,92 +28,65 @@
   </section>
 </template>
 
-<script>
-import profileImage from '../assets/images/profile.jpg'
+<script setup>
+import { ref, onMounted } from 'vue';
+import profileImage from '../assets/images/profile.jpg';
 
-export default {
-  name: 'Hero',
-  data() {
-    return {
-      profileImage,
-      roles: ['Data Enthusiast', 'Problem Solver', 'Lifelong Learner'],
-      currentRole: '',
-      roleIndex: 0,
-      charIndex: 0,
-      isDeleting: false
-    }
-  },
-  mounted() {
-    this.typeWriter();
-  },
-  methods: {
-    typeWriter() {
-      const currentText = this.roles[this.roleIndex];
-      
-      if (this.isDeleting) {
-        this.currentRole = currentText.substring(0, this.charIndex - 1);
-        this.charIndex--;
-      } else {
-        this.currentRole = currentText.substring(0, this.charIndex + 1);
-        this.charIndex++;
-      }
+const roles = ['Data Enthusiast', 'Problem Solver', 'Lifelong Learner'];
+const currentRole = ref('');
+const roleIndex = ref(0);
+const charIndex = ref(0);
+const isDeleting = ref(false);
 
-      let typeSpeed = this.isDeleting ? 50 : 100;
+const typeWriter = () => {
+  // ... your existing logic here, but use .value
+  const currentText = roles[roleIndex.value];
 
-      if (!this.isDeleting && this.charIndex === currentText.length) {
-        typeSpeed = 2000;
-        this.isDeleting = true;
-      } else if (this.isDeleting && this.charIndex === 0) {
-        this.isDeleting = false;
-        this.roleIndex = (this.roleIndex + 1) % this.roles.length;
-      }
-
-      setTimeout(() => this.typeWriter(), typeSpeed);
-    }
+  if (isDeleting.value) {
+    currentRole.value = currentText.substring(0, charIndex.value - 1);
+    charIndex.value--;
+  } else {
+    currentRole.value = currentText.substring(0, charIndex.value + 1);
+    charIndex.value++;
   }
-}
+
+  let typeSpeed = isDeleting.value ? 50 : 100;
+
+  if (!isDeleting.value && charIndex.value === currentText.length) {
+    typeSpeed = 2000;
+    isDeleting.value = true;
+  } else if (isDeleting.value && charIndex.value === 0) {
+    isDeleting.value = false;
+    roleIndex.value = (roleIndex.value + 1) % roles.length;
+  }
+
+  setTimeout(typeWriter, typeSpeed);
+};
+
+onMounted(() => {
+  typeWriter();
+});
 </script>
 
+
+
+
 <style scoped>
+/* ==============================================
+   Hero Section
+   ============================================== */
 .hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, 
-    rgba(102, 126, 234, 0.03) 0%,
-    rgba(118, 75, 162, 0.05) 25%,
-    rgba(240, 147, 251, 0.03) 50%,
-    rgba(42, 157, 143, 0.05) 75%,
-    rgba(38, 70, 83, 0.03) 100%);
+  /* Use global linear gradient, so you don't need to redefine it here */
   position: relative;
-  padding: 40px 20px 40px 20px;
+  padding: 40px 20px;
   overflow: hidden;
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(240, 147, 251, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(42, 157, 143, 0.06) 0%, transparent 50%);
-  z-index: 1;
-}
-
-.hero::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.02)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.02)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-  opacity: 0.4;
-  z-index: 1;
+  background: linear-gradient(135deg, 
+    rgba(0, 129, 167, 0.03) 0%, /* Teal */
+    rgba(240, 113, 103, 0.05) 50%, /* Coral */
+    rgba(0, 52, 89, 0.03) 100%); /* Dark charcoal */
 }
 
 .hero-container {
@@ -126,18 +99,13 @@ export default {
   align-items: center;
   position: relative;
   z-index: 2;
-  background: transparent;
-  backdrop-filter: none;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
 }
 
-
-/* Main Text Box */
+/* ==============================================
+   Main Text Box
+   ============================================== */
 .text-box {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(1px) saturate(1.2);
+  background: rgba(255, 255, 255, 0.08); /* A neutral glass color */
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 35px;
   padding: 6.5rem clamp(5.5rem, 13vw, 11rem) 6.5rem 6.5rem;
@@ -166,23 +134,6 @@ export default {
   max-width: clamp(50%, 55vw, 60%);
 }
 
-.text-box::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.08),
-    transparent
-  );
-  transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: -1;
-}
-
 .text-box::after {
   content: '';
   position: absolute;
@@ -209,14 +160,13 @@ export default {
   animation-play-state: paused;
 }
 
-.text-box:hover::before {
-  left: 100%;
-}
-
 .text-box:hover::after {
   opacity: 1;
 }
 
+/* ==============================================
+   Text & Elements inside the Text Box
+   ============================================== */
 .greeting {
   font-size: 1.2rem;
   color: var(--color-secondary);
@@ -231,11 +181,8 @@ export default {
   font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 800;
   background: linear-gradient(135deg, 
-    rgb(255, 255, 255) 0%,
-    rgb(129, 255, 166) 25%,
-    rgba(240, 147, 251, 1) 50%,
-    rgba(42, 157, 143, 1) 75%,
-    rgba(102, 126, 234, 1) 100%);
+    var(--color-primary) 0%,
+    var(--color-secondary) 100%);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -246,18 +193,13 @@ export default {
   text-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
 }
 
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
 .role {
   font-size: clamp(1.2rem, 3vw, 2rem);
   font-weight: 600;
   background: linear-gradient(135deg, 
-    rgba(240, 147, 251, 0.9) 0%,
-    rgba(42, 157, 143, 0.9) 50%,
-    rgba(102, 126, 234, 0.9) 100%);
+    rgba(240, 113, 103, 0.9) 0%, /* Coral */
+    rgba(0, 129, 167, 0.9) 50%, /* Teal */
+    rgba(0, 52, 89, 0.9) 100%); /* Dark charcoal */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -270,47 +212,25 @@ export default {
 
 .cursor {
   animation: blink 1s infinite;
-  color: rgba(240, 147, 251, 0.8);
-  text-shadow: 0 0 10px rgba(240, 147, 251, 0.5);
-}
-
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+  color: var(--color-accent);
+  text-shadow: 0 0 10px rgba(240, 113, 103, 0.5);
 }
 
 .description {
   font-size: 1.1rem;
-  line-height: 1.5;
+  line-height: 1.6;
   color: var(--color-text);
-  margin-top: 2rem;
   margin-bottom: 2rem;
-  margin-left: 0rem;
+  opacity: 0.95;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
   letter-spacing: 0.25px;
+  padding: 1rem 0rem;
+  border-radius: 15px;
 }
 
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
+/* ==============================================
+   Buttons
+   ============================================== */
 .buttons {
   display: flex;
   gap: 1.5rem;
@@ -352,19 +272,19 @@ export default {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8));
+  background: linear-gradient(135deg, rgba(0, 129, 167, 0.8), rgba(0, 52, 89, 0.8));
   color: white;
   border-color: rgba(255, 255, 255, 0.2);
   box-shadow: 
-    0 12px 32px rgba(102, 126, 234, 0.3),
+    0 12px 32px rgba(0, 129, 167, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9));
+  background: linear-gradient(135deg, rgba(0, 129, 167, 0.9), rgba(0, 52, 89, 0.9));
   transform: translateY(-4px) scale(1.05);
   box-shadow: 
-    0 20px 48px rgba(102, 126, 234, 0.4),
+    0 20px 48px rgba(0, 129, 167, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
   border-color: rgba(255, 255, 255, 0.4);
 }
@@ -388,7 +308,9 @@ export default {
   border-color: rgba(255, 255, 255, 0.4);
 }
 
-/* Overlapping Image Box */
+/* ==============================================
+   Overlapping Image Box
+   ============================================== */
 .image-box {
   position: absolute;
   right: clamp(20px, 5vw, 80px);
@@ -518,18 +440,18 @@ export default {
     0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive Design */
+/* ==============================================
+   Responsive Design
+   ============================================== */
 /* Large screens */
 @media (min-width: 1400px) {
   .text-box {
     max-width: 1700px;
   }
-  
   .profile-image {
     width: 420px;
     height: 420px;
   }
-  
   .image-box {
     right: clamp(60px, 8vw, 120px);
   }
@@ -539,7 +461,6 @@ export default {
   .text-content {
     max-width: 60%;
   }
-  
   .profile-image {
     width: clamp(300px, 22vw, 350px);
     height: clamp(300px, 22vw, 350px);
@@ -550,11 +471,9 @@ export default {
   .text-content {
     max-width: 65%;
   }
-  
   .image-box {
     right: clamp(10px, 2vw, 20px);
   }
-  
   .profile-image {
     width: clamp(250px, 18vw, 300px);
     height: clamp(250px, 18vw, 300px);
@@ -565,7 +484,11 @@ export default {
   .hero-container {
     padding: 0 2.5rem;
   }
-  
+  .hero {
+    min-height: 90vw;
+    padding-top: 70px; /*space below the header */
+    padding-bottom: 40px;
+  }
   .text-box {
     max-width: 90vw;
     min-height: clamp(350px, 45vh, 420px);
@@ -573,17 +496,14 @@ export default {
     flex-direction: column;
     text-align: center;
   }
-  
   .text-content {
     padding-right: 0;
     margin-bottom: 2rem;
     max-width: 100%;
   }
-  
   .buttons {
     justify-content: center;
   }
-  
   .image-box {
     position: relative;
     top: auto;
@@ -592,11 +512,9 @@ export default {
     align-self: center;
     animation: slideInRight 1s ease-out 0.5s both;
   }
-  
   .image-box:hover {
     transform: translateY(-8px) scale(1.02);
   }
-  
   .profile-image {
     width: clamp(220px, 35vw, 280px);
     height: clamp(220px, 35vw, 280px);
@@ -608,11 +526,9 @@ export default {
   .hero {
     padding-top: 70px;
   }
-  
   .hero-container {
     padding: 0 2rem;
   }
-  
   .text-box {
     max-width: 95vw;
     min-height: clamp(320px, 40vh, 380px);
@@ -620,13 +536,11 @@ export default {
     flex-direction: column;
     text-align: center;
   }
-  
   .text-content {
     padding-right: 0;
     margin-bottom: 2rem;
     max-width: 100%;
   }
-  
   .image-box {
     position: relative;
     top: auto;
@@ -634,17 +548,14 @@ export default {
     transform: none;
     align-self: center;
   }
-  
   .image-box:hover {
     transform: translateY(-8px) scale(1.02);
   }
-  
   .profile-image {
     width: clamp(220px, 35vw, 280px);
     height: clamp(220px, 35vw, 280px);
     padding: 10px;
   }
-  
   .buttons {
     justify-content: center;
   }
@@ -654,39 +565,55 @@ export default {
   .hero-container {
     padding: 0 1rem;
   }
-  
   .text-box {
     min-height: clamp(280px, 35vh, 320px);
     padding: clamp(2rem, 5vw, 2.5rem);
     border-radius: 25px;
   }
-  
   .text-content {
     margin-bottom: 1.5rem;
   }
-  
   .profile-image {
     width: clamp(180px, 40vw, 220px);
     height: clamp(180px, 40vw, 220px);
     padding: 8px;
     border-radius: 25px;
   }
-  
   .btn {
     padding: 0.7rem 1.5rem;
     font-size: 0.9rem;
   }
-  
   .greeting {
     font-size: clamp(1rem, 4vw, 1.2rem);
   }
-  
   .description {
     font-size: clamp(0.9rem, 3.5vw, 1.1rem);
   }
 }
 
-/* Essential Animations */
+/* ==============================================
+   Keyframe Animations
+   ============================================== */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
 @keyframes floatSlow {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-8px); }
