@@ -116,16 +116,15 @@ export default {
 }
 </script>
 
+
 <style scoped>
 .about {
   min-height: 100vh;
   padding: 120px 20px 80px 20px;
   background: linear-gradient(135deg, 
-    rgba(102, 126, 234, 0.03) 0%,
-    rgba(118, 75, 162, 0.05) 25%,
-    rgba(240, 147, 251, 0.03) 50%,
-    rgba(42, 157, 143, 0.05) 75%,
-    rgba(38, 70, 83, 0.03) 100%);
+    rgba(143, 230, 152, 0.03) 0%, 
+    rgba(45, 59, 47, 0.05) 50%,
+    rgba(143, 230, 152, 0.03) 100%);
   position: relative;
   display: flex;
   align-items: center;
@@ -140,9 +139,9 @@ export default {
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 20% 20%, rgba(46, 204, 113, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(241, 196, 15, 0.06) 0%, transparent 50%),
-    radial-gradient(circle at 40% 60%, rgba(102, 126, 234, 0.05) 0%, transparent 50%);
+    radial-gradient(circle at 20% 20%, rgba(143, 230, 152, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(229, 185, 138, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 40% 60%, rgba(45, 59, 47, 0.05) 0%, transparent 50%);
   z-index: 1;
 }
 
@@ -176,11 +175,9 @@ export default {
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 800;
   background: linear-gradient(135deg, 
-    rgba(46, 204, 113, 1) 0%,
-    rgba(241, 196, 15, 1) 25%,
-    rgba(230, 126, 34, 1) 50%,
-    rgba(231, 76, 60, 1) 75%,
-    rgba(46, 204, 113, 1) 100%);
+    var(--color-primary) 0%,
+    var(--color-accent) 50%,
+    var(--color-secondary) 100%);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -188,12 +185,12 @@ export default {
   margin: 0 0 1rem 0;
   line-height: 1.2;
   animation: gradientShift 4s ease-in-out infinite;
-  text-shadow: 0 4px 16px rgba(46, 204, 113, 0.3);
+  text-shadow: 0 4px 16px rgba(143, 230, 152, 0.3);
 }
 
 .section-subtitle {
   font-size: 1.2rem;
-  color: rgba(102, 126, 234, 0.8);
+  color: var(--color-text-light);
   font-weight: 500;
   letter-spacing: 0.5px;
   opacity: 0.9;
@@ -205,25 +202,13 @@ export default {
 }
 
 @keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes float {
@@ -299,8 +284,8 @@ export default {
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 30% 20%, rgba(46, 204, 113, 0.06) 0%, transparent 50%),
-    radial-gradient(circle at 70% 80%, rgba(241, 196, 15, 0.04) 0%, transparent 50%);
+    radial-gradient(circle at 30% 20%, rgba(143, 230, 152, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(229, 185, 138, 0.04) 0%, transparent 50%);
   z-index: -1;
   opacity: 0;
   transition: opacity 0.6s ease;
@@ -330,8 +315,8 @@ export default {
   font-weight: 700;
   margin-bottom: 1rem;
   background: linear-gradient(135deg, 
-    rgba(46, 204, 113, 1) 0%,
-    rgba(241, 196, 15, 1) 100%);
+    var(--color-primary) 0%,
+    var(--color-accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -341,19 +326,19 @@ export default {
 .text-block p {
   font-size: 1.1rem;
   line-height: 1.7;
-  color: #555;
+  color: var(--color-text);
   margin: 0;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   letter-spacing: 0.2px;
 }
 
 .text-block strong {
-  color: rgba(46, 204, 113, 0.9);
+  color: var(--color-primary);
   font-weight: 600;
 }
 
 .skills-highlight {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--color-bg-glass);
   backdrop-filter: blur(25px) saturate(1.2);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 30px;
@@ -378,8 +363,8 @@ export default {
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 20% 20%, rgba(46, 204, 113, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(241, 196, 15, 0.06) 0%, transparent 50%);
+    radial-gradient(circle at 20% 20%, rgba(143, 230, 152, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(229, 185, 138, 0.06) 0%, transparent 50%);
   z-index: -1;
   opacity: 0;
   transition: opacity 0.6s ease;
@@ -405,9 +390,9 @@ export default {
   font-weight: 700;
   margin-bottom: 2.5rem;
   background: linear-gradient(135deg, 
-    rgba(46, 204, 113, 1) 0%,
-    rgba(241, 196, 15, 1) 50%,
-    rgba(230, 126, 34, 1) 100%);
+    var(--color-primary) 0%,
+    var(--color-accent) 50%,
+    var(--color-secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -420,7 +405,7 @@ export default {
 }
 
 .focus-item {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--color-bg-glass);
   backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
@@ -444,8 +429,8 @@ export default {
   right: 0;
   bottom: 0;
   background: linear-gradient(135deg, 
-    rgba(46, 204, 113, 0.1) 0%,
-    rgba(241, 196, 15, 0.08) 100%);
+    rgba(143, 230, 152, 0.1) 0%,
+    rgba(229, 185, 138, 0.08) 100%);
   opacity: 0;
   transition: opacity 0.4s ease;
   z-index: -1;
@@ -457,7 +442,7 @@ export default {
   border-color: rgba(255, 255, 255, 0.2);
   box-shadow: 
     0 20px 40px rgba(0, 0, 0, 0.1),
-    0 8px 25px rgba(46, 204, 113, 0.15);
+    0 8px 25px rgba(143, 230, 152, 0.15);
   animation-play-state: paused;
 }
 
@@ -475,13 +460,13 @@ export default {
   font-size: 1.3rem;
   font-weight: 600;
   margin-bottom: 0.8rem;
-  color: #333;
+  color: var(--color-text);
   line-height: 1.3;
 }
 
 .focus-item p {
   font-size: 1rem;
-  color: #666;
+  color: var(--color-text-light);
   line-height: 1.5;
   margin: 0;
   opacity: 0.9;
@@ -489,7 +474,7 @@ export default {
 
 /* Hobbies Section */
 .hobbies-section {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--color-bg-glass);
   backdrop-filter: blur(25px) saturate(1.2);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 30px;
@@ -514,8 +499,8 @@ export default {
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 25% 25%, rgba(230, 126, 34, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(231, 76, 60, 0.06) 0%, transparent 50%);
+    radial-gradient(circle at 25% 25%, rgba(229, 185, 138, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(143, 230, 152, 0.06) 0%, transparent 50%);
   z-index: -1;
   opacity: 0;
   transition: opacity 0.6s ease;
@@ -541,9 +526,9 @@ export default {
   font-weight: 700;
   margin-bottom: 1.5rem;
   background: linear-gradient(135deg, 
-    rgba(230, 126, 34, 1) 0%,
-    rgba(231, 76, 60, 1) 50%,
-    rgba(46, 204, 113, 1) 100%);
+    var(--color-accent) 0%,
+    var(--color-primary) 50%,
+    var(--color-secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -551,7 +536,7 @@ export default {
 
 .hobbies-intro {
   font-size: 1.1rem;
-  color: #666;
+  color: var(--color-text-light);
   line-height: 1.6;
   margin-bottom: 2.5rem;
   max-width: 600px;
@@ -568,7 +553,7 @@ export default {
 }
 
 .hobby-card {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--color-bg-glass);
   backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 25px;
@@ -587,8 +572,8 @@ export default {
   right: 0;
   bottom: 0;
   background: linear-gradient(135deg, 
-    rgba(230, 126, 34, 0.08) 0%,
-    rgba(231, 76, 60, 0.06) 100%);
+    rgba(229, 185, 138, 0.08) 0%,
+    rgba(143, 230, 152, 0.06) 100%);
   opacity: 0;
   transition: opacity 0.4s ease;
   z-index: -1;
@@ -600,7 +585,7 @@ export default {
   border-color: rgba(255, 255, 255, 0.2);
   box-shadow: 
     0 25px 50px rgba(0, 0, 0, 0.1),
-    0 10px 30px rgba(230, 126, 34, 0.15);
+    0 10px 30px rgba(229, 185, 138, 0.15);
 }
 
 .hobby-card:hover::before {
@@ -617,13 +602,13 @@ export default {
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: #333;
+  color: var(--color-text);
   line-height: 1.3;
 }
 
 .hobby-card p {
   font-size: 1rem;
-  color: #666;
+  color: var(--color-text-light);
   line-height: 1.6;
   margin-bottom: 2rem;
   opacity: 0.9;
@@ -631,8 +616,8 @@ export default {
 
 .hobby-btn {
   background: linear-gradient(135deg, 
-    rgba(230, 126, 34, 0.8) 0%, 
-    rgba(231, 76, 60, 0.8) 100%);
+    rgba(229, 185, 138, 0.8) 0%, 
+    rgba(143, 230, 152, 0.8) 100%);
   border: none;
   border-radius: 50px;
   padding: 1rem 2rem;
@@ -675,11 +660,11 @@ export default {
 .hobby-btn:hover {
   transform: translateY(-3px) scale(1.05);
   background: linear-gradient(135deg, 
-    rgba(230, 126, 34, 0.9) 0%, 
-    rgba(231, 76, 60, 0.9) 100%);
+    rgba(229, 185, 138, 0.9) 0%, 
+    rgba(143, 230, 152, 0.9) 100%);
   box-shadow: 
-    0 15px 35px rgba(230, 126, 34, 0.4),
-    0 6px 20px rgba(231, 76, 60, 0.3);
+    0 15px 35px rgba(229, 185, 138, 0.4),
+    0 6px 20px rgba(143, 230, 152, 0.3);
   border-color: rgba(255, 255, 255, 0.3);
 }
 

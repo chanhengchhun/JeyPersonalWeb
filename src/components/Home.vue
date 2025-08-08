@@ -69,8 +69,6 @@ onMounted(() => {
 </script>
 
 
-
-
 <style scoped>
 /* ==============================================
    Hero Section
@@ -79,14 +77,13 @@ onMounted(() => {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  /* Use global linear gradient, so you don't need to redefine it here */
   position: relative;
   padding: 40px 20px;
   overflow: hidden;
   background: linear-gradient(135deg, 
-    rgba(0, 129, 167, 0.03) 0%, /* Teal */
-    rgba(240, 113, 103, 0.05) 50%, /* Coral */
-    rgba(0, 52, 89, 0.03) 100%); /* Dark charcoal */
+    rgba(143, 230, 152, 0.03) 0%, 
+    rgba(45, 59, 47, 0.05) 50%,
+    rgba(143, 230, 152, 0.03) 100%);
 }
 
 .hero-container {
@@ -121,7 +118,7 @@ onMounted(() => {
     0 12px 40px rgba(0, 0, 0, 0.05),
     inset 0 2px 0 rgba(255, 255, 255, 0.2);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  overflow: visible;
+  overflow: hidden; /* <--- CHANGE THIS LINE */
   animation: slideInLeft 1s ease-out, floatSlow 6s ease-in-out infinite 2s;
 }
 
@@ -142,8 +139,8 @@ onMounted(() => {
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 30% 20%, rgba(102, 126, 234, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 70% 80%, rgba(240, 147, 251, 0.06) 0%, transparent 50%);
+    radial-gradient(circle at 30% 20%, rgba(143, 230, 152, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(229, 185, 138, 0.06) 0%, transparent 50%);
   z-index: -1;
   opacity: 0;
   transition: opacity 0.6s ease;
@@ -169,7 +166,7 @@ onMounted(() => {
    ============================================== */
 .greeting {
   font-size: 1.2rem;
-  color: var(--color-secondary);
+  color: var(--color-text-light);
   font-weight: 500;
   margin-bottom: 0.8rem;
   opacity: 0.95;
@@ -190,30 +187,30 @@ onMounted(() => {
   margin: 0.3rem 0 0.8rem 0;
   line-height: 1.4;
   animation: gradientShift 4s ease-in-out infinite;
-  text-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+  text-shadow: 0 4px 16px rgba(143, 230, 152, 0.3);
 }
 
 .role {
   font-size: clamp(1.2rem, 3vw, 2rem);
   font-weight: 600;
   background: linear-gradient(135deg, 
-    rgba(240, 113, 103, 0.9) 0%, /* Coral */
-    rgba(0, 129, 167, 0.9) 50%, /* Teal */
-    rgba(0, 52, 89, 0.9) 100%); /* Dark charcoal */
+    rgba(143, 230, 152, 0.9) 0%, 
+    rgba(45, 59, 47, 0.9) 50%,
+    rgba(229, 185, 138, 0.9) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-top: 0.2rem;
   min-height: 1.4rem;
   line-height: 1.3;
-  text-shadow: 0 2px 12px rgba(240, 147, 251, 0.2);
+  text-shadow: 0 2px 12px rgba(229, 185, 138, 0.2);
   letter-spacing: 0.5px;
 }
 
 .cursor {
   animation: blink 1s infinite;
-  color: var(--color-accent);
-  text-shadow: 0 0 10px rgba(240, 113, 103, 0.5);
+  color: var(--color-primary);
+  text-shadow: 0 0 10px rgba(143, 230, 152, 0.5);
 }
 
 .description {
@@ -245,69 +242,41 @@ onMounted(() => {
   font-size: 1rem;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   display: inline-block;
-  border: 1.5px solid transparent;
-  backdrop-filter: blur(15px);
   position: relative;
   overflow: hidden;
   letter-spacing: 0.5px;
 }
 
-.btn::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: -1;
-}
-
-.btn:hover::before {
-  width: 300px;
-  height: 300px;
-}
-
+/* Primary button: Solid fill */
 .btn-primary {
-  background: linear-gradient(135deg, rgba(0, 129, 167, 0.8), rgba(0, 52, 89, 0.8));
+  background: var(--color-primary); /* Solid mint green */
   color: white;
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 
-    0 12px 32px rgba(0, 129, 167, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border: 1.5px solid var(--color-primary);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, rgba(0, 129, 167, 0.9), rgba(0, 52, 89, 0.9));
+  background: var(--color-secondary);
+  color: white;
   transform: translateY(-4px) scale(1.05);
-  box-shadow: 
-    0 20px 48px rgba(0, 129, 167, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+  border-color: var(--color-secondary);
 }
 
+/* Secondary button: Ghost effect */
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--color-accent);
-  border-color: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(20px);
-  box-shadow: 
-    0 8px 25px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--color-primary);
+  color: white;
   transform: translateY(-4px) scale(1.05);
-  box-shadow: 
-    0 16px 40px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
 }
-
 /* ==============================================
    Overlapping Image Box
    ============================================== */
@@ -328,8 +297,8 @@ onMounted(() => {
   right: -25px;
   bottom: -25px;
   background: 
-    radial-gradient(circle at 30% 30%, rgba(102, 126, 234, 0.12) 0%, transparent 60%),
-    radial-gradient(circle at 70% 70%, rgba(240, 147, 251, 0.1) 0%, transparent 60%);
+    radial-gradient(circle at 30% 30%, rgba(143, 230, 152, 0.12) 0%, transparent 60%),
+    radial-gradient(circle at 70% 70%, rgba(229, 185, 138, 0.1) 0%, transparent 60%);
   border-radius: 50px;
   z-index: -1;
   opacity: 0;
@@ -373,11 +342,11 @@ onMounted(() => {
   bottom: 8px;
   background: 
     linear-gradient(135deg, 
-      rgba(102, 126, 234, 0.05) 0%, 
+      rgba(143, 230, 152, 0.05) 0%, 
       transparent 25%,
-      rgba(240, 147, 251, 0.05) 50%,
+      rgba(229, 185, 138, 0.05) 50%,
       transparent 75%,
-      rgba(42, 157, 143, 0.05) 100%);
+      rgba(45, 59, 47, 0.05) 100%);
   border-radius: 27px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   z-index: 1;
@@ -409,9 +378,9 @@ onMounted(() => {
   background: rgba(255, 255, 255, 0.12);
   box-shadow: 
     0 40px 80px rgba(0, 0, 0, 0.15),
-    0 20px 60px rgba(102, 126, 234, 0.1),
+    0 20px 60px rgba(143, 230, 152, 0.1),
     0 0 0 4px rgba(255, 255, 255, 0.1),
-    0 0 0 8px rgba(102, 126, 234, 0.05),
+    0 0 0 8px rgba(143, 230, 152, 0.05),
     inset 0 3px 0 rgba(255, 255, 255, 0.3);
 }
 
@@ -443,50 +412,13 @@ onMounted(() => {
 /* ==============================================
    Responsive Design
    ============================================== */
-/* Large screens */
-@media (min-width: 1400px) {
-  .text-box {
-    max-width: 1700px;
-  }
-  .profile-image {
-    width: 420px;
-    height: 420px;
-  }
-  .image-box {
-    right: clamp(60px, 8vw, 120px);
-  }
-}
-
-@media (max-width: 1200px) {
-  .text-content {
-    max-width: 60%;
-  }
-  .profile-image {
-    width: clamp(300px, 22vw, 350px);
-    height: clamp(300px, 22vw, 350px);
-  }
-}
-
-@media (max-width: 1024px) {
-  .text-content {
-    max-width: 65%;
-  }
-  .image-box {
-    right: clamp(10px, 2vw, 20px);
-  }
-  .profile-image {
-    width: clamp(250px, 18vw, 300px);
-    height: clamp(250px, 18vw, 300px);
-  }
-}
-
 @media (max-width: 968px) {
   .hero-container {
     padding: 0 2.5rem;
   }
   .hero {
-    min-height: 90vw;
-    padding-top: 70px; /*space below the header */
+    min-height: auto;
+    padding-top: 70px;
     padding-bottom: 40px;
   }
   .text-box {
@@ -521,7 +453,6 @@ onMounted(() => {
     padding: 12px;
   }
 }
-
 @media (max-width: 768px) {
   .hero {
     padding-top: 70px;
@@ -560,7 +491,6 @@ onMounted(() => {
     justify-content: center;
   }
 }
-
 @media (max-width: 480px) {
   .hero-container {
     padding: 0 1rem;
@@ -598,42 +528,28 @@ onMounted(() => {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
 }
-
 @keyframes blink {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }
 }
-
 @keyframes slideInLeft {
   from { opacity: 0; transform: translateX(-50px); }
   to { opacity: 1; transform: translateX(0); }
 }
-
 @keyframes slideInRight {
   from { opacity: 0; transform: translateX(50px); }
   to { opacity: 1; transform: translateX(0); }
 }
-
 @keyframes floatSlow {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-8px); }
 }
-
 @keyframes floatProfile {
-  0%, 100% { 
-    transform: translateY(-50%) translateY(0px) rotate(0deg); 
-  }
-  25% { 
-    transform: translateY(-50%) translateY(-12px) rotate(0.5deg); 
-  }
-  50% { 
-    transform: translateY(-50%) translateY(-8px) rotate(0deg); 
-  }
-  75% { 
-    transform: translateY(-50%) translateY(-18px) rotate(-0.5deg); 
-  }
+  0%, 100% { transform: translateY(-50%) translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-50%) translateY(-12px) rotate(0.5deg); }
+  50% { transform: translateY(-50%) translateY(-8px) rotate(0deg); }
+  75% { transform: translateY(-50%) translateY(-18px) rotate(-0.5deg); }
 }
-
 @keyframes float {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
   25% { transform: translateY(-10px) rotate(1deg); }

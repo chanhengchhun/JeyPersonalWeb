@@ -190,9 +190,10 @@ export default {
 }
 </script>
 
+
 <style scoped>
 .header {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(240, 243, 189, 0.95); /* Nearly opaque creamy background */
   backdrop-filter: blur(25px) saturate(1.2);
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.08),
@@ -205,7 +206,7 @@ export default {
   width: 100%;
   z-index: 99999;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   overflow: visible;
   min-height: 70px;
 }
@@ -233,63 +234,42 @@ export default {
   left: 0;
   height: 3px;
   background: linear-gradient(90deg, 
-    rgba(102, 126, 234, 0.9), 
-    rgba(118, 75, 162, 0.9), 
-    rgba(240, 147, 251, 0.9),
-    rgba(42, 157, 143, 0.9));
+    var(--color-primary), 
+    var(--color-accent), 
+    var(--color-secondary));
   transition: all 0.2s ease-out;
   border-radius: 0 2px 2px 0;
   box-shadow: 
-    0 0 15px rgba(102, 126, 234, 0.4),
-    0 2px 8px rgba(102, 126, 234, 0.2);
+    0 0 15px rgba(143, 230, 152, 0.4),
+    0 2px 8px rgba(143, 230, 152, 0.2);
 }
 
 .header:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(240, 243, 189, 0.98);
   box-shadow: 
     0 12px 48px rgba(0, 0, 0, 0.08),
     0 6px 24px rgba(0, 0, 0, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(30px) saturate(1.4);
-  border-bottom-color: rgba(255, 255, 255, 0.25);
+  border-bottom-color: rgba(0, 0, 0, 0.2);
 }
 
 .header.scrolled {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(240, 243, 189, 0.9);
   box-shadow: 
     0 10px 40px rgba(0, 0, 0, 0.1),
     0 5px 20px rgba(0, 0, 0, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
-/* Section-based header styling */
-.header.section-home {
-  border-bottom-color: rgba(102, 126, 234, 0.3);
-}
-
-.header.section-about {
-  border-bottom-color: rgba(46, 204, 113, 0.3);
-}
-
-.header.section-education {
-  border-bottom-color: rgba(241, 196, 15, 0.3);
-}
-
-.header.section-skills {
-  border-bottom-color: rgba(230, 126, 34, 0.3);
-}
-
-.header.section-experience {
-  border-bottom-color: rgba(155, 89, 182, 0.3);
-}
-
+/* Updated Section-based header styling for Light theme */
+.header.section-home,
+.header.section-about,
+.header.section-education,
+.header.section-skills,
+.header.section-experience,
 .header.section-contact {
-  border-bottom-color: rgba(231, 76, 60, 0.3);
-}
-
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  border-bottom-color: rgba(143, 230, 152, 0.5);
 }
 
 .nav {
@@ -307,7 +287,7 @@ export default {
   margin: 0;
   font-weight: 800;
   letter-spacing: 1px;
-  background: linear-gradient(120deg, #67e8f9, #a084ee, #f093fb, #ffbf69, #67e8f9 90%);
+  background: linear-gradient(120deg, var(--color-secondary), var(--color-primary), var(--color-secondary));
   background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -319,30 +299,23 @@ export default {
   border-radius: 24px;
   overflow: hidden;
   animation: gradientShift 6s ease-in-out infinite;
-  box-shadow: 0 2px 16px 0 rgba(160, 132, 238, 0.10), 0 1.5px 8px 0 rgba(87,204,153,0.10);
-  background-color: rgba(255,255,255,0.18);
+  box-shadow: 0 2px 16px 0 rgba(143, 230, 152, 0.1), 0 1.5px 8px 0 rgba(45, 59, 47, 0.1);
+  background-color: rgba(0,0,0,0.08);
   backdrop-filter: blur(8px);
 }
 
 .nav-brand h2:hover {
   transform: translateY(-3px) scale(1.08);
-  background: linear-gradient(120deg, #ff9f1cff, #ffbf69ff, #2ec4b6ff 90%);
+  background: linear-gradient(120deg, var(--color-accent), var(--color-primary), var(--color-secondary));
   background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 0 12px #dbd9df88) drop-shadow(0 2px 12px #67e8f988);
-  box-shadow: 0 4px 32px 0 rgba(160, 132, 238, 0.18), 0 2px 12px 0 rgba(87,204,153,0.13);
-  background-color: rgba(255,255,255,0.28);
+  filter: drop-shadow(0 0 12px rgba(143, 230, 152, 0.5));
+  box-shadow: 0 4px 32px 0 rgba(143, 230, 152, 0.18), 0 2px 12px 0 rgba(45, 59, 47, 0.13);
+  background-color: rgba(0,0,0,0.12);
 }
 
-.nav-brand h2:hover::after {
-  width: 80%;
-}
-
-
-
-/* Nav menu: horizontal on desktop, switches to vertical (mobile) at 1100px via .active class */
 .nav-menu {
   display: flex;
   flex-direction: row;
@@ -356,14 +329,13 @@ export default {
   white-space: normal;
 }
 
-/* Hamburger icon: only show on mobile (<=1100px) */
 .mobile-menu-toggle {
   display: none;
 }
 
 
 .nav-menu a {
-  color: #0e0e0e;
+  color: var(--color-text);
   text-decoration: none;
   font-weight: 600;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -371,33 +343,29 @@ export default {
   border-radius: 32px;
   position: relative;
   overflow: hidden;
-  background: #8fe698;
+  background: rgba(255, 255, 255, 0.7);
   border: 1.5px solid rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(12px);
   white-space: nowrap;
-  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.18), 0 2px 12px 0 rgba(87,204,153,0.13);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08), 0 2px 12px 0 rgba(45, 59, 47, 0.05);
 }
 
-/* Glassmorphism nav hover/active: clean, consistent, finished edge */
 .nav-menu a:hover,
 .nav-menu a.active {
-  color: #b9fbc0;
-  background: #4d504c;
-  border: 1.5px solid rgba(87,204,153,0.32);
-  /* border-radius matches base for smooth transition */
+  color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1.5px solid rgba(143, 230, 152, 0.32);
   box-shadow:
-    0 8px 25px rgba(87,204,153,0.13),
-    0 4px 15px rgba(87,204,153,0.09),
+    0 8px 25px rgba(143, 230, 152, 0.13),
+    0 4px 15px rgba(143, 230, 152, 0.09),
     0 1px 8px 0 rgba(34,40,49,0.10),
     0 0 0 1.5px rgba(255,255,255,0.10) inset,
-    0 1.5px 8px 0 rgba(87,204,153,0.10) inset;
+    0 1.5px 8px 0 rgba(143, 230, 152, 0.10) inset;
   backdrop-filter: blur(16px) saturate(1.2);
   -webkit-backdrop-filter: blur(16px) saturate(1.2);
   transition: background 0.2s, color 0.2s, box-shadow 0.2s, border 0.2s;
 }
 
-
-/* --- Glassmorphism Effect: Subtle, clean, readable --- */
 .nav-menu a::before {
   content: '';
   position: absolute;
@@ -405,7 +373,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(120deg, rgba(255,255,255,0.38) 60%, rgba(87,204,153,0.10) 100%);
+  background: linear-gradient(120deg, rgba(255,255,255,0.38) 60%, rgba(143, 230, 152, 0.1) 100%);
   backdrop-filter: blur(16px) saturate(1.4);
   -webkit-backdrop-filter: blur(16px) saturate(1.4);
   opacity: 0;
@@ -413,25 +381,20 @@ export default {
   z-index: -2;
   transform: scale(0.96);
   border-radius: 25px;
-  border: 1.5px solid rgba(87,204,153,0.18);
-  box-shadow: 0 4px 24px 0 rgba(87,204,153,0.13), 0 1.5px 8px 0 rgba(87,204,153,0.10), 0 0.5px 0.5px 0 rgba(255,255,255,0.10) inset;
+  border: 1.5px solid rgba(143, 230, 152, 0.18);
+  box-shadow: 0 4px 24px 0 rgba(143, 230, 152, 0.13), 0 1.5px 8px 0 rgba(143, 230, 152, 0.1), 0 0.5px 0.5px 0 rgba(255,255,255,0.10) inset;
   pointer-events: none;
 }
-
-
 
 .nav-menu a:hover::after {
   width: 80px;
   height: 80px;
 }
 
-/* Removed duplicate/conflicting hover/active style that set color: white and background: rgba(255,255,255,0.12) */
-
 .nav-menu a:active {
   transform: translateY(-2px) scale(1.05);
 }
 
-/* Dropdown Styles */
 .nav-dropdown {
   position: relative;
 }
@@ -482,7 +445,7 @@ export default {
   align-items: center;
   gap: 0.8rem;
   padding: 0.8rem 1.5rem !important;
-  color: #333 !important;
+  color: var(--color-text) !important;
   text-decoration: none;
   transition: all 0.3s ease;
   border-radius: 0 !important;
@@ -504,8 +467,8 @@ export default {
   width: 100%;
   height: 100%;
   background: linear-gradient(135deg, 
-    rgba(102, 126, 234, 0.1) 0%, 
-    rgba(118, 75, 162, 0.1) 100%);
+    rgba(143, 230, 152, 0.1) 0%, 
+    rgba(45, 59, 47, 0.1) 100%);
   transition: left 0.4s ease;
   z-index: -1;
 }
@@ -515,8 +478,8 @@ export default {
 }
 
 .dropdown-item:hover {
-  background: rgba(102, 126, 234, 0.08) !important;
-  color: #667eea !important;
+  background: rgba(143, 230, 152, 0.08) !important;
+  color: var(--color-primary) !important;
   transform: none !important;
   box-shadow: none !important;
   padding-left: 2rem !important;
@@ -533,7 +496,6 @@ export default {
   opacity: 1;
 }
 
-/* Dropdown arrow animation */
 .dropdown-menu::before {
   content: '';
   position: absolute;
@@ -563,16 +525,16 @@ export default {
 }
 
 .mobile-menu-toggle:hover {
-  background: rgba(102, 126, 234, 0.12);
-  border-color: rgba(102, 126, 234, 0.2);
+  background: rgba(143, 230, 152, 0.12);
+  border-color: rgba(143, 230, 152, 0.2);
   transform: scale(1.08);
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 4px 15px rgba(143, 230, 152, 0.2);
 }
 
 .mobile-menu-toggle span {
   width: 25px;
   height: 3px;
-  background: #333;
+  background: var(--color-text);
   margin: 3px 0;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 3px;
@@ -581,17 +543,17 @@ export default {
 }
 
 .mobile-menu-toggle:hover span {
-  background: #667eea;
+  background: var(--color-primary);
 }
 
 .mobile-menu-toggle.active {
-  background: rgba(102, 126, 234, 0.15);
+  background: rgba(143, 230, 152, 0.15);
   transform: scale(1.05);
-  border-color: rgba(102, 126, 234, 0.3);
+  border-color: rgba(143, 230, 152, 0.3);
 }
 
 .mobile-menu-toggle.active span {
-  background: #667eea;
+  background: var(--color-primary);
 }
 
 .mobile-menu-toggle.active span:nth-child(1) {
@@ -619,7 +581,7 @@ export default {
     left: -100%;
     width: 100%;
     height: calc(100vh - 70px);
-    background: rgba(255, 255, 255, 0.98);
+    background: rgba(240, 243, 189, 0.98);
     backdrop-filter: blur(10px);
     flex-direction: column;
     flex-wrap: nowrap;
@@ -628,49 +590,72 @@ export default {
     gap: 1rem;
     padding: 2rem 0;
     transition: left 0.3s ease;
-    overflow-x: visible;
+    overflow-x: hidden;
+    overflow-y: auto; /* <--- ADDED for smooth scrolling if menu is long */
     white-space: normal;
   }
   .nav-menu.active {
     left: 0;
   }
   
+  /* Make menu links full-width for a cleaner list */
+  .nav-menu li,
+  .nav-menu a {
+    width: 90%;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0.8rem 1.2rem;
+  }
+  
+  .nav-menu a {
+    background: var(--color-bg-glass);
+    color: var(--color-text);
+  }
+  
   /* Mobile dropdown styles */
   .nav-dropdown .dropdown-arrow {
-    display: none;
+    display: inline-block;
+    margin-left: 0.5rem;
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+  }
+
+  .nav-dropdown .dropdown-arrow.rotated {
+    transform: rotate(180deg);
   }
   
   .dropdown-menu {
     position: static;
-    transform: none;
-    opacity: 1;
-    visibility: visible;
-    pointer-events: all;
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(15px);
-    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease-in-out;
+    background: transparent;
     border-radius: 15px;
-    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+    padding: 0;
     width: 100%;
-    box-shadow: 
-      0 10px 20px rgba(0, 0, 0, 0.05),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    box-shadow: none;
+    text-align: center;
   }
-  
-  .dropdown-menu::before {
-    display: none;
+
+  .dropdown-menu.mobile-show {
+    max-height: 200px; /* <--- This is the key that makes the menu expand */
+    padding: 0.5rem 0;
   }
   
   .dropdown-item {
     padding: 0.8rem 1rem !important;
-    width: calc(100% - 2rem);
-    margin: 0 1rem;
+    width: 100%;
+    margin: 0;
     border-radius: 10px !important;
     font-size: 1.1rem;
   }
-  
+
   .dropdown-item:hover {
-    padding-left: 1.2rem !important;
+    padding-left: 1rem !important;
   }
 }
 
@@ -682,4 +667,5 @@ export default {
   .nav-brand h2 {
     font-size: 1.5rem;
   }
-}</style>
+}
+</style>
