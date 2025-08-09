@@ -252,7 +252,7 @@ onMounted(() => {
   background: var(--color-primary); /* Solid mint green */
   color: white;
   border: 1.5px solid var(--color-primary);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 25px rgba(199, 173, 173, 0.1);
 }
 
 .btn-primary:hover {
@@ -266,16 +266,15 @@ onMounted(() => {
 /* Secondary button: Ghost effect */
 .btn-secondary {
   background: transparent;
-  color: var(--color-primary);
-  border: 1.5px solid var(--color-primary);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+  color: black;
+  box-shadow: 0 2px 20px rgba(124, 120, 120, 0.562); /* Subtle shadow for depth */
 }
 
 .btn-secondary:hover {
   background: var(--color-primary);
   color: white;
   transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 16px 40px rgba(255, 255, 255, 0.1);
 }
 /* ==============================================
    Overlapping Image Box

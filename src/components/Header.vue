@@ -193,7 +193,7 @@ export default {
 
 <style scoped>
 .header {
-  background: rgba(240, 243, 189, 0.95); /* Nearly opaque creamy background */
+  background: rgba(255, 255, 255, 0.75); /* semi-transparent white for glass effect */
   backdrop-filter: blur(25px) saturate(1.2);
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.08),
@@ -245,7 +245,6 @@ export default {
 }
 
 .header:hover {
-  background: rgba(240, 243, 189, 0.98);
   box-shadow: 
     0 12px 48px rgba(0, 0, 0, 0.08),
     0 6px 24px rgba(0, 0, 0, 0.05),
@@ -255,11 +254,13 @@ export default {
 }
 
 .header.scrolled {
-  background: rgba(240, 243, 189, 0.9);
+  background: rgba(255, 255, 255, 0.85); /* slightly less transparent when scrolled */
   box-shadow: 
     0 10px 40px rgba(0, 0, 0, 0.1),
     0 5px 20px rgba(0, 0, 0, 0.06),
     inset 0 1px 0 rgba(255, 255, 255, 0.18);
+
+  backdrop-filter: blur(25px) saturate(1.4);
 }
 
 /* Updated Section-based header styling for Light theme */
