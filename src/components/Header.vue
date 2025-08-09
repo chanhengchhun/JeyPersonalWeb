@@ -24,7 +24,7 @@
             </a>
           </div>
         </li>
-        <li><a href="#education" @click="setActiveLink('#education')" :class="{ 'active': activeLink === '#education' }">Education</a></li>
+        
         <li><a href="#skills" @click="setActiveLink('#skills')" :class="{ 'active': activeLink === '#skills' }">Skills</a></li>
         <li><a href="#experience" @click="setActiveLink('#experience')" :class="{ 'active': activeLink === '#experience' }">Experience</a></li>
         <li><a href="#contact" @click="setActiveLink('#contact')" :class="{ 'active': activeLink === '#contact' }">Contact</a></li>
@@ -46,7 +46,7 @@ export default {
       isScrolled: false,
       mobileMenuOpen: false,
       activeLink: '#home',
-      sections: ['home', 'about', 'education', 'skills', 'experience', 'contact'],
+  sections: ['home', 'about', 'skills', 'experience', 'contact'],
       observer: null,
       scrollProgress: 0,
       currentSection: 'home'
@@ -176,11 +176,11 @@ export default {
       // Fallback: find by component position
       const components = document.querySelectorAll('main > *');
       const componentMap = {
-        'home': 0,      // Hero component
-        'about': 1,     // About component  
-        'education': 2, // Education component
-        'skills': 3,    // Skills component
-        'contact': 4    // Contact component
+  'home': 0,      // Hero component
+  'about': 1,     // About component  
+  'skills': 2,    // Skills component
+  'experience': 3, // Experience component
+  'contact': 4    // Contact component
       };
       
       const index = componentMap[sectionName];
@@ -266,7 +266,6 @@ export default {
 /* Updated Section-based header styling for Light theme */
 .header.section-home,
 .header.section-about,
-.header.section-education,
 .header.section-skills,
 .header.section-experience,
 .header.section-contact {
