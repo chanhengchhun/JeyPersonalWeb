@@ -213,7 +213,7 @@ const filmImages = [about1, about3, about4];
   backdrop-filter: blur(32px) saturate(1.3);
   border: 1.5px solid rgba(255,255,255,0.22);
   border-radius: 38px;
-  max-width: 1400px;
+  max-width: 1800px;
   margin: 0 auto;
 }
 
