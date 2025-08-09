@@ -107,6 +107,7 @@ const filmImages = [about1, about3, about4];
   pointer-events: none;
   z-index: 3;
 }
+
 .scrolling-gallery .film-img {
   width: 100%;
   max-width: 320px;
@@ -121,10 +122,11 @@ const filmImages = [about1, about3, about4];
   background: transparent;
   filter: drop-shadow(0 0 8px rgba(143,230,255,0.10));
   transition: box-shadow 0.3s, transform 0.3s, background 0.3s;
+  image-rendering: auto;
 }
 .scrolling-gallery .film-img:hover {
   box-shadow: 0 12px 32px 0 rgba(143,230,152,0.18);
-  transform: scale(1.04) rotate(-1deg);
+  transform: scale(1.04);
 }
 .gallery-gradient-top,
 .gallery-gradient-bottom {
@@ -437,7 +439,6 @@ const filmImages = [about1, about3, about4];
   gap: 0;
   position: relative;
   overflow: hidden;
-  width: 100%;
   max-width: 1300px;
   min-height: 420px;
   margin: 0 auto 3.5rem auto;
@@ -556,14 +557,18 @@ const filmImages = [about1, about3, about4];
 .css-marquee {
   display: flex;
   flex-direction: column;
-  animation: vertical-marquee 8s linear infinite;
+  animation: vertical-marquee 15s linear infinite;
+  will-change: transform;
+}
+.css-marquee:hover {
+  animation-play-state: paused;
 }
 @keyframes vertical-marquee {
   0% {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateY(-50%);
+    transform: translate3d(0, -50%, 0);
   }
 }
 </style>
