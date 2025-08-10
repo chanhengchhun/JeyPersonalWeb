@@ -414,13 +414,6 @@ export default {
     flex-direction: column;
     min-height: unset;
   }
-  .experience-card .accent-bar {
-    width: 100%;
-    height: 6px;
-    min-height: unset;
-    border-radius: 0 0 12px 12px;
-    margin: 0 0 0.7rem 0;
-  }
   .experience-card-main {
     padding: 1.1rem 0.7rem 1.1rem 0.7rem;
   }

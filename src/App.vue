@@ -2,11 +2,7 @@
   <div id="app">
     <Header />
     <main>
-      <Home />
-      <About />
-      <Skills />
-      <Experience />
-      <Contact />
+      <router-view />
     </main>
     <Footer />
   </div>
@@ -53,6 +49,12 @@ html {
 main {
   width: 100%;
   padding-top: 70px; /* Add padding to account for fixed header */
+}
+
+@media (max-width: 600px) {
+  main {
+    padding-top: 90px; /* More space for mobile header/accent bar */
+  }
 }
 
 /* Ensure sections don't have horizontal scroll */

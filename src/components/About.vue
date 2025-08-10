@@ -3,7 +3,7 @@
     <div class="container">
       <div class="section-header">
         <h2>Get to Know Me</h2>
-        <div class="section-subtitle">Discover my journey in data and technology</div>
+        <div class="section-subtitle">Discover who I am as a person</div>
       </div>
       <div class="about-content">
         <div class="about-glass-unified">
@@ -54,9 +54,10 @@
 
 <script setup>
 import about1 from '../assets/images/about1.jpg';
+import about2 from '../assets/images/about2.jpg';
 import about3 from '../assets/images/about3.jpg';
 import about4 from '../assets/images/about4.jpg';
-const filmImages = [about1, about3, about4];
+const filmImages = [about1, about2, about3, about4];
 </script>
 
 <style scoped>

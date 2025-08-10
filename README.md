@@ -60,7 +60,6 @@ src/
 │   ├── Header.vue      # Navigation header
 │   ├── Hero.vue        # Landing section
 │   ├── About.vue       # About me section
-│   ├── Education.vue   # Education timeline
 │   ├── Skills.vue      # Skills and technologies
 │   ├── Contact.vue     # Contact form and info
 │   └── Footer.vue      # Footer section

@@ -8,9 +8,17 @@
         </div>
         <nav class="footer-nav" aria-label="Footer Navigation">
           <ul>
+            <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
             <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-extra-nav" aria-label="More Links">
+          <ul>
+            <li><router-link to="/photography">Photography</router-link></li>
+            <li><router-link to="/blog">Blog</router-link></li>
           </ul>
         </nav>
         <div class="footer-social">
@@ -29,8 +37,8 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; {{ currentYear }} Chanheng Chhun. Made with Passion</p>
-        <span class="footer-tech">Built with Vue.js &amp; Vite</span>
+        <p>&copy; {{ currentYear }} Chanheng Chhun All Rights Reserved.</p>
+        <span class="footer-tech">Built with Vue.js by Chanheng Chhun</span>
       </div>
     </div>
   </footer>
@@ -117,6 +125,32 @@ export default {
   transition: background 0.2s, color 0.2s;
 }
 .footer-nav a:hover, .footer-nav a:focus {
+  background: var(--color-primary);
+  color: var(--color-light);
+}
+
+.footer-extra-nav {
+  flex: 1 1 160px;
+  min-width: 140px;
+}
+.footer-extra-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.footer-extra-nav a {
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 8px;
+  padding: 0.3rem 0.7rem;
+  transition: background 0.2s, color 0.2s;
+}
+.footer-extra-nav a:hover, .footer-extra-nav a:focus {
   background: var(--color-primary);
   color: var(--color-light);
 }

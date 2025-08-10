@@ -9,7 +9,7 @@
           <h2 class="role">{{ currentRole }}<span class="cursor">|</span></h2>
           <p class="description">
             Enthusiastic about uncovering insights through data analysis and solving complex problems with innovative solutions. 
-            I'm passionate about learning new technologies and methodologies that help transform data into meaningful discoveries.
+            I am always eager to learn and grow, constantly seeking new challenges to expand my knowledge and skills.
           </p>
           <div class="buttons">
             <a href="#skills" class="btn btn-primary">Explore My Skills</a>
@@ -32,7 +32,7 @@
 import { ref, onMounted } from 'vue';
 import profileImage from '../assets/images/profile.jpg';
 
-const roles = ['Data Enthusiast', 'Problem Solver', 'Lifelong Learner'];
+const roles = ['Data Enthusiast', 'Problem Solver', 'Lifelong Learner', 'Open-minded Explorer'];
 const currentRole = ref('');
 const roleIndex = ref(0);
 const charIndex = ref(0);

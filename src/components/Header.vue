@@ -3,15 +3,15 @@
     <div class="scroll-progress" :style="{ width: scrollProgress + '%' }"></div>
     <nav class="nav">
       <div class="nav-brand">
-        <h2 @click="setActiveLink('#home')">Chanheng</h2>
+  <h2 @click="handleNavToSection('home')">Chanheng</h2>
       </div>
   <!-- Navigation menu: horizontal on desktop, vertical on mobile -->
   <ul class="nav-menu" :class="{ 'active': mobileMenuOpen }">
-        <li><a href="#home" @click="setActiveLink('#home')" :class="{ 'active': activeLink === '#home' }">Home</a></li>
-        <li><a href="#about" @click="setActiveLink('#about')" :class="{ 'active': activeLink === '#about' }">About</a></li>
-        <li><a href="#skills" @click="setActiveLink('#skills')" :class="{ 'active': activeLink === '#skills' }">Skills</a></li>
-        <li><a href="#experience" @click="setActiveLink('#experience')" :class="{ 'active': activeLink === '#experience' }">Experience</a></li>
-        <li><a href="#contact" @click="setActiveLink('#contact')" :class="{ 'active': activeLink === '#contact' }">Contact</a></li>
+  <li><a href="#home" @click.prevent="handleNavToSection('home')">Home</a></li>
+        <li><a href="#about" @click.prevent="handleNavToSection('about')">About</a></li>
+        <li><a href="#skills" @click.prevent="handleNavToSection('skills')">Skills</a></li>
+        <li><a href="#experience" @click.prevent="handleNavToSection('experience')">Experience</a></li>
+        <li><a href="#contact" @click.prevent="handleNavToSection('contact')">Contact</a></li>
       </ul>
       <div class="mobile-menu-toggle" @click="toggleMobileMenu" :class="{ 'active': mobileMenuOpen }">
         <span></span>
@@ -75,6 +75,27 @@ export default {
           behavior: 'smooth',
           block: 'start'
         });
+      }
+    },
+    handleNavToSection(section) {
+      this.activeLink = `#${section}`;
+      this.mobileMenuOpen = false;
+      if (this.$route.path !== '/') {
+        this.$router.push('/').then(() => {
+          this.$nextTick(() => {
+            setTimeout(() => {
+              const targetSection = document.getElementById(section);
+              if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }, 350);
+          });
+        });
+      } else {
+        const targetSection = document.getElementById(section);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       }
     },
     navigateToBlog() {
@@ -151,20 +172,18 @@ export default {
       
       // Special handling for home section
       if (sectionName === 'home') {
-        const heroSection = document.querySelector('.hero') || 
-                          document.querySelector('[id="home"]') ||
-                          document.querySelector('section');
+        const heroSection = document.querySelector('.hero') || document.querySelector('[id="home"]') || document.querySelector('section');
         if (heroSection) return heroSection;
       }
       
       // Fallback: find by component position
       const components = document.querySelectorAll('main > *');
       const componentMap = {
-  'home': 0,      // Hero component
-  'about': 1,     // About component  
-  'skills': 2,    // Skills component
-  'experience': 3, // Experience component
-  'contact': 4    // Contact component
+        'home': 0,       // Hero component
+        'about': 1,      // About component  
+        'skills': 2,     // Skills component
+        'experience': 3, // Experience component
+        'contact': 4     // Contact component
       };
       
       const index = componentMap[sectionName];
