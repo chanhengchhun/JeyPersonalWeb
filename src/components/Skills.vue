@@ -39,21 +39,21 @@ export default {
           title: 'Technical Skills',
           icon: '💻',
           skills: [
-            { name: 'Vue.js', level: 90 },
-            { name: 'JavaScript', level: 85 },
-            { name: 'HTML/CSS', level: 95 },
             { name: 'Python', level: 75 },
-            { name: 'Node.js', level: 70 }
+            { name: 'Java', level: 75 },
+            { name: 'SQL', level: 50 },
+            { name: 'Vue.js', level: 75 },
+            { name: 'HTML/CSS', level: 75 }
           ]
         },
         {
           title: 'Soft Skills',
           icon: '🤝',
           skills: [
-            { name: 'Problem Solving', level: 92 },
-            { name: 'Communication', level: 88 },
+            { name: 'Problem Solving', level: 90 },
+            { name: 'Communication', level: 90 },
             { name: 'Team Collaboration', level: 90 },
-            { name: 'Adaptability', level: 93 },
+            { name: 'Adaptability', level: 95 },
             { name: 'Creativity', level: 85 }
           ]
         },
@@ -61,11 +61,11 @@ export default {
           title: 'Tools & Platforms',
           icon: '🛠️',
           skills: [
-            { name: 'VS Code', level: 95 },
-            { name: 'Figma', level: 80 },
-            { name: 'Git & GitHub', level: 90 },
-            { name: 'Vite', level: 85 },
-            { name: 'MongoDB', level: 70 }
+            { name: 'VS Code', level: 90 },
+            { name: 'Microsoft 365', level: 90 },
+            { name: 'Git & GitHub', level: 75 },
+            { name: 'Vite', level: 75 },
+            { name: 'PostgreSQL', level: 75 }
           ]
         }
       ]
