@@ -33,9 +33,14 @@
   </section>
 </template>
 
+
 <script>
+
 export default {
-  name: 'Contact'
+  name: 'Contact',
+  data() {
+    return {}
+  }
 }
 </script>
 
@@ -206,6 +211,17 @@ export default {
   overflow: hidden;
   z-index: 1;
 }
+
+.social-btn.instagram {
+  overflow: visible;
+  padding: 0;
+}
+.social-btn.instagram svg {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+
 .social-btn.github:hover {
   background: #333;
   color: #fff;

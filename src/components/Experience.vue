@@ -32,6 +32,7 @@
                 <div v-if="exp.tech" class="tech-showcase improved-tech">
                   <span v-for="t in exp.tech" :key="t" class="tech-item improved-tech-item">{{ t }}</span>
                 </div>
+                <span v-if="exp.location" class="exp-location">{{ exp.location }}</span>
               </div>
             </div>
           </div>
@@ -71,23 +72,25 @@ export default {
   data() {
     return {
       experiences: [
+        /*
         {
           id: 'current',
           title: 'Freelance Web Developer',
           company: 'Columbus State Community College',
           date: '2024 - Present',
-          location: '📍 Remote / Columbus, Ohio',
+          location: 'Columbus, Ohio',
           description: 'Developing custom web solutions for local businesses and startups. Specializing in responsive design and modern frameworks.',
           tech: ['Vue.js', 'React', 'Node.js', 'MongoDB']
         },
+        */
         {
           id: 'student',
-          title: 'Student Developer',
-          company: 'Columbus State',
-          date: '2023 - 2024',
-          location: '📍 Columbus, Ohio',
-          description: 'Led development of student portal features and mentored junior students.',
-          tech: ['JavaScript', 'Python', 'Git']
+          title: 'Student Ambassador Leadership Program',
+          company: 'Columbus State Community College',
+          date: '2022 - 2024',
+          location: 'Columbus, Ohio',
+          description: 'Act as a student ambassador, representing the student body and providing feedback to administration. Involved in organizing events and workshops.',
+          tech: ['Leadership', 'Communication', 'Teamwork', 'Time Management']
         }
       ],
       projects: [
@@ -97,7 +100,7 @@ export default {
           image: '',
           demo: '',
           repo: '',
-          tech: ['Python', 'discord.py', 'GitHub Actions']
+          tech: ['Python', 'discord.py', 'GitHub Version Control']
           
         },
         {
@@ -106,7 +109,7 @@ export default {
           image: '',
           demo: '',
           repo: '',
-          tech: ['Vue.js', 'Vite', 'CSS', 'HTML', 'javaScript']
+          tech: ['Vue.js', 'Vite', 'CSS']
         },
       ]
     }
@@ -139,7 +142,7 @@ export default {
   backdrop-filter: blur(20px) saturate(1.2);
   -webkit-backdrop-filter: blur(12px) saturate(1.2);
   border: 1.5px solid rgba(155, 89, 182, 0.13);
-  margin: 0 auto 3.5rem auto;
+  margin: 3.5rem auto 3.5rem auto;
   padding: 2.5rem 0 2.5rem 0;
   max-width: 1300px;
   position: relative;
@@ -329,6 +332,15 @@ export default {
   flex-direction: column;
   align-items: flex-start;
   gap: 0.18rem;
+}
+
+.exp-location {
+  display: block;
+  color: #888;
+  font-size: 0.97rem;
+  font-style: italic;
+  margin-top: 0.1em;
+  opacity: 0.8;
 }
 .exp-title {
   font-size: 1.18rem;
