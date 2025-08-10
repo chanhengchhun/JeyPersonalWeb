@@ -20,7 +20,7 @@
         <!-- Overlapping Image Box -->
         <div class="image-box">
           <div class="profile-image">
-            <img :src="profileImage" alt="Chanheng's Profile Picture" class="profile-photo" />
+            <img :src="profileImage" alt="Chanheng's Profile Picture" class="profile-photo" loading="lazy" />
           </div>
         </div>
       </div>
@@ -30,7 +30,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import profileImage from '../assets/images/profile.jpg';
+import profileImage from '../assets/images/profile.webp';
 
 const roles = ['Data Enthusiast', 'Problem Solver', 'Lifelong Learner', 'Open-minded Explorer'];
 const currentRole = ref('');
