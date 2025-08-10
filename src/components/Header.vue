@@ -8,23 +8,7 @@
   <!-- Navigation menu: horizontal on desktop, vertical on mobile -->
   <ul class="nav-menu" :class="{ 'active': mobileMenuOpen }">
         <li><a href="#home" @click="setActiveLink('#home')" :class="{ 'active': activeLink === '#home' }">Home</a></li>
-        <li class="nav-dropdown">
-          <a href="#about" @click="setActiveLink('#about')" :class="{ 'active': activeLink === '#about' }">
-            About
-            <span class="dropdown-arrow">▼</span>
-          </a>
-          <div class="dropdown-menu">
-            <a href="/blog" @click="navigateToBlog" class="dropdown-item">
-              <span class="dropdown-icon">✍️</span>
-              Blog
-            </a>
-            <a href="/photography" @click="navigateToPhotography" class="dropdown-item">
-              <span class="dropdown-icon">📸</span>
-              Photography
-            </a>
-          </div>
-        </li>
-        
+        <li><a href="#about" @click="setActiveLink('#about')" :class="{ 'active': activeLink === '#about' }">About</a></li>
         <li><a href="#skills" @click="setActiveLink('#skills')" :class="{ 'active': activeLink === '#skills' }">Skills</a></li>
         <li><a href="#experience" @click="setActiveLink('#experience')" :class="{ 'active': activeLink === '#experience' }">Experience</a></li>
         <li><a href="#contact" @click="setActiveLink('#contact')" :class="{ 'active': activeLink === '#contact' }">Contact</a></li>
@@ -395,121 +379,6 @@ export default {
   transform: translateY(-2px) scale(1.05);
 }
 
-.nav-dropdown {
-  position: relative;
-}
-
-.nav-dropdown .dropdown-arrow {
-  margin-left: 0.5rem;
-  font-size: 0.8rem;
-  transition: transform 0.3s ease;
-  display: inline-block;
-}
-
-.nav-dropdown:hover .dropdown-arrow {
-  transform: rotate(180deg);
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%) translateY(20px);
-  min-width: 200px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(25px) saturate(1.2);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.08),
-    0 8px 25px rgba(0, 0, 0, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  padding: 0.8rem 0;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  z-index: 100000;
-  pointer-events: none;
-  margin-top: 10px;
-}
-
-.nav-dropdown:hover .dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(10px);
-  pointer-events: all;
-}
-
-.dropdown-item {
-  display: flex !important;
-  align-items: center;
-  gap: 0.8rem;
-  padding: 0.8rem 1.5rem !important;
-  color: var(--color-text) !important;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  border-radius: 0 !important;
-  background: transparent !important;
-  border: none !important;
-  backdrop-filter: none !important;
-  position: relative;
-  overflow: hidden;
-  margin: 0;
-  width: calc(100% - 0rem);
-  box-sizing: border-box;
-}
-
-.dropdown-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, 
-    rgba(143, 230, 152, 0.1) 0%, 
-    rgba(45, 59, 47, 0.1) 100%);
-  transition: left 0.4s ease;
-  z-index: -1;
-}
-
-.dropdown-item:hover::before {
-  left: 0;
-}
-
-.dropdown-item:hover {
-  background: rgba(143, 230, 152, 0.08) !important;
-  color: var(--color-primary) !important;
-  transform: none !important;
-  box-shadow: none !important;
-  padding-left: 2rem !important;
-}
-
-.dropdown-icon {
-  font-size: 1.1rem;
-  opacity: 0.8;
-  transition: transform 0.3s ease;
-}
-
-.dropdown-item:hover .dropdown-icon {
-  transform: scale(1.2);
-  opacity: 1;
-}
-
-.dropdown-menu::before {
-  content: '';
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 10px solid rgba(255, 255, 255, 0.95);
-  filter: drop-shadow(0 -2px 4px rgba(0, 0, 0, 0.1));
-}
-
 .mobile-menu-toggle {
   display: none;
   flex-direction: column;
@@ -610,52 +479,6 @@ export default {
   .nav-menu a {
     background: var(--color-bg-glass);
     color: var(--color-text);
-  }
-  
-  /* Mobile dropdown styles */
-  .nav-dropdown .dropdown-arrow {
-    display: inline-block;
-    margin-left: 0.5rem;
-    font-size: 0.8rem;
-    transition: transform 0.3s ease;
-  }
-
-  .nav-dropdown .dropdown-arrow.rotated {
-    transform: rotate(180deg);
-  }
-  
-  .dropdown-menu {
-    position: static;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.4s ease-in-out;
-    background: transparent;
-    border-radius: 15px;
-    margin-top: 0.5rem;
-    padding: 0;
-    width: 100%;
-    box-shadow: none;
-    text-align: center;
-  }
-
-  .dropdown-menu.mobile-show {
-    max-height: 200px; /* <--- This is the key that makes the menu expand */
-    padding: 0.5rem 0;
-  }
-  
-  .dropdown-item {
-    padding: 0.8rem 1rem !important;
-    width: 100%;
-    margin: 0;
-    border-radius: 10px !important;
-    font-size: 1.1rem;
-  }
-
-  .dropdown-item:hover {
-    padding-left: 1rem !important;
   }
 }
 
