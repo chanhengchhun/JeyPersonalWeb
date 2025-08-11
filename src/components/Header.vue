@@ -3,30 +3,15 @@
     <div class="scroll-progress" :style="{ width: scrollProgress + '%' }"></div>
     <nav class="nav">
       <div class="nav-brand">
-        <h2 @click="setActiveLink('#home')">Chanheng</h2>
+  <h2 @click="handleNavToSection('home')">Chanheng</h2>
       </div>
-      <ul class="nav-menu" :class="{ 'active': mobileMenuOpen }">
-        <li><a href="#home" @click="setActiveLink('#home')" :class="{ 'active': activeLink === '#home' }">Home</a></li>
-        <li class="nav-dropdown">
-          <a href="#about" @click="setActiveLink('#about')" :class="{ 'active': activeLink === '#about' }">
-            About
-            <span class="dropdown-arrow">▼</span>
-          </a>
-          <div class="dropdown-menu">
-            <a href="/blog" @click="navigateToBlog" class="dropdown-item">
-              <span class="dropdown-icon">✍️</span>
-              Blog
-            </a>
-            <a href="/photography" @click="navigateToPhotography" class="dropdown-item">
-              <span class="dropdown-icon">📸</span>
-              Photography
-            </a>
-          </div>
-        </li>
-        <li><a href="#education" @click="setActiveLink('#education')" :class="{ 'active': activeLink === '#education' }">Education</a></li>
-        <li><a href="#skills" @click="setActiveLink('#skills')" :class="{ 'active': activeLink === '#skills' }">Skills</a></li>
-        <li><a href="#experience" @click="setActiveLink('#experience')" :class="{ 'active': activeLink === '#experience' }">Experience</a></li>
-        <li><a href="#contact" @click="setActiveLink('#contact')" :class="{ 'active': activeLink === '#contact' }">Contact</a></li>
+  <!-- Navigation menu: horizontal on desktop, vertical on mobile -->
+  <ul class="nav-menu" :class="{ 'active': mobileMenuOpen }">
+  <li><a href="#home" @click.prevent="handleNavToSection('home')">Home</a></li>
+        <li><a href="#about" @click.prevent="handleNavToSection('about')">About</a></li>
+        <li><a href="#skills" @click.prevent="handleNavToSection('skills')">Skills</a></li>
+        <li><a href="#experience" @click.prevent="handleNavToSection('experience')">Experience</a></li>
+        <li><a href="#contact" @click.prevent="handleNavToSection('contact')">Contact</a></li>
       </ul>
       <div class="mobile-menu-toggle" @click="toggleMobileMenu" :class="{ 'active': mobileMenuOpen }">
         <span></span>
@@ -45,7 +30,7 @@ export default {
       isScrolled: false,
       mobileMenuOpen: false,
       activeLink: '#home',
-      sections: ['home', 'about', 'education', 'skills', 'experience', 'contact'],
+  sections: ['home', 'about', 'skills', 'experience', 'contact'],
       observer: null,
       scrollProgress: 0,
       currentSection: 'home'
@@ -90,6 +75,27 @@ export default {
           behavior: 'smooth',
           block: 'start'
         });
+      }
+    },
+    handleNavToSection(section) {
+      this.activeLink = `#${section}`;
+      this.mobileMenuOpen = false;
+      if (this.$route.path !== '/') {
+        this.$router.push('/').then(() => {
+          this.$nextTick(() => {
+            setTimeout(() => {
+              const targetSection = document.getElementById(section);
+              if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }, 350);
+          });
+        });
+      } else {
+        const targetSection = document.getElementById(section);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       }
     },
     navigateToBlog() {
@@ -166,20 +172,18 @@ export default {
       
       // Special handling for home section
       if (sectionName === 'home') {
-        const heroSection = document.querySelector('.hero') || 
-                          document.querySelector('[id="home"]') ||
-                          document.querySelector('section');
+        const heroSection = document.querySelector('.hero') || document.querySelector('[id="home"]') || document.querySelector('section');
         if (heroSection) return heroSection;
       }
       
       // Fallback: find by component position
       const components = document.querySelectorAll('main > *');
       const componentMap = {
-        'home': 0,      // Hero component
-        'about': 1,     // About component  
-        'education': 2, // Education component
-        'skills': 3,    // Skills component
-        'contact': 4    // Contact component
+        'home': 0,       // Hero component
+        'about': 1,      // About component  
+        'skills': 2,     // Skills component
+        'experience': 3, // Experience component
+        'contact': 4     // Contact component
       };
       
       const index = componentMap[sectionName];
@@ -189,9 +193,10 @@ export default {
 }
 </script>
 
+
 <style scoped>
 .header {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.75); /* semi-transparent white for glass effect */
   backdrop-filter: blur(25px) saturate(1.2);
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.08),
@@ -204,7 +209,7 @@ export default {
   width: 100%;
   z-index: 99999;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   overflow: visible;
   min-height: 70px;
 }
@@ -232,63 +237,42 @@ export default {
   left: 0;
   height: 3px;
   background: linear-gradient(90deg, 
-    rgba(102, 126, 234, 0.9), 
-    rgba(118, 75, 162, 0.9), 
-    rgba(240, 147, 251, 0.9),
-    rgba(42, 157, 143, 0.9));
+    var(--color-primary), 
+    var(--color-accent), 
+    var(--color-secondary));
   transition: all 0.2s ease-out;
   border-radius: 0 2px 2px 0;
   box-shadow: 
-    0 0 15px rgba(102, 126, 234, 0.4),
-    0 2px 8px rgba(102, 126, 234, 0.2);
+    0 0 15px rgba(143, 230, 152, 0.4),
+    0 2px 8px rgba(143, 230, 152, 0.2);
 }
 
 .header:hover {
-  background: rgba(255, 255, 255, 0.12);
   box-shadow: 
     0 12px 48px rgba(0, 0, 0, 0.08),
     0 6px 24px rgba(0, 0, 0, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(30px) saturate(1.4);
-  border-bottom-color: rgba(255, 255, 255, 0.25);
+  border-bottom-color: rgba(0, 0, 0, 0.2);
 }
 
 .header.scrolled {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.85); /* slightly less transparent when scrolled */
   box-shadow: 
     0 10px 40px rgba(0, 0, 0, 0.1),
     0 5px 20px rgba(0, 0, 0, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+
+  backdrop-filter: blur(25px) saturate(1.4);
 }
 
-/* Section-based header styling */
-.header.section-home {
-  border-bottom-color: rgba(102, 126, 234, 0.3);
-}
-
-.header.section-about {
-  border-bottom-color: rgba(46, 204, 113, 0.3);
-}
-
-.header.section-education {
-  border-bottom-color: rgba(241, 196, 15, 0.3);
-}
-
-.header.section-skills {
-  border-bottom-color: rgba(230, 126, 34, 0.3);
-}
-
-.header.section-experience {
-  border-bottom-color: rgba(155, 89, 182, 0.3);
-}
-
+/* Updated Section-based header styling for Light theme */
+.header.section-home,
+.header.section-about,
+.header.section-skills,
+.header.section-experience,
 .header.section-contact {
-  border-bottom-color: rgba(231, 76, 60, 0.3);
-}
-
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  border-bottom-color: rgba(143, 230, 152, 0.5);
 }
 
 .nav {
@@ -297,67 +281,92 @@ export default {
   align-items: center;
   padding: 1rem 3rem;
   max-width: 1400px;
-  margin: 0 auto;
+  margin: 0 auto 0;
   width: 100%;
 }
 
 .nav-brand h2 {
-  color: #333;
-  font-size: 1.8rem;
+  font-size: 2.1rem;
   margin: 0;
-  background: linear-gradient(135deg, 
-    rgba(102, 126, 234, 1) 0%,
-    rgba(118, 75, 162, 1) 25%,
-    rgba(240, 147, 251, 1) 50%,
-    rgba(42, 157, 143, 1) 75%,
-    rgba(102, 126, 234, 1) 100%);
-  background-size: 200% 200%;
+  font-weight: 800;
+  letter-spacing: 1px;
+  background: linear-gradient(120deg, var(--color-secondary), var(--color-primary), var(--color-secondary));
+  background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-weight: 700;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
+  padding: 0.6rem 1.5rem;
+  border-radius: 24px;
   overflow: hidden;
-  animation: gradientShift 4s ease-in-out infinite;
+  animation: gradientShift 6s ease-in-out infinite;
+  box-shadow: 0 2px 16px 0 rgba(143, 230, 152, 0.1), 0 1.5px 8px 0 rgba(45, 59, 47, 0.1);
+  background-color: rgba(0,0,0,0.08);
+  backdrop-filter: blur(8px);
 }
 
 .nav-brand h2:hover {
-  transform: translateY(-2px) scale(1.05);
-  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+  transform: translateY(-3px) scale(1.08);
+  background: linear-gradient(120deg, var(--color-accent), var(--color-primary), var(--color-secondary));
+  background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 4px 8px rgba(102, 126, 234, 0.3));
-}
-
-.nav-brand h2:hover::after {
-  width: 80%;
+  filter: drop-shadow(0 0 12px rgba(143, 230, 152, 0.5));
+  box-shadow: 0 4px 32px 0 rgba(143, 230, 152, 0.18), 0 2px 12px 0 rgba(45, 59, 47, 0.13);
+  background-color: rgba(0,0,0,0.12);
 }
 
 .nav-menu {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   list-style: none;
-  gap: 2rem;
+  gap: 1.5rem;
   margin: 0;
   padding: 0;
+  min-width: 0;
+  overflow-x: visible;
+  white-space: normal;
 }
 
+.mobile-menu-toggle {
+  display: none;
+}
+
+
 .nav-menu a {
-  color: #333;
+  color: var(--color-text);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   padding: 0.7rem 1.2rem;
-  border-radius: 25px;
+  border-radius: 32px;
   position: relative;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  white-space: nowrap;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08), 0 2px 12px 0 rgba(45, 59, 47, 0.05);
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+  color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1.5px solid rgba(143, 230, 152, 0.32);
+  box-shadow:
+    0 8px 25px rgba(143, 230, 152, 0.13),
+    0 4px 15px rgba(143, 230, 152, 0.09),
+    0 1px 8px 0 rgba(34,40,49,0.10),
+    0 0 0 1.5px rgba(255,255,255,0.10) inset,
+    0 1.5px 8px 0 rgba(143, 230, 152, 0.10) inset;
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, border 0.2s;
 }
 
 .nav-menu a::before {
@@ -367,35 +376,17 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, 
-    rgba(102, 126, 234, 0.8) 0%, 
-    rgba(118, 75, 162, 0.8) 50%, 
-    rgba(240, 147, 251, 0.8) 100%);
+  background: linear-gradient(120deg, rgba(255,255,255,0.38) 60%, rgba(143, 230, 152, 0.1) 100%);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
   opacity: 0;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   z-index: -2;
-  transform: scale(0.95);
+  transform: scale(0.96);
   border-radius: 25px;
-}
-
-.nav-menu a::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  z-index: -1;
-}
-
-.nav-menu a:hover::before,
-.nav-menu a.active::before {
-  opacity: 1;
-  transform: scale(1);
+  border: 1.5px solid rgba(143, 230, 152, 0.18);
+  box-shadow: 0 4px 24px 0 rgba(143, 230, 152, 0.13), 0 1.5px 8px 0 rgba(143, 230, 152, 0.1), 0 0.5px 0.5px 0 rgba(255,255,255,0.10) inset;
+  pointer-events: none;
 }
 
 .nav-menu a:hover::after {
@@ -403,137 +394,8 @@ export default {
   height: 80px;
 }
 
-.nav-menu a:hover,
-.nav-menu a.active {
-  color: white;
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 
-    0 8px 25px rgba(102, 126, 234, 0.3),
-    0 4px 15px rgba(102, 126, 234, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  border-color: rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.12);
-}
-
 .nav-menu a:active {
   transform: translateY(-2px) scale(1.05);
-}
-
-/* Dropdown Styles */
-.nav-dropdown {
-  position: relative;
-}
-
-.nav-dropdown .dropdown-arrow {
-  margin-left: 0.5rem;
-  font-size: 0.8rem;
-  transition: transform 0.3s ease;
-  display: inline-block;
-}
-
-.nav-dropdown:hover .dropdown-arrow {
-  transform: rotate(180deg);
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%) translateY(20px);
-  min-width: 200px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(25px) saturate(1.2);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.08),
-    0 8px 25px rgba(0, 0, 0, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  padding: 0.8rem 0;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  z-index: 100000;
-  pointer-events: none;
-  margin-top: 10px;
-}
-
-.nav-dropdown:hover .dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(10px);
-  pointer-events: all;
-}
-
-.dropdown-item {
-  display: flex !important;
-  align-items: center;
-  gap: 0.8rem;
-  padding: 0.8rem 1.5rem !important;
-  color: #333 !important;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  border-radius: 0 !important;
-  background: transparent !important;
-  border: none !important;
-  backdrop-filter: none !important;
-  position: relative;
-  overflow: hidden;
-  margin: 0;
-  width: calc(100% - 0rem);
-  box-sizing: border-box;
-}
-
-.dropdown-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, 
-    rgba(102, 126, 234, 0.1) 0%, 
-    rgba(118, 75, 162, 0.1) 100%);
-  transition: left 0.4s ease;
-  z-index: -1;
-}
-
-.dropdown-item:hover::before {
-  left: 0;
-}
-
-.dropdown-item:hover {
-  background: rgba(102, 126, 234, 0.08) !important;
-  color: #667eea !important;
-  transform: none !important;
-  box-shadow: none !important;
-  padding-left: 2rem !important;
-}
-
-.dropdown-icon {
-  font-size: 1.1rem;
-  opacity: 0.8;
-  transition: transform 0.3s ease;
-}
-
-.dropdown-item:hover .dropdown-icon {
-  transform: scale(1.2);
-  opacity: 1;
-}
-
-/* Dropdown arrow animation */
-.dropdown-menu::before {
-  content: '';
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 10px solid rgba(255, 255, 255, 0.95);
-  filter: drop-shadow(0 -2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .mobile-menu-toggle {
@@ -551,16 +413,16 @@ export default {
 }
 
 .mobile-menu-toggle:hover {
-  background: rgba(102, 126, 234, 0.12);
-  border-color: rgba(102, 126, 234, 0.2);
+  background: rgba(143, 230, 152, 0.12);
+  border-color: rgba(143, 230, 152, 0.2);
   transform: scale(1.08);
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 4px 15px rgba(143, 230, 152, 0.2);
 }
 
 .mobile-menu-toggle span {
   width: 25px;
   height: 3px;
-  background: #333;
+  background: var(--color-text);
   margin: 3px 0;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 3px;
@@ -569,17 +431,17 @@ export default {
 }
 
 .mobile-menu-toggle:hover span {
-  background: #667eea;
+  background: var(--color-primary);
 }
 
 .mobile-menu-toggle.active {
-  background: rgba(102, 126, 234, 0.15);
+  background: rgba(143, 230, 152, 0.15);
   transform: scale(1.05);
-  border-color: rgba(102, 126, 234, 0.3);
+  border-color: rgba(143, 230, 152, 0.3);
 }
 
 .mobile-menu-toggle.active span {
-  background: #667eea;
+  background: var(--color-primary);
 }
 
 .mobile-menu-toggle.active span:nth-child(1) {
@@ -594,78 +456,48 @@ export default {
   transform: rotate(45deg) translate(-5px, -6px);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
   .nav {
     padding: 1rem 2rem;
   }
-  
   .mobile-menu-toggle {
     display: flex;
   }
-  
   .nav-menu {
     position: fixed;
     top: 70px;
     left: -100%;
     width: 100%;
     height: calc(100vh - 70px);
-    background: rgba(255, 255, 255, 0.98);
+    background: rgba(240, 243, 189, 0.98);
     backdrop-filter: blur(10px);
     flex-direction: column;
+    flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: center;
     gap: 1rem;
     padding: 2rem 0;
     transition: left 0.3s ease;
+    overflow-x: hidden;
+    overflow-y: auto; /* <--- ADDED for smooth scrolling if menu is long */
+    white-space: normal;
   }
-  
   .nav-menu.active {
     left: 0;
   }
   
+  /* Make menu links full-width for a cleaner list */
+  .nav-menu li,
   .nav-menu a {
-    font-size: 1.2rem;
-    padding: 1rem 2rem;
-    width: 80%;
+    width: 90%;
     text-align: center;
+    box-sizing: border-box;
+    padding: 0.8rem 1.2rem;
   }
   
-  /* Mobile dropdown styles */
-  .nav-dropdown .dropdown-arrow {
-    display: none;
-  }
-  
-  .dropdown-menu {
-    position: static;
-    transform: none;
-    opacity: 1;
-    visibility: visible;
-    pointer-events: all;
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(15px);
-    margin-top: 0.5rem;
-    border-radius: 15px;
-    padding: 0.5rem 0;
-    width: 100%;
-    box-shadow: 
-      0 10px 20px rgba(0, 0, 0, 0.05),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  }
-  
-  .dropdown-menu::before {
-    display: none;
-  }
-  
-  .dropdown-item {
-    padding: 0.8rem 1rem !important;
-    width: calc(100% - 2rem);
-    margin: 0 1rem;
-    border-radius: 10px !important;
-    font-size: 1.1rem;
-  }
-  
-  .dropdown-item:hover {
-    padding-left: 1.2rem !important;
+  .nav-menu a {
+    background: var(--color-bg-glass);
+    color: var(--color-text);
   }
 }
 
@@ -677,4 +509,5 @@ export default {
   .nav-brand h2 {
     font-size: 1.5rem;
   }
-}</style>
+}
+</style>

@@ -2,12 +2,7 @@
   <div id="app">
     <Header />
     <main>
-      <Hero />
-      <About />
-      <Education />
-      <Skills />
-      <Experience />
-      <Contact />
+      <router-view />
     </main>
     <Footer />
   </div>
@@ -15,9 +10,8 @@
 
 <script>
 import Header from './components/Header.vue'
-import Hero from './components/Hero.vue'
+import Home from './components/Home.vue'
 import About from './components/About.vue'
-import Education from './components/Education.vue'
 import Skills from './components/Skills.vue'
 import Experience from './components/Experience.vue'
 import Contact from './components/Contact.vue'
@@ -27,13 +21,12 @@ export default {
   name: 'App',
   components: {
     Header,
-    Hero,
+    Home,
     About,
-    Education,
     Skills,
     Experience,
     Contact,
-    Footer
+    Footer,
   }
 }
 </script>
@@ -56,6 +49,12 @@ html {
 main {
   width: 100%;
   padding-top: 70px; /* Add padding to account for fixed header */
+}
+
+@media (max-width: 600px) {
+  main {
+    padding-top: 90px; /* More space for mobile header/accent bar */
+  }
 }
 
 /* Ensure sections don't have horizontal scroll */
