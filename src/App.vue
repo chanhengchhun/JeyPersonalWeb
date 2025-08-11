@@ -53,7 +53,7 @@ main {
 
 @media (max-width: 600px) {
   main {
-    padding-top: 90px; /* More space for mobile header/accent bar */
+    padding: 10px 0 10px 0; /* Reduced space for mobile header */
   }
 }
 

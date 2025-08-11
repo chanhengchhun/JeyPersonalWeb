@@ -48,7 +48,6 @@ export default {
 /* Contact Section Styles (modern glassmorphism) */
 .contact {
   padding: 140px 5% 40px 5%;
-  background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%);
   position: relative;
   min-height: 100vh;
   display: flex;
@@ -67,7 +66,6 @@ export default {
   transform: translateX(-50%) rotate(-8deg);
   width: 700px;
   height: 420px;
-  background: linear-gradient(120deg, rgba(102,126,234,0.18) 0%, rgba(155,89,182,0.13) 100%);
   filter: blur(48px) saturate(1.2);
   z-index: 0;
   border-radius: 40% 60% 60% 40%/60% 40% 60% 40%;

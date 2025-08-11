@@ -19,7 +19,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%);
 }
 .in-dev-container {
   text-align: center;

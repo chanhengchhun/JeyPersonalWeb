@@ -413,6 +413,18 @@ export default {
   .experience-card.glass-card.improved-card {
     flex-direction: column;
     min-height: unset;
+    padding-left: 16px; /* Add space for accent bar */
+  }
+  .experience-card .accent-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 7px;
+    border-radius: 0 12px 12px 0;
+    margin-right: 0;
+    z-index: 2;
   }
   .experience-card-main {
     padding: 1.1rem 0.7rem 1.1rem 0.7rem;
@@ -741,8 +753,10 @@ blockquote {
   min-width: 320px;
 }
 @media (max-width: 900px) {
-/* ...existing code... */
-  align-items: stretch;
+  .experience-columns {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 .timeline-header {
   font-size: 1.1rem;
@@ -779,4 +793,4 @@ blockquote {
     margin-left: 0; 
   }
 }
-</style
+</style>

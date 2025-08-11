@@ -56,6 +56,7 @@ section {
   min-height: 80vh;
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
+  /* Remove the section background for seamless scroll */
 }
 
 body {

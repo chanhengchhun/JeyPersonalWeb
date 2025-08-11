@@ -403,7 +403,6 @@ onMounted(() => {
 @media (max-width: 968px) {
   .hero-container {
     padding: 0 2.5rem;
-    margin: -100px 0 -100px 0;
   }
   .text-box {
     max-width: 90vw;

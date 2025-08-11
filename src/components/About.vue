@@ -1,5 +1,6 @@
 <template>
   <section id="about" class="about">
+    <!-- section-divider removed for seamless scroll -->
     <div class="container">
       <div class="section-header">
         <h2>Get to Know Me</h2>
@@ -61,6 +62,22 @@ const filmImages = [about1, about2, about3, about4];
 </script>
 
 <style scoped>
+/* --- Section Divider for transition from Home --- */
+/* .section-divider {
+  width: 100%;
+  height: 32px;
+  margin-top: -32px;
+  background: linear-gradient(to bottom, rgba(143,230,152,0.18) 0%, transparent 100%);
+  z-index: 10;
+  position: relative;
+} */
+
+.about {
+  position: relative;
+  /* background removed to use global section background */
+  padding-top: 0;
+}
+
 /* --- Gallery Styles --- */
 .scrolling-gallery {
   background: rgba(255,255,255,0.15);

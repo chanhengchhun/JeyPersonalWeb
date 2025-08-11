@@ -6,39 +6,26 @@
           <h2>Chanheng</h2>
           <p class="footer-tagline">Crafting digital experiences with passion and precision</p>
         </div>
-        <nav class="footer-nav" aria-label="Footer Navigation">
-          <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
-        <nav class="footer-extra-nav" aria-label="More Links">
-          <ul>
-            <li><router-link to="/photography">Photography</router-link></li>
-            <li><router-link to="/blog">Blog</router-link></li>
-          </ul>
-        </nav>
-        <div class="footer-social">
-          <div class="social-links">
-            <a href="https://github.com/chanhengchhun" target="_blank" aria-label="GitHub" rel="noopener" class="social-link">
-              <span class="social-icon">🐙</span>
-            </a>
-            <a href="https://www.linkedin.com/in/chanheng-chh/" target="_blank" aria-label="LinkedIn" rel="noopener" class="social-link">
-              <span class="social-icon">💼</span>
-            </a>
-            <a href="mailto:chhun.chanheng@icloud.com" aria-label="Email" class="social-link">
-              <span class="social-icon">📧</span>
-            </a>
-          </div>
-          <a href="#contact" class="footer-cta">Get In Touch</a>
+        <div class="footer-links">
+          <nav class="footer-nav" aria-label="Footer Navigation">
+            <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#skills">Skills</a></li>
+              <li><a href="#experience">Experience</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </nav>
+          <nav class="footer-extra-nav" aria-label="More Links">
+            <ul>
+              <li><router-link to="/photography">Photography</router-link></li>
+              <li><router-link to="/blog">Blog</router-link></li>
+            </ul>
+          </nav>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; {{ currentYear }} Chanheng Chhun All Rights Reserved.</p>
-        <span class="footer-tech">Built with Vue.js by Chanheng Chhun</span>
+        <span>&copy; {{ currentYear }} Chanheng Chhun. Built with Vue.js.</span>
       </div>
     </div>
   </footer>
@@ -56,198 +43,140 @@ export default {
 </script>
 
 <style scoped>
-/* Modern, flat, responsive footer redesign */
 .footer {
-  background: var(--color-text-light);
-  color: var(--color-white);
-  padding: 3rem 0 1.5rem;
-  position: relative;
+  background: #181c24;
+  color: #f3f3f3;
   width: 100%;
-  box-shadow: 0 -2px 16px 0 rgba(0,0,0,0.04);
+  border-top: 2.5px solid var(--color-primary);
+  box-shadow: 0 -2px 16px 0 rgba(0,0,0,0.08);
+  padding: 2.5rem 0 1.2rem;
+  position: relative;
 }
-
+.footer::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, var(--color-primary) 0%, #667eea 100%);
+  opacity: 0.18;
+  z-index: 2;
+}
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
-
 .footer-main {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 2.5rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
   border-bottom: 1px solid rgba(255,255,255,0.08);
-  padding-bottom: 1.5rem;
+  padding-bottom: 1.2rem;
 }
-
 .footer-brand {
-  flex: 1 1 220px;
-  min-width: 180px;
+  text-align: center;
+  margin-bottom: 0.5rem;
 }
 .footer-brand h2 {
   font-size: 2rem;
   font-weight: 800;
   color: var(--color-primary);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
   letter-spacing: 0.01em;
 }
 .footer-tagline {
-  color: var(--color-white);
+  color: #e5e7eb;
   font-size: 1rem;
   opacity: 0.85;
   margin-bottom: 0;
 }
-
-.footer-nav {
-  flex: 1 1 160px;
-  min-width: 140px;
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
 }
-.footer-nav ul {
+.footer-nav ul, .footer-extra-nav ul {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0 1rem 0;
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
+  gap: 0.6rem;
+  align-items: flex-start;
 }
-.footer-nav a {
-  color: var(--color-white);
+.footer-nav a, .footer-extra-nav a, .footer-extra-nav router-link {
+  color: #f3f3f3;
   text-decoration: none;
   font-weight: 600;
   font-size: 1rem;
   border-radius: 8px;
   padding: 0.3rem 0.7rem;
   transition: background 0.2s, color 0.2s;
-}
-.footer-nav a:hover, .footer-nav a:focus {
-  background: var(--color-primary);
-  color: var(--color-light);
-}
-
-.footer-extra-nav {
-  flex: 1 1 160px;
-  min-width: 140px;
-}
-.footer-extra-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-}
-.footer-extra-nav a {
-  color: var(--color-white);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1rem;
-  border-radius: 8px;
-  padding: 0.3rem 0.7rem;
-  transition: background 0.2s, color 0.2s;
-}
-.footer-extra-nav a:hover, .footer-extra-nav a:focus {
-  background: var(--color-primary);
-  color: var(--color-light);
-}
-
-.footer-social {
-  flex: 1 1 180px;
-  min-width: 160px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 1.2rem;
-}
-.social-links {
-  display: flex;
-  gap: 1rem;
-}
-.social-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.08);
-  color: var(--color-white);
-  font-size: 1.3rem;
-  transition: background 0.2s, color 0.2s, transform 0.2s;
-  text-decoration: none;
-  border: 1.5px solid transparent;
-}
-.social-link:hover, .social-link:focus {
-  background: var(--color-primary);
-  color: var(--color-light);
-  border-color: var(--color-primary);
-  transform: translateY(-2px) scale(1.08);
-}
-.footer-cta {
   display: inline-block;
+  text-align: left;
+}
+.footer-nav a:hover, .footer-nav a:focus,
+.footer-extra-nav a:hover, .footer-extra-nav a:focus,
+.footer-extra-nav router-link:hover, .footer-extra-nav router-link:focus {
   background: var(--color-primary);
-  color: var(--color-light);
-  padding: 0.7rem 1.4rem;
-  border-radius: 20px;
-  font-weight: 700;
-  font-size: 1rem;
-  text-decoration: none;
-  margin-top: 0.5rem;
-  transition: background 0.2s, color 0.2s, transform 0.2s;
-  box-shadow: 0 2px 8px 0 rgba(87,204,153,0.10);
+  color: #181c24;
 }
-.footer-cta:hover, .footer-cta:focus {
-  background: var(--color-light);
-  color: var(--color-primary);
-  border: 1.5px solid var(--color-primary);
-  transform: translateY(-2px) scale(1.04);
-}
-
 .footer-bottom {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 1rem;
   padding-top: 1.2rem;
   font-size: 0.98rem;
-  color: #e5e7eb;
-}
-.footer-bottom p {
-  margin: 0;
-  color: #e5e7eb;
-}
-.footer-tech {
   color: #b5c2c9;
-  font-size: 0.95rem;
+  text-align: center;
 }
-
 @media (max-width: 900px) {
-  .footer-main {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2rem;
+  .footer-container {
+    padding: 0 0.5rem;
   }
-  .footer-social {
-    align-items: flex-start;
+  .footer-links {
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: center;
   }
 }
-
 @media (max-width: 600px) {
   .footer-container {
-    padding: 0 1rem;
+    padding: 0 0.2rem;
   }
   .footer-main {
-    gap: 1.2rem;
+    gap: 1rem;
   }
   .footer-bottom {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
     font-size: 0.93rem;
+    padding-top: 0.7rem;
+  }
+  .footer-brand h2 {
+    font-size: 1.3rem;
+  }
+  .footer-tagline {
+    font-size: 0.93rem;
+  }
+  .footer-links {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-nav ul, .footer-extra-nav ul {
+    align-items: center;
+  }
+  .footer-nav a, .footer-extra-nav a, .footer-extra-nav router-link {
+    text-align: center;
   }
 }
 </style>
