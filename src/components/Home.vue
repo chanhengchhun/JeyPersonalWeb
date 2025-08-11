@@ -80,6 +80,7 @@ onMounted(() => {
   position: relative;
   padding: 40px 20px;
   overflow: hidden;
+
   background: linear-gradient(135deg, 
     rgba(143, 230, 152, 0.03) 0%, 
     rgba(45, 59, 47, 0.05) 50%,
@@ -88,6 +89,7 @@ onMounted(() => {
 
 .hero-container {
   max-width: 1400px;
+  min-height: 100vh;
   margin: 0 auto;
   padding: 0 3rem;
   width: 100%;
@@ -419,6 +421,7 @@ onMounted(() => {
     min-height: auto;
     padding-top: 70px;
     padding-bottom: 40px;
+    margin-top: -10px;
   }
   .text-box {
     max-width: 90vw;
@@ -454,7 +457,7 @@ onMounted(() => {
 }
 @media (max-width: 768px) {
   .hero {
-    padding-top: 70px;
+    padding-top: 24px;
   }
   .hero-container {
     padding: 0 2rem;

@@ -281,7 +281,7 @@ export default {
   align-items: center;
   padding: 1rem 3rem;
   max-width: 1400px;
-  margin: 0 auto;
+  margin: 0 auto 0;
   width: 100%;
 }
 

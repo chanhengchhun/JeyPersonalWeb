@@ -50,7 +50,7 @@ export default {
   padding: 140px 5% 40px 5%;
   background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%);
   position: relative;
-  min-height: calc(100vh - 200px);
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
