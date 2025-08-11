@@ -1,5 +1,5 @@
 <template>
-  <section id="home" class="hero">
+  <section id="home">
     <div class="hero-container">
       <!-- Single Text Box with Overlapping Image -->
       <div class="text-box">
@@ -73,26 +73,13 @@ onMounted(() => {
 /* ==============================================
    Hero Section
    ============================================== */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  position: relative;
-  padding: 40px 20px;
-  overflow: hidden;
-
-  background: linear-gradient(135deg, 
-    rgba(143, 230, 152, 0.03) 0%, 
-    rgba(45, 59, 47, 0.05) 50%,
-    rgba(143, 230, 152, 0.03) 100%);
-}
 
 .hero-container {
   max-width: 1400px;
   min-height: 100vh;
   margin: 0 auto;
-  padding: 0 3rem;
   width: 100%;
+  padding: 0 2rem 0 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -416,12 +403,7 @@ onMounted(() => {
 @media (max-width: 968px) {
   .hero-container {
     padding: 0 2.5rem;
-  }
-  .hero {
-    min-height: auto;
-    padding-top: 70px;
-    padding-bottom: 40px;
-    margin-top: -10px;
+    margin: -100px 0 -100px 0;
   }
   .text-box {
     max-width: 90vw;
@@ -456,9 +438,6 @@ onMounted(() => {
   }
 }
 @media (max-width: 768px) {
-  .hero {
-    padding-top: 24px;
-  }
   .hero-container {
     padding: 0 2rem;
   }
@@ -559,8 +538,4 @@ onMounted(() => {
   75% { transform: translateY(-15px) rotate(-1deg); }
 }
 
-/* Glass Particle Effects */
-.hero::after {
-  animation: float 12s ease-in-out infinite;
-}
 </style>
