@@ -230,17 +230,12 @@ const filmImages = [about1, about2, about3, about4];
 }
 /* --- Add the rest of your About.vue CSS here (about-glass-unified, about-two-col, etc.) --- */
 .about-glass-unified {
-  background: rgba(255,255,255,0.18);
-  backdrop-filter: blur(32px) saturate(1.3);
-  border: 1.5px solid rgba(255,255,255,0.22);
-  border-radius: 38px;
   max-width: 1800px;
   margin: 0 auto;
 }
 
 @media (max-width: 900px) {
   .about-glass-unified {
-    padding: 2.2rem 1.2rem 1.5rem 1.2rem;
     max-width: 98vw;
   }
   .about-section-divider {
