@@ -194,7 +194,7 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
 .header {
   background: rgba(255, 255, 255, 0.75); /* semi-transparent white for glass effect */
   backdrop-filter: blur(25px) saturate(1.2);

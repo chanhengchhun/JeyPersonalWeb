@@ -41,31 +41,31 @@ export default {
           skills: [
             { name: 'Python', level: 75 },
             { name: 'Java', level: 75 },
-            { name: 'SQL', level: 50 },
             { name: 'Vue.js', level: 75 },
-            { name: 'HTML/CSS', level: 75 }
+            { name: 'HTML/CSS', level: 75 },
+            { name: 'SQL', level: 50 },
           ]
         },
         {
           title: 'Soft Skills',
           icon: '🤝',
           skills: [
+            { name: 'Adaptability', level: 95 },
             { name: 'Problem Solving', level: 90 },
             { name: 'Communication', level: 90 },
             { name: 'Team Collaboration', level: 90 },
-            { name: 'Adaptability', level: 95 },
-            { name: 'Creativity', level: 85 }
+            { name: 'Creativity', level: 85 },
           ]
         },
         {
           title: 'Tools & Platforms',
           icon: '🛠️',
           skills: [
-            { name: 'VS Code', level: 90 },
-            { name: 'Microsoft 365', level: 90 },
-            { name: 'Git & GitHub', level: 75 },
-            { name: 'Vite', level: 75 },
-            { name: 'PostgreSQL', level: 75 }
+            { name: 'VS Code', level: 75 },
+            { name: 'Microsoft 365', level: 75 },
+            { name: 'GitHub', level: 75 },
+            { name: 'JetBrains', level: 75 },
+            { name: 'PostgreSQL', level: 50 }
           ]
         }
       ]
@@ -79,7 +79,6 @@ export default {
 .skills {
   padding: 140px 5% 80px 5%;
   min-height: 100vh;
-  background: linear-gradient(135deg, rgba(155, 89, 182, 0.03) 0%, rgba(142, 68, 173, 0.05) 25%, rgba(118, 75, 162, 0.03) 50%, rgba(102, 126, 234, 0.05) 75%, rgba(240, 147, 251, 0.03) 100%);
   display: flex;
   align-items: center;
 }

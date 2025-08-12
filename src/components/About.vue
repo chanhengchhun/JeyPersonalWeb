@@ -2,12 +2,12 @@
   <section id="about" class="about">
     <!-- section-divider removed for seamless scroll -->
     <div class="container">
-      <div class="section-header">
-        <h2>Get to Know Me</h2>
-        <div class="section-subtitle">Discover who I am as a person</div>
-      </div>
       <div class="about-content">
         <div class="about-glass-unified">
+          <div class="section-header">
+            <h2>Get to Know Me</h2>
+            <div class="section-subtitle">Discover who I am as a person</div>
+          </div>
           <div class="about-two-col">
             <div class="about-col about-col-text">
               <div class="personal-intro">
@@ -20,15 +20,12 @@
             </div>
             <div class="about-divider"></div>
             <div class="about-col about-col-gallery">
-              <div class="about-masonry-gallery scrolling-gallery">
-                <div class="gallery-gradient-top"></div>
+              <div class="scrolling-gallery">
                 <div class="scrolling-gallery-scrollable">
                   <div class="scrolling-gallery-inner css-marquee">
                     <img v-for="(img, i) in filmImages.concat(filmImages)" :key="'film-img-'+i" :src="img" class="film-img" />
                   </div>
                 </div>
-                <div class="gallery-gradient-bottom"></div>
-                <div class="gallery-scroll-indicator"></div>
               </div>
             </div>
           </div>
@@ -74,13 +71,11 @@ const filmImages = [about1, about2, about3, about4];
 
 .about {
   position: relative;
-  /* background removed to use global section background */
   padding-top: 0;
 }
 
 /* --- Gallery Styles --- */
 .scrolling-gallery {
-  background: rgba(255,255,255,0.15);
   overflow: hidden;
   backdrop-filter: blur(28px) saturate(1.25);
   border: 10px solid rgba(255,255,255,0.32);
@@ -113,19 +108,6 @@ const filmImages = [about1, about2, about3, about4];
   padding: 0;
   align-items: center;
 }
-.gallery-scroll-indicator {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  width: 6px;
-  height: 60px;
-  background: linear-gradient(to bottom, rgba(143,230,255,0.18) 0%, rgba(255,255,255,0.10) 100%);
-  border-radius: 3px;
-  opacity: 0.5;
-  transform: translateY(-50%);
-  pointer-events: none;
-  z-index: 3;
-}
 
 .scrolling-gallery .film-img {
   width: 100%;
@@ -147,23 +129,6 @@ const filmImages = [about1, about2, about3, about4];
   box-shadow: 0 12px 32px 0 rgba(143,230,152,0.18);
   transform: scale(1.04);
 }
-.gallery-gradient-top,
-.gallery-gradient-bottom {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 48px;
-  z-index: 2;
-  pointer-events: none;
-}
-.gallery-gradient-top {
-  top: 0;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.22) 80%, transparent 100%);
-}
-.gallery-gradient-bottom {
-  bottom: 0;
-  background: linear-gradient(to top, rgba(255,255,255,0.22) 80%, transparent 100%);
-}
 
 /* --- Portal Links Section --- */
 .about-portal-section {
@@ -182,8 +147,8 @@ const filmImages = [about1, about2, about3, about4];
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 180px;
-  max-width: 240px;
+  min-width: 189px;
+  max-width: 260px;
   padding: 2.2rem 1.5rem 1.5rem 1.5rem;
   background: rgba(255,255,255,0.18);
   border-radius: 28px;
@@ -192,7 +157,6 @@ const filmImages = [about1, about2, about3, about4];
   text-decoration: none;
   color: var(--color-text, #222);
   transition: box-shadow 0.3s, transform 0.3s, border 0.3s;
-  max-width: 1200px;
 }
 .portal-card:hover {
   box-shadow: 0 16px 48px rgba(143,230,255,0.18), 0 0 0 4px rgba(143,230,255,0.13);
@@ -231,7 +195,8 @@ const filmImages = [about1, about2, about3, about4];
 /* --- Add the rest of your About.vue CSS here (about-glass-unified, about-two-col, etc.) --- */
 .about-glass-unified {
   max-width: 1800px;
-  margin: 0 auto;
+  margin: 32px auto;
+  padding: 2rem 0 2rem 0;
 }
 
 @media (max-width: 900px) {
@@ -242,50 +207,6 @@ const filmImages = [about1, about2, about3, about4];
     margin: 1.2rem 0 0.7rem 0;
   }
 }
-
-.about-masonry-gallery {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 1.5rem;
-  margin-top: 2.5rem;
-  margin-bottom: 0.5rem;
-}
-.masonry-img {
-  border-radius: 18px;
-  object-fit: cover;
-  box-shadow: 0 6px 32px 0 rgba(143,230,152,0.13), 0 0 0 4px rgba(255,255,255,0.7);
-  background: #fff;
-  border: none;
-  transition: box-shadow 0.3s, transform 0.3s;
-}
-.masonry-img:hover {
-  box-shadow: 0 12px 40px 0 rgba(143,230,152,0.18), 0 0 0 8px rgba(229,185,138,0.13);
-  transform: scale(1.05) rotate(-2deg);
-}
-
-.masonry-img-tall {
-  width: 130px;
-  height: 210px;
-  align-self: flex-end;
-  margin-bottom: 18px;
-}
-.masonry-img-main {
-  width: 200px;
-  height: 160px;
-  align-self: flex-start;
-  margin-bottom: 0;
-  z-index: 2;
-}
-.masonry-img-short {
-  width: 110px;
-  height: 110px;
-  align-self: flex-end;
-  margin-bottom: 32px;
-}
-
-
-
 .about-avatar {
   width: 120px;
   height: 120px;
@@ -295,75 +216,6 @@ const filmImages = [about1, about2, about3, about4];
   box-shadow: 0 4px 16px rgba(143,230,152,0.10);
   background: #fff;
 }
-/* Gallery Section */
-.my-gallery-section {
-  background: var(--color-bg-glass);
-  backdrop-filter: blur(20px) saturate(1.1);
-  border: 1px solid rgba(255,255,255,0.13);
-  border-radius: 30px;
-  padding: 2.5rem 2rem;
-  margin: 2.5rem 0;
-  text-align: center;
-  box-shadow: 0 12px 32px rgba(0,0,0,0.07);
-}
-.my-gallery-section h3 {
-  font-size: 1.7rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.gallery-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
-  align-items: center;
-}
-.gallery-photo {
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 18px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
-  border: 2px solid rgba(255,255,255,0.18);
-  background: #fff;
-  transition: transform 0.3s cubic-bezier(.4,0,.2,1);
-}
-.gallery-photo:hover {
-  transform: scale(1.06) rotate(-2deg);
-  box-shadow: 0 8px 32px rgba(143,230,152,0.13);
-}
-
-
-.about::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 20% 20%, rgba(143, 230, 152, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(229, 185, 138, 0.06) 0%, transparent 50%),
-    radial-gradient(circle at 40% 60%, rgba(45, 59, 47, 0.05) 0%, transparent 50%);
-  z-index: 1;
-}
-
-.about::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.02)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.02)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-  opacity: 0.3;
-  z-index: 1;
-}
-
 .container {
   max-width: 1400px;
   margin: 0 auto;
@@ -493,10 +345,7 @@ const filmImages = [about1, about2, about3, about4];
   font-size: 1.13rem;
   color: var(--color-text);
 }
-.about-masonry-gallery {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
+
 @media (max-width: 900px) {
   .about-two-col {
     flex-direction: column;
@@ -516,21 +365,6 @@ const filmImages = [about1, about2, about3, about4];
     text-align: center;
     font-size: 1rem;
   }
-  .about-masonry-gallery {
-    gap: 1rem;
-  }
-  .masonry-img-tall {
-    width: 90px;
-    height: 140px;
-  }
-  .masonry-img-main {
-    width: 130px;
-    height: 90px;
-  }
-  .masonry-img-short {
-    width: 70px;
-    height: 70px;
-  }
 }
 @media (max-width: 900px) {
   .skills-highlight {
@@ -540,21 +374,6 @@ const filmImages = [about1, about2, about3, about4];
   }
   .personal-intro {
     font-size: 1rem;
-  }
-  .about-masonry-gallery {
-    gap: 1rem;
-  }
-  .masonry-img-tall {
-    width: 90px;
-    height: 140px;
-  }
-  .masonry-img-main {
-    width: 130px;
-    height: 90px;
-  }
-  .masonry-img-short {
-    width: 70px;
-    height: 70px;
   }
 }
 

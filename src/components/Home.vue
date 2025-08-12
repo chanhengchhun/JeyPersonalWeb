@@ -91,7 +91,6 @@ onMounted(() => {
    Main Text Box
    ============================================== */
 .text-box {
-  background: rgba(255, 255, 255, 0.08); /* A neutral glass color */
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 35px;
   padding: 6.5rem clamp(5.5rem, 13vw, 11rem) 6.5rem 6.5rem;

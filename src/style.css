@@ -10,11 +10,6 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Ensure header stays fixed - minimal override needed */
-.header {
-  position: fixed !important;
-  z-index: 99999 !important;
-}
 
 /* Enhanced Color Variables - Mint & Charcoal */
 :root {
