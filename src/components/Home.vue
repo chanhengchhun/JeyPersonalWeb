@@ -8,8 +8,7 @@
           <h2 class="name">Chanheng (Jey)</h2>
           <h2 class="role">{{ currentRole }}<span class="cursor">|</span></h2>
           <p class="description">
-            Enthusiastic about uncovering insights through data analysis and solving complex problems with innovative solutions. 
-            I am always eager to learn and grow, constantly seeking new challenges to expand my knowledge and skills.
+            Driven by curiosity and a passion for growth. I'm a college student who thrives to learn and embrace new challenges, and expand my skills in dynamic environments.
           </p>
           <div class="buttons">
             <a href="#skills" class="btn btn-primary">Explore My Skills</a>

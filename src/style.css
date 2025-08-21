@@ -13,19 +13,19 @@ html, body {
 
 /* Enhanced Color Variables - Mint & Charcoal */
 :root {
-  --color-primary: #8fe698; /* The fresh mint green for highlights and accents */
-  --color-secondary: #2d3b2f; /* A deep, rich charcoal for contrast */
-  --color-tertiary: #d9d9c2; /* A soft, warm off-white for a clean background */
-  --color-accent: #e5b98a; /* A subtle, warm beige for a touch of elegance */
-  --color-text: #2d3b2f; /* Dark gray for body text on light backgrounds */
-  --color-text-light: #516a56; /* A lighter shade for subheadings */
-  --color-text-dark: #f0f3bd; /* Pale yellow-green for contrast on dark elements */
-  --color-bg-glass: rgba(143, 230, 152, 0.15); /* Light mint glass */
-  --color-border-glass: rgba(45, 59, 47, 0.2); /* Deep charcoal border */
+  --color-primary: #8fe698; /* Mint green - primary accent */
+  --color-secondary: #2d3b2f; /* Charcoal - dark contrast */
+  --color-tertiary: #f6f8f9; /* Soft off-white background for seamless feel */
+  --color-accent: #e5b98a; /* Warm beige accent */
+  --color-text: #000000; /* Main text color (charcoal) */
+  --color-text-light: #516a56; /* Subtle subheading color */
+  --color-text-dark: #f0f3bd; /* Light text for dark elements */
+  --color-bg-glass: rgba(143, 230, 152, 0.12); /* Slightly subtler glass */
+  --color-border-glass: rgba(45, 59, 47, 0.15);
 
   /* Global Styles */
   --base-font-size: 15px;
-  --color-light: #f0f3bd; /* The main creamy background color */
+  --color-light: #7cebfa; /* Slightly deeper, modern blue-gray background */
 }
 
 body {
@@ -34,9 +34,9 @@ body {
   color: var(--color-text);
   margin: 0;
   padding-top: 0;
-  background: var(--color-tertiary);
-  border-top: 4px solid var(--color-primary); /* Use the new mint green */
-  box-shadow: 0 2px 0 0 var(--color-border-glass), 0 2px 24px 0 rgba(45,59,47,0.04);
+  background: var(--color-light); 
+  border-top: 4px solid var(--color-primary); /* Use the new electric green */
+  box-shadow: none; /* Remove old shadow for a cleaner look */
 }
 
 html {
