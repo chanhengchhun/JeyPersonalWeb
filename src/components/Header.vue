@@ -238,7 +238,6 @@ export default {
   height: 3px;
   background: linear-gradient(90deg, 
     var(--color-primary), 
-    var(--color-accent), 
     var(--color-secondary));
   transition: all 0.2s ease-out;
   border-radius: 0 2px 2px 0;

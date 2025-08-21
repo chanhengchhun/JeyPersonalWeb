@@ -72,19 +72,17 @@ export default {
   data() {
     return {
       experiences: [
-        /*
         {
-          id: 'current',
-          title: 'Freelance Web Developer',
-          company: 'Columbus State Community College',
-          date: '2024 - Present',
-          location: 'Columbus, Ohio',
+          id: 'student_data_assistant',
+          title: 'Student Data Assistant',
+          company: 'Capital University',
+          date: '2025 - Present',
+          location: 'Bexley, Ohio',
           description: 'Developing custom web solutions for local businesses and startups. Specializing in responsive design and modern frameworks.',
-          tech: ['Vue.js', 'React', 'Node.js', 'MongoDB']
+          tech: ['Unknowned', 'Unknowned']
         },
-        */
         {
-          id: 'student',
+          id: 'student_ambassador',
           title: 'Student Ambassador Leadership Program',
           company: 'Columbus State Community College',
           date: '2022 - 2024',
@@ -487,13 +485,9 @@ export default {
 .section-title {
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 800;
-  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
   margin-bottom: 1rem;
   line-height: 1.2;
+  color: black !important;
 }
 
 .section-subtitle {
@@ -630,11 +624,7 @@ export default {
   font-size: 0.95rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-.vertical-timeline-content .location {
-  color: #888;
-  font-size: 0.95rem;
+  color: #764ba2;
   font-style: italic;
   margin-bottom: 0.7rem;
   opacity: 0.8;
