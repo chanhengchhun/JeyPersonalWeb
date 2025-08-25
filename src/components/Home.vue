@@ -11,7 +11,6 @@
             Driven by curiosity and a passion for growth. I'm a college student who thrives to learn and embrace new challenges, and expand my skills in dynamic environments.
           </p>
           <div class="buttons">
-            <a href="#skills" class="btn btn-primary">Explore My Skills</a>
             <a href="#contact" class="btn btn-secondary">Let's Connect</a>
           </div>
         </div>
@@ -232,22 +231,6 @@ onMounted(() => {
   position: relative;
   overflow: hidden;
   letter-spacing: 0.5px;
-}
-
-/* Primary button: Solid fill */
-.btn-primary {
-  background: var(--color-primary); /* Solid mint green */
-  color: white;
-  border: 1.5px solid var(--color-primary);
-  box-shadow: 0 8px 25px rgba(199, 173, 173, 0.1);
-}
-
-.btn-primary:hover {
-  background: var(--color-secondary);
-  color: white;
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
-  border-color: var(--color-secondary);
 }
 
 /* Secondary button: Ghost effect */

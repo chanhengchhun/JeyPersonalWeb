@@ -668,32 +668,7 @@ export default {
 .tech-item:hover {
   transform: translateY(-2px) scale(1.05);
 }
-.skills-list {
-  padding: 0.5rem 0 1rem 0;
-}
-.skill-item {
-  margin-bottom: 1rem;
-}
-.skill-name {
-  display: block;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #333;
-  margin-bottom: 0.3rem;
-}
-.skill-bar {
-  height: 8px;
-  background: #e9ecef;
-  border-radius: 5px;
-  overflow: hidden;
-  position: relative;
-}
-.skill-level {
-  height: 100%;
-  background: linear-gradient(90deg, #667eea, #764ba2);
-  border-radius: 5px;
-  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
+
 .journey-stats {
   padding: 0.5rem 0 1rem 0;
   display: flex;

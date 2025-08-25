@@ -9,7 +9,6 @@
   <ul class="nav-menu" :class="{ 'active': mobileMenuOpen }">
   <li><a href="#home" @click.prevent="handleNavToSection('home')">Home</a></li>
         <li><a href="#about" @click.prevent="handleNavToSection('about')">About</a></li>
-        <li><a href="#skills" @click.prevent="handleNavToSection('skills')">Skills</a></li>
         <li><a href="#experience" @click.prevent="handleNavToSection('experience')">Experience</a></li>
         <li><a href="#contact" @click.prevent="handleNavToSection('contact')">Contact</a></li>
       </ul>
@@ -30,7 +29,7 @@ export default {
       isScrolled: false,
       mobileMenuOpen: false,
       activeLink: '#home',
-  sections: ['home', 'about', 'skills', 'experience', 'contact'],
+  sections: ['home', 'about', 'experience', 'contact'],
       observer: null,
       scrollProgress: 0,
       currentSection: 'home'
@@ -180,10 +179,9 @@ export default {
       const components = document.querySelectorAll('main > *');
       const componentMap = {
         'home': 0,       // Hero component
-        'about': 1,      // About component  
-        'skills': 2,     // Skills component
-        'experience': 3, // Experience component
-        'contact': 4     // Contact component
+        'about': 1,      // About component
+        'experience': 2, // Experience component
+        'contact': 3     // Contact component
       };
       
       const index = componentMap[sectionName];
@@ -268,7 +266,6 @@ export default {
 /* Updated Section-based header styling for Light theme */
 .header.section-home,
 .header.section-about,
-.header.section-skills,
 .header.section-experience,
 .header.section-contact {
   border-bottom-color: rgba(143, 230, 152, 0.5);

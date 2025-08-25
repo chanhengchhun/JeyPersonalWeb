@@ -367,11 +367,6 @@ const filmImages = [about1, about2, about3, about4];
   }
 }
 @media (max-width: 900px) {
-  .skills-highlight {
-    padding: 2.2rem 1.2rem 1.5rem 1.2rem;
-    max-width: 98vw;
-    min-height: 340px;
-  }
   .personal-intro {
     font-size: 1rem;
   }
