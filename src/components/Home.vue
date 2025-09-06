@@ -8,10 +8,11 @@
           <h2 class="name">Chanheng (Jey)</h2>
           <h2 class="role">{{ currentRole }}<span class="cursor">|</span></h2>
           <p class="description">
-            Driven by curiosity and a passion for growth. I'm a college student who thrives to learn and embrace new challenges, and expand my skills in dynamic environments.
+            Driven by curiosity and a passion for growth, I'm a college student who thrives on learning, embracing new challenges, and expanding my skills in dynamic environments.
           </p>
           <div class="buttons">
-            <a href="#contact" class="btn btn-secondary">Let's Connect</a>
+            <a href="#about" class="btn btn-primary">Learn More</a>
+            <a href="#contact" class="btn btn-secondary">Get in Touch</a>
           </div>
         </div>
         
@@ -73,142 +74,86 @@ onMounted(() => {
    ============================================== */
 
 .hero-container {
-  max-width: 1400px;
+  max-width: var(--max-width);
   min-height: 100vh;
   margin: 0 auto;
   width: 100%;
-  padding: 0 2rem 0 2rem;
+  padding: 0 var(--space-6);
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  z-index: 2;
 }
 
 /* ==============================================
    Main Text Box
    ============================================== */
 .text-box {
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 35px;
-  padding: 6.5rem clamp(5.5rem, 13vw, 11rem) 6.5rem 6.5rem;
-  position: relative;
-  z-index: 3;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-16) var(--space-12);
   width: 100%;
-  max-width: min(1600px, 99vw);
-  min-height: clamp(550px, 65vh, 700px);
+  max-width: 1200px;
   display: flex;
   align-items: center;
-  box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.08),
-    0 12px 40px rgba(0, 0, 0, 0.05),
-    inset 0 2px 0 rgba(255, 255, 255, 0.2);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  overflow: hidden; /* <--- CHANGE THIS LINE */
-  animation: slideInLeft 1s ease-out, floatSlow 6s ease-in-out infinite 2s;
+  gap: var(--space-12);
+  box-shadow: var(--shadow-lg);
+  transition: all 0.3s ease;
+  animation: slideInUp 0.8s ease-out;
 }
 
 .text-content {
   flex: 1;
-  padding-right: clamp(2rem, 6vw, 5rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: clamp(50%, 55vw, 60%);
-}
-
-.text-box::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 30% 20%, rgba(143, 230, 152, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 70% 80%, rgba(229, 185, 138, 0.06) 0%, transparent 50%);
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.6s ease;
 }
 
 .text-box:hover {
-  transform: translateY(-5px) scale(1.02);
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.25);
-  box-shadow: 
-    0 32px 64px rgba(0, 0, 0, 0.08),
-    0 16px 48px rgba(0, 0, 0, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  animation-play-state: paused;
-}
-
-.text-box:hover::after {
-  opacity: 1;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
 }
 
 /* ==============================================
    Text & Elements inside the Text Box
    ============================================== */
 .greeting {
-  font-size: 1.2rem;
-  color: var(--color-text-light);
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
   font-weight: 500;
-  margin-bottom: 0.8rem;
-  opacity: 0.95;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  letter-spacing: 0.5px;
+  margin-bottom: var(--space-2);
+  letter-spacing: 0.025em;
 }
 
 .name {
-  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-size: var(--text-4xl);
   font-weight: 800;
-  background: linear-gradient(135deg, 
-    var(--color-primary) 0%,
-    var(--color-secondary) 100%);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin: 0.3rem 0 0.8rem 0;
-  line-height: 1.4;
-  animation: gradientShift 4s ease-in-out infinite;
-  text-shadow: 0 4px 16px rgba(143, 230, 152, 0.3);
+  color: var(--color-text-primary);
+  margin: var(--space-1) 0 var(--space-2) 0;
+  line-height: 1.2;
 }
 
 .role {
-  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-size: var(--text-xl);
   font-weight: 600;
-  background: linear-gradient(135deg, 
-    rgba(143, 230, 152, 0.9) 0%, 
-    rgba(45, 59, 47, 0.9) 50%,
-    rgba(229, 185, 138, 0.9) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-top: 0.2rem;
-  min-height: 1.4rem;
+  color: var(--color-primary);
+  margin-bottom: var(--space-6);
+  min-height: 2rem;
   line-height: 1.3;
-  text-shadow: 0 2px 12px rgba(229, 185, 138, 0.2);
-  letter-spacing: 0.5px;
 }
 
 .cursor {
   animation: blink 1s infinite;
   color: var(--color-primary);
-  text-shadow: 0 0 10px rgba(143, 230, 152, 0.5);
 }
 
 .description {
-  font-size: 1.1rem;
+  font-size: var(--text-lg);
   line-height: 1.6;
-  color: var(--color-text);
-  margin-bottom: 2rem;
-  opacity: 0.95;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-  letter-spacing: 0.25px;
-  padding: 1rem 0rem;
-  border-radius: 15px;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-8);
+  max-width: 600px;
 }
 
 /* ==============================================
@@ -216,306 +161,140 @@ onMounted(() => {
    ============================================== */
 .buttons {
   display: flex;
-  gap: 1.5rem;
+  gap: var(--space-4);
   flex-wrap: wrap;
 }
 
 .btn {
-  padding: 1.2rem 2.8rem;
-  border-radius: 60px;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
   text-decoration: none;
   font-weight: 600;
-  font-size: 1rem;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-size: var(--text-base);
+  transition: all 0.2s ease;
   display: inline-block;
-  position: relative;
-  overflow: hidden;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.025em;
 }
 
-/* Secondary button: Ghost effect */
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+  border: 2px solid var(--color-primary);
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
 .btn-secondary {
   background: transparent;
-  color: black;
-  box-shadow: 0 2px 20px rgba(124, 120, 120, 0.562); /* Subtle shadow for depth */
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
 }
 
 .btn-secondary:hover {
   background: var(--color-primary);
   color: white;
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 16px 40px rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
 }
 /* ==============================================
    Overlapping Image Box
    ============================================== */
 .image-box {
-  position: absolute;
-  right: clamp(20px, 5vw, 80px);
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 5;
-  animation: floatProfile 8s ease-in-out infinite;
-}
-
-.image-box::before {
-  content: '';
-  position: absolute;
-  top: -25px;
-  left: -25px;
-  right: -25px;
-  bottom: -25px;
-  background: 
-    radial-gradient(circle at 30% 30%, rgba(143, 230, 152, 0.12) 0%, transparent 60%),
-    radial-gradient(circle at 70% 70%, rgba(229, 185, 138, 0.1) 0%, transparent 60%);
-  border-radius: 50px;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-
-.image-box:hover::before {
-  opacity: 1;
-}
-
-.image-box:hover {
-  transform: translateY(-50%) translateY(-8px) scale(1.02);
+  flex-shrink: 0;
+  animation: slideInRight 0.8s ease-out 0.2s both;
 }
 
 .profile-image {
-  width: clamp(280px, 25vw, 380px);
-  height: clamp(280px, 25vw, 380px);
-  border-radius: 35px;
+  width: 300px;
+  height: 300px;
+  border-radius: var(--radius-2xl);
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(30px) saturate(1.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  position: relative;
-  box-shadow: 
-    0 30px 60px rgba(0, 0, 0, 0.15),
-    0 15px 45px rgba(0, 0, 0, 0.1),
-    inset 0 2px 0 rgba(255, 255, 255, 0.3);
-  padding: 15px;
-}
-
-.profile-image::before {
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  right: 8px;
-  bottom: 8px;
-  background: 
-    linear-gradient(135deg, 
-      rgba(143, 230, 152, 0.05) 0%, 
-      transparent 25%,
-      rgba(229, 185, 138, 0.05) 50%,
-      transparent 75%,
-      rgba(45, 59, 47, 0.05) 100%);
-  border-radius: 27px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  z-index: 1;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-/* Inner frame for layered effect */
-.profile-image::after {
-  content: '';
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  right: 12px;
-  bottom: 12px;
-  border: 2px solid rgba(255, 255, 255, 0.15);
-  border-radius: 23px;
-  background: linear-gradient(45deg, 
-    rgba(255, 255, 255, 0.1) 0%, 
-    transparent 50%, 
-    rgba(255, 255, 255, 0.05) 100%);
-  z-index: 2;
-  pointer-events: none;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-lg);
 }
 
 .profile-image:hover {
-  transform: scale(1.05) rotate(1deg);
-  border-color: rgba(255, 255, 255, 0.4);
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 
-    0 40px 80px rgba(0, 0, 0, 0.15),
-    0 20px 60px rgba(143, 230, 152, 0.1),
-    0 0 0 4px rgba(255, 255, 255, 0.1),
-    0 0 0 8px rgba(143, 230, 152, 0.05),
-    inset 0 3px 0 rgba(255, 255, 255, 0.3);
-}
-
-.profile-image:hover::before {
-  opacity: 1;
-  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-4px) rotate(2deg);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--color-primary);
 }
 
 .profile-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 20px;
-  position: relative;
-  z-index: 3;
-  transition: transform 0.4s ease;
-  box-shadow: 
-    inset 0 2px 8px rgba(0, 0, 0, 0.1),
-    0 2px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
 }
 
 .profile-image:hover .profile-photo {
-  transform: scale(1.02);
-  box-shadow: 
-    inset 0 2px 8px rgba(0, 0, 0, 0.05),
-    0 4px 20px rgba(0, 0, 0, 0.1);
+  transform: scale(1.05);
 }
 
 /* ==============================================
    Responsive Design
    ============================================== */
-@media (max-width: 968px) {
-  .hero-container {
-    padding: 0 2.5rem;
-  }
-  .text-box {
-    max-width: 90vw;
-    min-height: clamp(350px, 45vh, 420px);
-    padding: 3.5rem clamp(2rem, 5vw, 4rem) 3.5rem 3.5rem;
-    flex-direction: column;
-    text-align: center;
-  }
-  .text-content {
-    padding-right: 0;
-    margin-bottom: 2rem;
-    max-width: 100%;
-  }
-  .buttons {
-    justify-content: center;
-  }
-  .image-box {
-    position: relative;
-    top: auto;
-    right: auto;
-    transform: none;
-    align-self: center;
-    animation: slideInRight 1s ease-out 0.5s both;
-  }
-  .image-box:hover {
-    transform: translateY(-8px) scale(1.02);
-  }
-  .profile-image {
-    width: clamp(220px, 35vw, 280px);
-    height: clamp(220px, 35vw, 280px);
-    padding: 12px;
-  }
-}
 @media (max-width: 768px) {
   .hero-container {
-    padding: 0 2rem;
+    padding: 0 var(--space-4);
   }
+
   .text-box {
-    max-width: 95vw;
-    min-height: clamp(320px, 40vh, 380px);
-    padding: 3rem;
     flex-direction: column;
     text-align: center;
+    padding: var(--space-12) var(--space-6);
+    gap: var(--space-8);
   }
-  .text-content {
-    padding-right: 0;
-    margin-bottom: 2rem;
-    max-width: 100%;
-  }
-  .image-box {
-    position: relative;
-    top: auto;
-    right: auto;
-    transform: none;
-    align-self: center;
-  }
-  .image-box:hover {
-    transform: translateY(-8px) scale(1.02);
-  }
+
   .profile-image {
-    width: clamp(220px, 35vw, 280px);
-    height: clamp(220px, 35vw, 280px);
-    padding: 10px;
+    width: 250px;
+    height: 250px;
   }
+
   .buttons {
     justify-content: center;
   }
 }
+
 @media (max-width: 480px) {
-  .hero-container {
-    padding: 0 1rem;
-  }
   .text-box {
-    min-height: clamp(280px, 35vh, 320px);
-    padding: clamp(2rem, 5vw, 2.5rem);
-    border-radius: 25px;
+    padding: var(--space-8) var(--space-4);
+    gap: var(--space-6);
   }
-  .text-content {
-    margin-bottom: 1.5rem;
-  }
+
   .profile-image {
-    width: clamp(180px, 40vw, 220px);
-    height: clamp(180px, 40vw, 220px);
-    padding: 8px;
-    border-radius: 25px;
+    width: 200px;
+    height: 200px;
   }
+
   .btn {
-    padding: 0.7rem 1.5rem;
-    font-size: 0.9rem;
-  }
-  .greeting {
-    font-size: clamp(1rem, 4vw, 1.2rem);
-  }
-  .description {
-    font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
   }
 }
 
 /* ==============================================
    Keyframe Animations
    ============================================== */
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
 @keyframes blink {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }
 }
-@keyframes slideInLeft {
-  from { opacity: 0; transform: translateX(-50px); }
-  to { opacity: 1; transform: translateX(0); }
+
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
+
 @keyframes slideInRight {
-  from { opacity: 0; transform: translateX(50px); }
+  from { opacity: 0; transform: translateX(30px); }
   to { opacity: 1; transform: translateX(0); }
-}
-@keyframes floatSlow {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-}
-@keyframes floatProfile {
-  0%, 100% { transform: translateY(-50%) translateY(0px) rotate(0deg); }
-  25% { transform: translateY(-50%) translateY(-12px) rotate(0.5deg); }
-  50% { transform: translateY(-50%) translateY(-8px) rotate(0deg); }
-  75% { transform: translateY(-50%) translateY(-18px) rotate(-0.5deg); }
-}
-@keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  25% { transform: translateY(-10px) rotate(1deg); }
-  50% { transform: translateY(-5px) rotate(0deg); }
-  75% { transform: translateY(-15px) rotate(-1deg); }
 }
 
 </style>
