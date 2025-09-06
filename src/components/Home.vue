@@ -31,7 +31,7 @@
 import { ref, onMounted } from 'vue';
 import profileImage from '../assets/images/profile.webp';
 
-const roles = ['Data Enthusiast', 'Problem Solver', 'Lifelong Learner', 'Open-minded Explorer'];
+const roles = ['Explorer', 'Problem Solver', 'Lifelong Learner', 'Empathetic individual', 'Kind-hearted friend', 'Tech Enthusiast', 'Community Contributor'];
 const currentRole = ref('');
 const roleIndex = ref(0);
 const charIndex = ref(0);
@@ -75,7 +75,7 @@ onMounted(() => {
 
 .hero-container {
   max-width: var(--max-width);
-  min-height: 100vh;
+  min-height: 75vh;
   margin: 0 auto;
   width: 100%;
   padding: 0 var(--space-6);

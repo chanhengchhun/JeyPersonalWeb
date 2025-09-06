@@ -72,8 +72,8 @@ export default {
           company: 'Capital University',
           date: '2025 - Present',
           location: 'Bexley, Ohio',
-          description: 'Developing custom web solutions for local businesses and startups. Specializing in responsive design and modern frameworks.',
-          tech: ['Unknowned', 'Unknowned']
+          description: "Support Capital University's admissions office with data cleaning and consolidation to ensure student information is accurate and up-to-date.",
+          tech: ['Data Cleaning', 'Data consolidation']
         },
         {
           id: 'student_ambassador',
@@ -97,11 +97,11 @@ export default {
         },
         {
           title: 'Personal Website (Portfolio)',
-          description: 'A modern, glass-morphism portfolio website built with Vue 3 and Vite.',
+          description: 'Modern yet simplistic portfolio website.',
           image: '',
           demo: '',
           repo: '',
-          tech: ['Vue.js', 'Vite', 'CSS']
+          tech: ['Vue.js', 'Vite', 'CSS', 'Claude Sonnet 4.0']
         },
       ]
     }

@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>&copy; {{ currentYear }} Chanheng Chhun. Built with Vue.js.</span>
+        <span>&copy; {{ currentYear }} Chanheng Chhun. All rights reserved.</span>
       </div>
     </div>
   </footer>

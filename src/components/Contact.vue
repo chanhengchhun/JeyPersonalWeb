@@ -4,7 +4,8 @@
       <h2 id="contact-title" class="contact-title">Get In Touch</h2>
       <p class="contact-intro">
         I'm always interested in new opportunities and collaborations.<br>
-        <span class="contact-highlight">Feel free to reach out if you'd like to work together!</span>
+        <span class="contact-highlight">Whether you have a project in mind, want to connect, or simply grab coffee and chat, I’d love to hear from you.</span><br>
+        Prefer coffee chats? Let's brew up a conversation!
       </p>
       <div class="contact-content">
         <div class="contact-info" aria-label="Contact Information">

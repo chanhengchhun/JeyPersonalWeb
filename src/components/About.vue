@@ -13,8 +13,7 @@
               <div class="personal-intro">
                 <h3>About Me</h3>
                 <p>
-                  Hi! I'm Chanheng (Jey), a passionate data enthusiast and creative problem solver. I love exploring new technologies, uncovering insights from data, and sharing my journey through writing and photography. This space is where I share my story, values, and what drives me every day.
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                  A blend of logic and imagination. I’m Chanheng, a computer science student minoring in data science who is empowered to harness technology for meaningful impact. (... work in progress ...)
                 </p>
               </div>
             </div>
@@ -32,15 +31,15 @@
           <!-- Portal Links Section: Photograph and Blog in a single row under About Me -->
           <div class="about-portal-section">
             <div class="portal-cards">
-              <a class="portal-card" href="/photograph">
+              <a class="portal-card" href="/photography">
                 <div class="portal-icon">📷</div>
-                <div class="portal-title">Photograph</div>
-                <div class="portal-desc">See my favorite shots and photo stories</div>
+                <div class="portal-title">Photography</div>
+                <div class="portal-desc">My favorite shots and photo stories</div>
               </a>
               <a class="portal-card" href="/blog">
                 <div class="portal-icon">📝</div>
                 <div class="portal-title">Blog</div>
-                <div class="portal-desc">Read my latest thoughts and tutorials</div>
+                <div class="portal-desc">My latest thoughts</div>
               </a>
             </div>
           </div>
@@ -166,7 +165,7 @@ const filmImages = [about1, about2, about3, about4];
 }
 
 .scrolling-gallery-scrollable {
-  height: 400px;
+  height: 500px;
   overflow: hidden;
   width: 100%;
 }
@@ -285,7 +284,7 @@ const filmImages = [about1, about2, about3, about4];
   }
 
   .scrolling-gallery-scrollable {
-    height: 300px;
+    height: 400px;
   }
 }
 
