@@ -10,98 +10,174 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Ensure header stays fixed - minimal override needed */
-.header {
-  position: fixed !important;
-  z-index: 99999 !important;
-}
 
-/* Enhanced Color Variables - Mint & Charcoal */
+/* Simplified Modern Color Palette */
 :root {
-  --color-primary: #8fe698; /* The fresh mint green for highlights and accents */
-  --color-secondary: #2d3b2f; /* A deep, rich charcoal for contrast */
-  --color-tertiary: #d9d9c2; /* A soft, warm off-white for a clean background */
-  --color-accent: #e5b98a; /* A subtle, warm beige for a touch of elegance */
-  --color-text: #2d3b2f; /* Dark gray for body text on light backgrounds */
-  --color-text-light: #516a56; /* A lighter shade for subheadings */
-  --color-text-dark: #f0f3bd; /* Pale yellow-green for contrast on dark elements */
-  --color-bg-glass: rgba(143, 230, 152, 0.15); /* Light mint glass */
-  --color-border-glass: rgba(45, 59, 47, 0.2); /* Deep charcoal border */
+  /* Primary colors */
+  --color-primary: #2563eb; /* Clean blue - primary accent */
+  --color-primary-light: #eff6ff; /* Very light blue background */
+  --color-primary-dark: #1d4ed8; /* Darker blue for hover states */
+  
+  /* Background and surface colors */
+  --color-background: #ffffff; /* Main background */
+  --color-surface: #f8fafc; /* Card backgrounds */
+  
+  /* Text colors */
+  --color-text-primary: #1e293b; /* Main text */
+  --color-text-secondary: #64748b; /* Secondary text */
+  
+  /* Border and accent colors */
+  --color-border: #e2e8f0; /* Subtle borders */
+  --color-accent: #06b6d4; /* Cyan accent for highlights */
+  
+  /* Layout */
+  --max-width: 1200px;
 
-  /* Global Styles */
-  --base-font-size: 15px;
-  --color-light: #f0f3bd; /* The main creamy background color */
+  /* Typography Scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+
+  /* Spacing Scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+
+  /* Shadow System */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* Border Radius System */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius-full: 9999px;
+}
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* Border radius */
+  --radius-sm: 0.375rem;
+  --radius-base: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  line-height: 1.5;
-  color: var(--color-text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  color: var(--color-text-primary);
   margin: 0;
-  padding-top: 0;
-  background: var(--color-tertiary);
-  border-top: 4px solid var(--color-primary); /* Use the new mint green */
-  box-shadow: 0 2px 0 0 var(--color-border-glass), 0 2px 24px 0 rgba(45,59,47,0.04);
+  padding: 0;
+  background: var(--color-background);
+  font-size: var(--text-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 70px; /* Account for fixed header with extra spacing */
-  font-size: var(--base-font-size);
+  scroll-padding-top: 80px;
+  font-size: 16px;
 }
 
-/* Full page snap for sections, but allow scrolling past them */
+/* Clean section styling */
 section {
   scroll-snap-align: start;
-  min-height: 80vh;
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
+  padding: var(--space-20) var(--space-4);
 }
 
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  line-height: 1.5;
-  color: var(--color-text);
-  margin: 0;
-  padding-top: 0;
-  background: var(--color-light); 
-  border-top: 4px solid var(--color-primary); /* Use the new electric green */
-  box-shadow: none; /* Remove old shadow for a cleaner look */
-}
-
+/* Simplified links */
 a {
   color: var(--color-primary);
   text-decoration: none;
-  font-weight: 700;
-  font-size: 1rem;
-  letter-spacing: 0.01em;
-  transition: color 0.2s, box-shadow 0.2s;
-  border-radius: 3px;
-  padding: 0 1px;
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
 
 a:hover, a:focus {
-  color: var(--color-primary);
-  background: rgba(143, 230, 152, 0.1);
-  box-shadow: 0 2px 8px var(--color-primary);
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
 }
 
 #app {
   width: 100%;
   min-height: 100vh;
-  /* Add a subtle shadow for depth */
-  box-shadow: 0 1px 10px 0 rgba(29,59,114,0.06);
 }
 
-/* Section headers for contrast */
-.section-title, h1, h2, h3 {
-  color: var(--color-primary) !important;
-  font-weight: 800;
-  letter-spacing: 0.01em;
+/* Clean typography hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-text-primary);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 var(--space-4) 0;
 }
-.section-subtitle, h4, h5, h6 {
-  color: var(--color-text-light) !important;
+
+h1 { font-size: var(--text-4xl); }
+h2 { font-size: var(--text-3xl); }
+h3 { font-size: var(--text-2xl); }
+h4 { font-size: var(--text-xl); }
+h5 { font-size: var(--text-lg); }
+h6 { font-size: var(--text-base); }
+
+p {
+  margin: 0 0 var(--space-4) 0;
+  color: var(--color-text-secondary);
+}
+
+/* Clean button styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
   font-weight: 600;
+  font-size: var(--text-sm);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  background: var(--color-accent);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.btn-secondary:hover {
+  background: var(--color-primary);
+  color: white;
 }

@@ -12,7 +12,6 @@
 import Header from './components/Header.vue'
 import Home from './components/Home.vue'
 import About from './components/About.vue'
-import Skills from './components/Skills.vue'
 import Experience from './components/Experience.vue'
 import Contact from './components/Contact.vue'
 import Footer from './components/Footer.vue'
@@ -23,7 +22,6 @@ export default {
     Header,
     Home,
     About,
-    Skills,
     Experience,
     Contact,
     Footer,
@@ -53,7 +51,7 @@ main {
 
 @media (max-width: 600px) {
   main {
-    padding-top: 90px; /* More space for mobile header/accent bar */
+    padding: 10px 0 10px 0; /* Reduced space for mobile header */
   }
 }
 
