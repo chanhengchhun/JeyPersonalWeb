@@ -6,7 +6,7 @@
       </header>
       <div class="experience-columns">
         <div class="experience-col">
-          <h3 class="section-subtitle">Professional experiences</h3>
+          <h3 class="section-subtitle">Experiences</h3>
           <div class="experience-cards-list">
             <div
               v-for="exp in experiences"
@@ -293,6 +293,13 @@ export default {
     padding: var(--space-16) var(--space-4);
   }
 
+  .section-subtitle {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-6);
+    text-align: center;
+    line-height: 1.4;
+  }
+
   .experience-columns {
     grid-template-columns: 1fr;
     gap: var(--space-8);
@@ -302,6 +309,13 @@ export default {
 @media (max-width: 480px) {
   .experience {
     padding: var(--space-12) var(--space-2);
+  }
+
+  .section-subtitle {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-4);
+    text-align: center;
+    line-height: 1.5;
   }
 
   .experience-card,
