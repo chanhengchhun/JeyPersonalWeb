@@ -34,12 +34,10 @@
               <a class="portal-card" href="/photography">
                 <div class="portal-icon">📷</div>
                 <div class="portal-title">Photography</div>
-                <div class="portal-desc">My favorite shots and photo stories</div>
               </a>
               <a class="portal-card" href="/blog">
                 <div class="portal-icon">📝</div>
                 <div class="portal-title">Blog</div>
-                <div class="portal-desc">My latest thoughts</div>
               </a>
             </div>
           </div>

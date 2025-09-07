@@ -6,7 +6,7 @@
       </header>
       <div class="experience-columns">
         <div class="experience-col">
-          <h3 class="section-subtitle">Experiences</h3>
+          <h3 class="section-subtitle">Work Experiences</h3>
           <div class="experience-cards-list">
             <div
               v-for="exp in experiences"
