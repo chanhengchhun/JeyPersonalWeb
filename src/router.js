@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import InDevelopment from './components/InDevelopment.vue'
 import HomePage from './components/HomePage.vue'
+import Photography from './components/Photography.vue'
 
 const routes = [
   {
@@ -9,7 +10,7 @@ const routes = [
   },
   {
     path: '/photography',
-    component: InDevelopment
+    component: Photography
   },
   {
     path: '/blog',
