@@ -260,6 +260,7 @@ const filmImages = [about1, about3, about4];
   .about-col-text,
   .about-col-gallery {
     align-items: center;
+    width: 100%;
   }
 
   .about-divider {
@@ -268,6 +269,17 @@ const filmImages = [about1, about3, about4];
 
   .personal-intro {
     text-align: center;
+  }
+
+  .scrolling-gallery {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .scrolling-gallery-scrollable {
+    height: 300px;
+    width: 100%;
   }
 
   .portal-cards {
@@ -281,10 +293,6 @@ const filmImages = [about1, about3, about4];
     width: 100%;
     max-width: 400px;
   }
-
-  .scrolling-gallery-scrollable {
-    height: 400px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -294,6 +302,25 @@ const filmImages = [about1, about3, about4];
 
   .about-two-col {
     padding: var(--space-6);
+    gap: var(--space-6);
+  }
+
+  .scrolling-gallery {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .scrolling-gallery-scrollable {
+    height: 250px;
+    width: 100%;
+  }
+
+  .film-img {
+    width: 100%;
+    height: auto;
+    min-height: 150px;
+    object-fit: cover;
   }
 
   .portal-card {
