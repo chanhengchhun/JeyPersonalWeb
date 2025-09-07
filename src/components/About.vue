@@ -164,7 +164,7 @@ const filmImages = [about1, about3, about4];
 }
 
 .scrolling-gallery-scrollable {
-  height: 500px;
+  height: 600px;
   overflow: hidden;
   width: 100%;
 }
@@ -278,7 +278,7 @@ const filmImages = [about1, about3, about4];
   }
 
   .scrolling-gallery-scrollable {
-    height: 300px;
+    height: 400px;
     width: 100%;
   }
 
@@ -312,7 +312,7 @@ const filmImages = [about1, about3, about4];
   }
 
   .scrolling-gallery-scrollable {
-    height: 250px;
+    height: 350px;
     width: 100%;
   }
 
