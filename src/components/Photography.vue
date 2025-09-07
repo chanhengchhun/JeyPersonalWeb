@@ -4,7 +4,7 @@
       <!-- Header Section -->
       <div class="photo-header">
         <h2>Photography</h2>
-        <p class="photo-intro">A collection of moments captured through my lens</p>
+        <p class="photo-intro">My casual photographic shots</p>
       </div>
 
       <!-- Photo Gallery Grid -->

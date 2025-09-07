@@ -4,7 +4,6 @@
       <div class="footer-main">
         <div class="footer-brand">
           <h2>Chanheng</h2>
-          <p class="footer-tagline">Crafting digital experiences with passion and precision</p>
         </div>
         <div class="footer-links">
           <nav class="footer-nav" aria-label="Footer Navigation">
@@ -73,12 +72,6 @@ export default {
   font-weight: 800;
   color: var(--color-primary);
   margin: 0 0 var(--space-2) 0;
-}
-
-.footer-tagline {
-  color: var(--color-text-secondary);
-  font-size: var(--text-base);
-  margin: 0;
 }
 
 .footer-links {
@@ -160,10 +153,6 @@ export default {
 
   .footer-brand h2 {
     font-size: var(--text-xl);
-  }
-
-  .footer-tagline {
-    font-size: var(--text-sm);
   }
 }
 </style>

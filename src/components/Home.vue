@@ -8,7 +8,7 @@
           <h2 class="name">Chanheng (Jey)</h2>
           <h2 class="role">{{ currentRole }}<span class="cursor">|</span></h2>
           <p class="description">
-            Driven by curiosity and a passion for growth, I'm a college student who thrives on learning, embracing new challenges, and expanding my skills in dynamic environments.
+            Driven by curiosity and a passion for growth. I'm a college student who thrives on learning, embracing new challenges, and expanding my skills in dynamic environments.
           </p>
           <div class="buttons">
             <a href="#about" class="btn btn-primary">Learn More</a>
