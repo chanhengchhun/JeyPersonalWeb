@@ -10,18 +10,18 @@
       <!-- Photo Gallery Grid -->
       <div class="photo-gallery">
         <div 
-          v-for="(photo, index) in displayedPhotos" 
+          v-for="(photo, index) in allPhotos" 
           :key="photo.id"
           :class="['photo-item', { 'featured': photo.featured }]"
           @click="openLightbox(index)"
           :style="{ animationDelay: `${index * 0.1}s` }"
         >
           <img 
-            :src="photo.thumbnail" 
+            :src="photo.thumbnail"
             :alt="photo.title || `Photo ${index + 1}`"
             class="photo-img"
-            loading="lazy"
           />
+          
           <div class="photo-overlay">
             <div class="overlay-content">
               <h4 v-if="photo.title">{{ photo.title }}</h4>
@@ -31,12 +31,7 @@
         </div>
       </div>
 
-      <!-- Load More Button -->
-      <div class="load-more-section" v-if="hasMorePhotos">
-        <button @click="loadMorePhotos" class="load-more-btn">
-          Load More Photos
-        </button>
-      </div>
+      <!-- Remove load more section since we show all photos -->
     </div>
 
     <!-- Lightbox Modal -->
@@ -68,11 +63,13 @@ import photo1 from '../assets/photography/photo1.jpg'
 import photo2 from '../assets/photography/photo2.jpg'
 import photo3 from '../assets/photography/photo3.jpg'
 import photo4 from '../assets/photography/photo4.jpg'
+import photo5 from '../assets/photography/photo5.jpg'
+import photo6 from '../assets/photography/photo6.jpg'
+import photo7 from '../assets/photography/photo7.jpg'
 
 // Reactive data
 const lightboxOpen = ref(false)
 const currentPhotoIndex = ref(0)
-const displayedPhotosCount = ref(12) // Start with 12 photos
 
 // Photography portfolio data
 const allPhotos = ref([
@@ -81,7 +78,7 @@ const allPhotos = ref([
     thumbnail: photo1,
     fullsize: photo1,
     location: "Columbus, OH",
-    featured: true
+    featured: false
   },
   {
     id: 2,
@@ -104,31 +101,39 @@ const allPhotos = ref([
     location: "Columbus, OH",
     featured: false
   },
-  // Add more photos here...
+  {
+    id: 5,  
+    thumbnail: photo5,
+    fullsize: photo5,
+    location: "Tacoma, WA",
+    featured: false
+  },
+  {
+    id: 6,  
+    thumbnail: photo6,
+    fullsize: photo6,
+    location: "Columbus, OH",
+    featured: false
+  },
+  {
+    id: 7,  
+    thumbnail: photo7,
+    fullsize: photo7,
+    location: "Columbus, OH",
+    featured: false
+  }
 ])
 
 // Computed properties
-const displayedPhotos = computed(() => {
-  return allPhotos.value.slice(0, displayedPhotosCount.value)
-})
-
 const currentPhoto = computed(() => {
-  return displayedPhotos.value[currentPhotoIndex.value]
-})
-
-const hasMorePhotos = computed(() => {
-  return displayedPhotosCount.value < allPhotos.value.length
+  return allPhotos.value[currentPhotoIndex.value]
 })
 
 // Methods
-const loadMorePhotos = () => {
-  displayedPhotosCount.value += 8
-}
-
 const openLightbox = (index) => {
   currentPhotoIndex.value = index
   lightboxOpen.value = true
-  document.body.style.overflow = 'hidden' // Prevent background scrolling
+  document.body.style.overflow = 'hidden'
 }
 
 const closeLightbox = () => {
@@ -137,10 +142,10 @@ const closeLightbox = () => {
 }
 
 const nextPhoto = () => {
-  if (currentPhotoIndex.value < displayedPhotos.value.length - 1) {
+  if (currentPhotoIndex.value < allPhotos.value.length - 1) {
     currentPhotoIndex.value++
   } else {
-    currentPhotoIndex.value = 0 // Loop to first photo
+    currentPhotoIndex.value = 0
   }
 }
 
@@ -148,7 +153,7 @@ const prevPhoto = () => {
   if (currentPhotoIndex.value > 0) {
     currentPhotoIndex.value--
   } else {
-    currentPhotoIndex.value = displayedPhotos.value.length - 1 // Loop to last photo
+    currentPhotoIndex.value = allPhotos.value.length - 1
   }
 }
 
@@ -176,7 +181,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   document.removeEventListener('keydown', handleKeydown)
-  document.body.style.overflow = 'auto' // Reset overflow on component unmount
+  document.body.style.overflow = 'auto'
 })
 </script>
 
@@ -214,55 +219,54 @@ onUnmounted(() => {
   margin: 0;
 }
 
-/* Photo Gallery Grid - Clean Masonry Layout */
+/* Photo Gallery Grid - Simple & Clean */
 .photo-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: var(--space-6);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-4);
   margin-bottom: var(--space-16);
 }
 
 .photo-item {
   position: relative;
-  aspect-ratio: 4/3; /* Consistent aspect ratio for clean look */
-  border-radius: var(--radius-xl);
+  aspect-ratio: 4/3; /* Consistent aspect ratio for all photos */
+  border-radius: var(--radius-lg);
   overflow: hidden;
   cursor: pointer;
   background: var(--color-surface);
   box-shadow: var(--shadow-md);
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
   animation: fadeInUp 0.6s ease-out both;
 }
 
-/* Featured photos get special treatment */
+/* Featured photos get subtle distinction */
 .photo-item.featured {
-  aspect-ratio: 3/2; /* Slightly wider for featured photos */
-  grid-column: span 2; /* Take up more space when possible */
-  box-shadow: var(--shadow-xl);
+  aspect-ratio: 4/3; /* Same as others for consistency */
+  box-shadow: var(--shadow-lg);
+  border: 2px solid var(--color-primary);
 }
 
 .photo-item:hover {
-  transform: translateY(-12px) rotate(1deg);
-  box-shadow: var(--shadow-2xl);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
   z-index: 10;
 }
 
 .photo-item.featured:hover {
-  transform: scale(1.05) rotate(-0.5deg);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
 }
 
 .photo-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 30%; /* Focus slightly above center for better portraits */
-  transition: all 0.4s ease;
-  filter: brightness(0.95) contrast(1.05) saturate(1.1);
+  object-position: center;
+  transition: all 0.3s ease;
 }
 
 .photo-item:hover .photo-img {
-  transform: scale(1.08);
-  filter: brightness(1) contrast(1.1) saturate(1.2);
+  transform: scale(1.05);
 }
 
 .photo-overlay {
@@ -307,28 +311,7 @@ onUnmounted(() => {
   font-weight: 500;
 }
 
-/* Load More Button */
-.load-more-section {
-  text-align: center;
-}
-
-.load-more-btn {
-  padding: var(--space-3) var(--space-8);
-  background: var(--color-primary);
-  color: white;
-  border: none;
-  border-radius: var(--radius-full);
-  font-size: var(--text-base);
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.load-more-btn:hover {
-  background: var(--color-primary-dark);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-}
+/* Remove unused load more button styles */
 
 /* Lightbox Styles */
 .lightbox-overlay {
@@ -437,13 +420,15 @@ onUnmounted(() => {
   }
 
   .photo-gallery {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: var(--space-3);
   }
 
-  /* Simplify layout on mobile - respect aspect ratios but limit spanning */
+  /* All photos same aspect ratio on mobile */
+  .photo-item,
   .photo-item.featured {
-    grid-column: span 1; /* Single column on mobile */
+    aspect-ratio: 4/3;
+    border: none; /* Remove border on mobile for cleaner look */
   }
 
   .lightbox-container {
@@ -479,17 +464,17 @@ onUnmounted(() => {
   }
 
   .photo-gallery {
-    grid-template-columns: 1fr 1fr; /* 2 columns on small mobile */
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-2);
   }
 
-  /* All photos single column on very small screens but keep natural ratios */
+  .photo-item,
   .photo-item.featured {
-    grid-column: span 1;
+    aspect-ratio: 4/3;
   }
 
   .photo-item:hover {
-    transform: translateY(-4px) rotate(0.5deg);
+    transform: translateY(-4px);
   }
 
   .lightbox-img {
