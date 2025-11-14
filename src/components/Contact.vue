@@ -19,9 +19,6 @@
           </div>
           <div class="contact-icon-row">
             <div class="social-icons-row">
-              <a href="https://www.linkedin.com/in/chanheng-chh/" class="social-btn linkedin" target="_blank" rel="noopener" aria-label="LinkedIn">
-                <img src="../assets/icons/linkedin-logo.png" alt="LinkedIn" width="24" height="24" />
-              </a>
               <a href="https://vsco.co/jeiidany/gallery" class="social-btn vsco" target="_blank" rel="noopener" aria-label="VSCO">
                 <img src="../assets/icons/vsco-logo.png" alt="VSCO" width="24" height="24" />
               </a>
@@ -175,12 +172,6 @@ export default {
 .social-btn:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
-}
-
-.social-btn.linkedin:hover {
-  background: #0077b5;
-  color: white;
-  border-color: #0077b5;
 }
 
 .social-btn.vsco:hover {
