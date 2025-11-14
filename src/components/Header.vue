@@ -9,7 +9,6 @@
   <ul class="nav-menu" :class="{ 'active': mobileMenuOpen }">
   <li><a href="#home" @click.prevent="handleNavToSection('home')">Home</a></li>
         <li><a href="#about" @click.prevent="handleNavToSection('about')">About</a></li>
-        <li><a href="#experience" @click.prevent="handleNavToSection('experience')">Experience</a></li>
         <li><a href="#contact" @click.prevent="handleNavToSection('contact')">Contact</a></li>
       </ul>
       <div class="mobile-menu-toggle" @click="toggleMobileMenu" :class="{ 'active': mobileMenuOpen }">
@@ -29,7 +28,7 @@ export default {
       isScrolled: false,
       mobileMenuOpen: false,
       activeLink: '#home',
-  sections: ['home', 'about', 'experience', 'contact'],
+  sections: ['home', 'about', 'contact'],
       observer: null,
       scrollProgress: 0,
       currentSection: 'home'

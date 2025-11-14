@@ -31,7 +31,7 @@
 import { ref, onMounted } from 'vue';
 import profileImage from '../assets/images/profile.webp';
 
-const roles = ['Explorer', 'Problem Solver', 'Lifelong Learner', 'Empathetic individual', 'Kind-hearted friend', 'Tech Enthusiast', 'Community Contributor'];
+const roles = ['Explorer', 'Problem Solver'];
 const currentRole = ref('');
 const roleIndex = ref(0);
 const charIndex = ref(0);
