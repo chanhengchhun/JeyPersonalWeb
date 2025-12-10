@@ -6,9 +6,10 @@
         <div class="text-content">
           <div class="greeting">👋 Hello, I'm</div>
           <h2 class="name">Chanheng (Jey)</h2>
-          <h2 class="role">{{ currentRole }}<span class="cursor">|</span></h2>
           <p class="description">
-            Driven by curiosity and a passion for growth. I'm a college student who thrives on learning, embracing new challenges, and expanding my skills in dynamic environments.
+            It feels like life is a constant journey of learning new things and embracing challenges. It's always feels like there's something I don't know, or didn't know enough.
+          <br><br>
+            Like Aristotle once said, <i>"The more you know, the more you realize you don't know."</i>
           </p>
           <div class="buttons">
             <a href="#about" class="btn btn-primary">Learn More</a>
@@ -28,43 +29,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
 import profileImage from '../assets/images/profile.webp';
-
-const roles = ['Explorer', 'Problem Solver'];
-const currentRole = ref('');
-const roleIndex = ref(0);
-const charIndex = ref(0);
-const isDeleting = ref(false);
-
-const typeWriter = () => {
-  // ... your existing logic here, but use .value
-  const currentText = roles[roleIndex.value];
-
-  if (isDeleting.value) {
-    currentRole.value = currentText.substring(0, charIndex.value - 1);
-    charIndex.value--;
-  } else {
-    currentRole.value = currentText.substring(0, charIndex.value + 1);
-    charIndex.value++;
-  }
-
-  let typeSpeed = isDeleting.value ? 50 : 100;
-
-  if (!isDeleting.value && charIndex.value === currentText.length) {
-    typeSpeed = 2000;
-    isDeleting.value = true;
-  } else if (isDeleting.value && charIndex.value === 0) {
-    isDeleting.value = false;
-    roleIndex.value = (roleIndex.value + 1) % roles.length;
-  }
-
-  setTimeout(typeWriter, typeSpeed);
-};
-
-onMounted(() => {
-  typeWriter();
-});
 </script>
 
 
@@ -130,22 +95,8 @@ onMounted(() => {
   font-size: var(--text-4xl);
   font-weight: 800;
   color: var(--color-text-primary);
-  margin: var(--space-1) 0 var(--space-2) 0;
+  margin: var(--space-1) 0 var(--space-6) 0;
   line-height: 1.2;
-}
-
-.role {
-  font-size: var(--text-xl);
-  font-weight: 600;
-  color: var(--color-primary);
-  margin-bottom: var(--space-6);
-  min-height: 2rem;
-  line-height: 1.3;
-}
-
-.cursor {
-  animation: blink 1s infinite;
-  color: var(--color-primary);
 }
 
 .description {
@@ -282,11 +233,6 @@ onMounted(() => {
 /* ==============================================
    Keyframe Animations
    ============================================== */
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
-
 @keyframes slideInUp {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
