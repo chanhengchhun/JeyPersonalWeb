@@ -7,7 +7,7 @@
           <div class="greeting">👋 Hello, I'm</div>
           <h2 class="name">Chanheng (Jey)</h2>
           <p class="description">
-            It feels like life is a constant journey of learning new things and embracing challenges. It's always feels like there's something I don't know, or didn't know enough.
+            It feels like life is a constant journey of learning new things and embracing challenges. It always feels like there's something I don't know, or didn't know enough.
           <br><br>
             Like Aristotle once said, <i>"The more you know, the more you realize you don't know."</i>
           </p>
