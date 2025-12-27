@@ -13,7 +13,6 @@
       
       <div class="contact-box">
         <div class="info-item">
-          <span class="icon">📧</span>
           <a href="mailto:chhun.chanheng@icloud.com">chhun.chanheng@icloud.com</a>
         </div>
         
@@ -98,10 +97,6 @@
 
 .info-item:last-of-type {
   margin-bottom: var(--space-8);
-}
-
-.icon {
-  font-size: 1.5rem;
 }
 
 .info-item a {
