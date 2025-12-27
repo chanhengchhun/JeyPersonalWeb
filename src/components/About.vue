@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <section id="about" class="about">
     <!-- section-divider removed for seamless scroll -->
     <div class="container">
@@ -6,14 +6,16 @@
         <div class="about-glass-unified">
           <div class="section-header">
             <h2>Get to Know Me</h2>
-            <div class="section-subtitle">Discover who I am as a person</div>
+            <div class="section-subtitle">Who I am</div>
           </div>
           <div class="about-two-col">
             <div class="about-col about-col-text">
               <div class="personal-intro">
                 <h3>About Me</h3>
                 <p>
-                  A blend of logic and imagination. I’m Chanheng, a computer science student minoring in data science who is empowered to harness technology for meaningful impact. (... work in progress ...)
+                  My name is Chanheng and you may call me Jey. I'm currently an international student at Capital University, pursuing a bachelor in computer science. If you’re looking on the world map, zooming around the south eastern part of Asia, you’d see where I’m from, it’s Cambodia.
+                  The reason behind why I chose my major is that I’ve always been curious about technology, and I want to dive deeper into its complexity and backbone of it. Studying in the U.S. has allowed me to satisfy that curiosity while learning to adapt to new cultures and environments. I really enjoy the puzzle of coding, the problem solving part of it keeps me curious. Ultimately, my goal is to build or develop something that makes a positive impact on humanity and the world.
+                  Outside of school, I also enjoy going out shooting photography, staying in playing video games, and getting fit at the gym. Hiking, bike cycling, and camping are also my favorite activities that I haven’t done much.
                 </p>
               </div>
             </div>
