@@ -1,197 +1,205 @@
 <template>
-  <section id="home">
-    <div class="hero-container">
-      <!-- Single Text Box with Overlapping Image -->
-      <div class="text-box">
-        <div class="text-content">
-          <div class="greeting">👋 Hello, I'm</div>
-          <h2 class="name">Chanheng (Jey)</h2>
-          <p class="description">
-            It feels like life is a constant journey of learning new things and embracing challenges. It always feels like there's something I don't know, or didn't know enough.
-          <br><br>
-            Like Aristotle once said, <i>"The more you know, the more you realize you don't know."</i>
-          </p>
-          <div class="buttons">
-            <a href="#about" class="btn btn-primary">Learn More</a>
-            <a href="#contact" class="btn btn-secondary">Get in Touch</a>
-          </div>
-        </div>
-        
-        <!-- Overlapping Image Box -->
-        <div class="image-box">
-          <div class="profile-image">
-            <img :src="profileImage" alt="Chanheng's Profile Picture" class="profile-photo" loading="lazy" />
-          </div>
+  <section id="home" class="home">
+    <div class="home-inner">
+
+      <!-- Name — large centered serif -->
+      <h1 class="hero-name reveal reveal-delay-1">
+        Chanheng<br>
+        <em class="hero-name-italic">Chhun</em>
+      </h1>
+
+      <!-- Decorative rule -->
+      <div class="hero-rule reveal reveal-delay-2">
+        <span class="rule-line"></span>
+        <span class="rule-dot"></span>
+        <span class="rule-line"></span>
+      </div>
+
+      <!-- Profile image — below the name, framed like a print -->
+      <div class="hero-image-wrap reveal reveal-delay-2">
+        <div class="hero-image-frame">
+          <img :src="profileImage" alt="Portrait of Chanheng Chhun" class="hero-image" loading="eager" />
         </div>
       </div>
+
+      <!-- Tagline / quote -->
+      <blockquote class="hero-quote reveal reveal-delay-3">
+        <p>
+          It feels like life is a constant journey of learning new things
+          and embracing challenges. It always feels like there's something
+          I don't know, or didn't know enough.
+        </p>
+        <cite>— Aristotle: <em>"The more you know, the more you realize you don't know."</em></cite>
+      </blockquote>
+
+      <!-- CTA buttons -->
+      <div class="hero-actions reveal reveal-delay-4">
+        <a href="#about"   class="btn btn-primary">Learn More</a>
+        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+      </div>
+
     </div>
   </section>
 </template>
 
 <script setup>
-import profileImage from '../assets/images/profile.webp';
+import profileImage from '../assets/images/profile.webp'
 </script>
 
-
 <style scoped>
-/* ==============================================
-   Hero Section
-   ============================================== */
-
-.hero-container {
-  max-width: var(--max-width);
-  min-height: 75vh;
-  margin: 0 auto;
-  width: 100%;
-  padding: 0 var(--space-6);
+.home {
+  min-height: 100vh;
   display: flex;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-  position: relative;
+  padding: var(--space-16) var(--space-6);
+  background: var(--color-background);
 }
 
-/* ==============================================
-   Main Text Box
-   ============================================== */
-.text-box {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-2xl);
-  padding: var(--space-16) var(--space-12);
+.home-inner {
+  max-width: 680px;
   width: 100%;
-  max-width: 1200px;
-  display: flex;
-  align-items: center;
-  gap: var(--space-12);
-  box-shadow: var(--shadow-lg);
-  transition: all 0.3s ease;
-  animation: slideInUp 0.8s ease-out;
-}
-
-.text-content {
-  flex: 1;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  gap: var(--space-6);
 }
 
-.text-box:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-xl);
+/* Label */
+.label {
+  margin: 0;
+  color: var(--color-text-tertiary);
 }
 
-/* ==============================================
-   Text & Elements inside the Text Box
-   ============================================== */
-.greeting {
-  font-size: var(--text-lg);
+/* Hero name */
+.hero-name {
+  font-size: clamp(3.5rem, 10vw, 6rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin: 0;
+}
+
+.hero-name-italic {
+  font-style: italic;
+  font-weight: 300;
   color: var(--color-text-secondary);
-  font-weight: 500;
-  margin-bottom: var(--space-2);
-  letter-spacing: 0.025em;
 }
 
-.name {
-  font-size: var(--text-4xl);
-  font-weight: 800;
-  color: var(--color-text-primary);
-  margin: var(--space-1) 0 var(--space-6) 0;
-  line-height: 1.2;
-}
-
-.description {
-  font-size: var(--text-lg);
-  line-height: 1.6;
-  color: var(--color-text-secondary);
-  margin-bottom: var(--space-8);
-  max-width: 600px;
-}
-
-/* ==============================================
-   Buttons
-   ============================================== */
-.buttons {
+/* Decorative ornamental rule */
+.hero-rule {
   display: flex;
+  align-items: center;
   gap: var(--space-4);
-  flex-wrap: wrap;
+  width: 240px;
 }
-/* ==============================================
-   Overlapping Image Box
-   ============================================== */
-.image-box {
+
+.rule-line {
+  flex: 1;
+  height: 1px;
+  background: var(--color-border-dark);
+}
+
+.rule-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-primary);
   flex-shrink: 0;
-  animation: slideInRight 0.8s ease-out 0.2s both;
 }
 
-.profile-image {
-  width: 300px;
-  height: 300px;
-  border-radius: var(--radius-2xl);
+/* Profile image */
+.hero-image-wrap { width: 100%; max-width: 400px; }
+
+.hero-image-frame {
+  width: 100%;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
-  background: var(--color-surface);
-  border: 2px solid var(--color-border);
-  transition: all 0.3s ease;
-  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border-dark);
+  /* Thin warm inner shadow — like a photo print edge */
+  box-shadow:
+    inset 0 0 0 6px var(--color-surface),
+    inset 0 0 0 7px var(--color-border),
+    var(--shadow-lg);
+  position: relative;
+  transition: box-shadow var(--transition-base);
 }
 
-.profile-image:hover {
-  transform: translateY(-4px) rotate(2deg);
-  box-shadow: var(--shadow-xl);
-  border-color: var(--color-primary);
+.hero-image-frame:hover {
+  box-shadow:
+    inset 0 0 0 6px var(--color-surface),
+    inset 0 0 0 7px var(--color-border),
+    var(--shadow-xl);
 }
 
-.profile-photo {
+.hero-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  object-position: center top;
+  display: block;
+  transition: transform var(--transition-slow);
+  filter: sepia(8%);
 }
 
-.profile-image:hover .profile-photo {
-  transform: scale(1.05);
+.hero-image-frame:hover .hero-image {
+  transform: scale(1.03);
+  filter: sepia(0%);
 }
 
-/* ==============================================
-   Responsive Design
-   ============================================== */
-@media (max-width: 768px) {
-  .hero-container {
-    padding: 0 var(--space-4);
-  }
+/* Quote */
+.hero-quote {
+  max-width: 540px;
+  border-left: none;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
 
-  .text-box {
+.hero-quote p {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--space-3);
+}
+
+.hero-quote cite {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  letter-spacing: 0.1em;
+  color: var(--color-text-tertiary);
+  font-style: normal;
+}
+
+.hero-quote cite em {
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  letter-spacing: normal;
+}
+
+/* CTA */
+.hero-actions {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: var(--space-2);
+}
+
+@media (max-width: 600px) {
+  .home { padding: var(--space-12) var(--space-4); }
+
+  .hero-image-wrap { max-width: 300px; }
+
+  .hero-actions {
     flex-direction: column;
-    text-align: center;
-    padding: var(--space-12) var(--space-6);
-    gap: var(--space-8);
+    align-items: center;
   }
 
-  .profile-image {
-    width: 250px;
-    height: 250px;
-  }
-
-  .buttons {
-    justify-content: center;
-  }
+  .btn { width: 200px; justify-content: center; }
 }
-
-@media (max-width: 480px) {
-  .text-box {
-    padding: var(--space-8) var(--space-4);
-    gap: var(--space-6);
-  }
-
-  .profile-image {
-    width: 200px;
-    height: 200px;
-  }
-
-  .btn {
-    padding: var(--space-2) var(--space-4);
-    font-size: var(--text-sm);
-  }
-}
-
-
 </style>

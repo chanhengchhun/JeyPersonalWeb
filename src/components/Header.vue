@@ -1,20 +1,46 @@
 <template>
-  <header class="header" :class="{ 'scrolled': isScrolled, [`section-${currentSection}`]: currentSection }">
+  <header class="header" :class="{ 'scrolled': isScrolled }">
     <div class="scroll-progress" :style="{ width: scrollProgress + '%' }"></div>
     <nav class="nav">
       <div class="nav-brand">
-  <h2 @click="handleNavToSection('home')">Chanheng</h2>
+        <span @click="handleNavToSection('home')">Chanheng</span>
       </div>
-  <!-- Navigation menu: horizontal on desktop, vertical on mobile -->
-  <ul class="nav-menu" :class="{ 'active': mobileMenuOpen }">
-  <li><a href="#home" @click.prevent="handleNavToSection('home')">Home</a></li>
-        <li><a href="#about" @click.prevent="handleNavToSection('about')">About</a></li>
+
+      <ul class="nav-menu" :class="{ 'active': mobileMenuOpen }">
+        <li><a href="#home"    @click.prevent="handleNavToSection('home')">Home</a></li>
+        <li><a href="#about"   @click.prevent="handleNavToSection('about')">About</a></li>
         <li><a href="#contact" @click.prevent="handleNavToSection('contact')">Contact</a></li>
       </ul>
-      <div class="mobile-menu-toggle" @click="toggleMobileMenu" :class="{ 'active': mobileMenuOpen }">
-        <span></span>
-        <span></span>
-        <span></span>
+
+      <div class="nav-actions">
+        <!-- Dark mode toggle — SVG sun/moon, no emoji -->
+        <button class="theme-toggle" @click="$emit('toggle-theme')"
+          :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'">
+          <!-- Moon (light mode → clicking switches to dark) -->
+          <svg v-if="!isDark" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <!-- Sun (dark mode → clicking switches to light) -->
+          <svg v-else xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
+
+        <!-- Hamburger -->
+        <button class="mobile-menu-toggle" @click="toggleMobileMenu"
+          :class="{ 'active': mobileMenuOpen }" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </nav>
   </header>
@@ -24,126 +50,64 @@
 import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
-const router = useRouter()
-const route = useRoute()
+defineProps({ isDark: Boolean })
+defineEmits(['toggle-theme'])
 
-const isScrolled = ref(false)
-const mobileMenuOpen = ref(false)
-const activeLink = ref('#home')
-const sections = ['home', 'about', 'contact']
-let observer = null
-const scrollProgress = ref(0)
-const currentSection = ref('home')
+const router = useRouter()
+const route  = useRoute()
+
+const isScrolled       = ref(false)
+const mobileMenuOpen   = ref(false)
+const scrollProgress   = ref(0)
+const currentSection   = ref('home')
+const sections         = ['home', 'about', 'contact']
+let observer           = null
 
 const handleScroll = () => {
-  isScrolled.value = window.scrollY > 50
-  const documentHeight = document.documentElement.scrollHeight - window.innerHeight
-  scrollProgress.value = (window.scrollY / documentHeight) * 100
+  isScrolled.value = window.scrollY > 40
+  const docH = document.documentElement.scrollHeight - window.innerHeight
+  scrollProgress.value = docH > 0 ? (window.scrollY / docH) * 100 : 0
 }
 
 const handleResize = () => {
-  if (window.innerWidth > 768) {
-    mobileMenuOpen.value = false
-  }
+  if (window.innerWidth > 768) mobileMenuOpen.value = false
 }
 
 const toggleMobileMenu = () => {
   mobileMenuOpen.value = !mobileMenuOpen.value
 }
 
+const scrollTo = (sectionId) => {
+  const el = document.getElementById(sectionId)
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
+
 const handleNavToSection = (section) => {
-  activeLink.value = `#${section}`
   mobileMenuOpen.value = false
   if (route.path !== '/') {
-    router.push('/').then(() => {
-      nextTick(() => {
-        setTimeout(() => {
-          const targetSection = document.getElementById(section)
-          if (targetSection) {
-            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
-          }
-        }, 350)
-      })
-    })
+    router.push('/').then(() => nextTick(() => setTimeout(() => scrollTo(section), 350)))
   } else {
-    const targetSection = document.getElementById(section)
-    if (targetSection) {
-      targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
+    scrollTo(section)
   }
 }
 
-const findSectionByComponent = (sectionName) => {
-  const selectors = [
-    `#${sectionName}`,
-    `.${sectionName}`,
-    `[data-section="${sectionName}"]`,
-    `section:has(.${sectionName})`,
-    `div:has(.${sectionName})`
-  ]
-
-  for (const selector of selectors) {
-    try {
-      const element = document.querySelector(selector)
-      if (element) return element
-    } catch (e) {
-      // Ignore selector errors
-    }
-  }
-
-  if (sectionName === 'home') {
-    const heroSection = document.querySelector('.hero') || document.querySelector('[id="home"]') || document.querySelector('section')
-    if (heroSection) return heroSection
-  }
-
-  const components = document.querySelectorAll('main > *')
-  const componentMap = {
-    'home': 0,
-    'about': 1,
-    'contact': 2
-  }
-
-  const index = componentMap[sectionName]
-  return components[index] || null
-}
-
-const initIntersectionObserver = () => {
-  const options = {
-    root: null,
-    rootMargin: '-10% 0px -50% 0px',
-    threshold: 0.1
-  }
-
+const initObserver = () => {
   observer = new IntersectionObserver((entries) => {
-    let foundActive = false
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const sectionId = entry.target.id || entry.target.querySelector('[id]')?.id
-        if (sectionId) {
-          activeLink.value = `#${sectionId}`
-          currentSection.value = sectionId
-          foundActive = true
-        }
+        const id = entry.target.id
+        if (id) currentSection.value = id
       }
     })
-    if (!foundActive && (window.innerHeight + window.scrollY >= document.body.offsetHeight - 2)) {
-      activeLink.value = '#contact'
-      currentSection.value = 'contact'
-    }
-  }, options)
+    const atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 2
+    if (atBottom) currentSection.value = 'contact'
+  }, { rootMargin: '-10% 0px -50% 0px', threshold: 0.1 })
 
   nextTick(() => {
     setTimeout(() => {
-      sections.forEach(sectionName => {
-        const section = document.getElementById(sectionName)
-        if (section) {
-          observer.observe(section)
-        } else {
-          const componentElement = findSectionByComponent(sectionName)
-          if (componentElement) {
-            observer.observe(componentElement)
-          }
-        }
+      sections.forEach(s => {
+        const el = document.getElementById(s)
+        if (el) observer.observe(el)
       })
     }, 500)
   })
@@ -152,46 +116,44 @@ const initIntersectionObserver = () => {
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
   window.addEventListener('resize', handleResize)
-  initIntersectionObserver()
+  initObserver()
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', handleScroll)
   window.removeEventListener('resize', handleResize)
-  if (observer) {
-    observer.disconnect()
-  }
+  if (observer) observer.disconnect()
 })
 </script>
 
-
 <style>
 .header {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(20px);
-  box-shadow: var(--shadow-sm);
+  background: rgba(245, 240, 232, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   width: 100%;
   z-index: 1000;
-  transition: all 0.2s ease;
-  border-bottom: 1px solid var(--color-border);
+  transition: all var(--transition-base);
+  border-bottom: 1px solid transparent;
+}
+
+[data-theme="dark"] .header {
+  background: rgba(13, 11, 9, 0.88);
 }
 
 .header.scrolled {
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: var(--shadow-md);
+  border-bottom-color: var(--color-border);
+  box-shadow: var(--shadow-sm);
 }
 
 .scroll-progress {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-  transition: width 0.1s ease-out;
+  bottom: 0; left: 0;
+  height: 1px;
+  background: var(--color-primary);
+  transition: width 0.1s linear;
 }
 
 .nav {
@@ -199,127 +161,133 @@ onBeforeUnmount(() => {
   justify-content: space-between;
   align-items: center;
   padding: var(--space-4) var(--space-8);
-  max-width: 1200px;
+  max-width: var(--max-width);
   margin: 0 auto;
   width: 100%;
 }
 
-.nav-brand h2 {
-  font-size: var(--text-2xl);
-  margin: 0;
-  font-weight: 800;
+/* Brand */
+.nav-brand span {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 500;
   color: var(--color-text-primary);
   cursor: pointer;
-  transition: color 0.2s ease;
+  letter-spacing: 0.02em;
+  transition: color var(--transition-fast);
 }
 
-.nav-brand h2:hover {
+.nav-brand span:hover {
   color: var(--color-primary);
 }
 
+/* Nav links */
 .nav-menu {
   display: flex;
   list-style: none;
-  gap: var(--space-6);
-  margin: 0;
-  padding: 0;
+  gap: var(--space-1);
+  margin: 0; padding: 0;
 }
 
 .nav-menu a {
-  color: var(--color-text-secondary);
-  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
   font-weight: 500;
-  font-size: var(--text-sm);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  text-decoration: none;
   padding: var(--space-2) var(--space-4);
-  border-radius: var(--radius-md);
-  transition: all 0.2s ease;
+  transition: color var(--transition-fast);
+  position: relative;
 }
 
-.nav-menu a:hover,
-.nav-menu a.active {
-  color: var(--color-primary);
-  background: var(--color-surface);
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: var(--space-4); right: var(--space-4);
+  height: 1px;
+  background: var(--color-primary);
+  transform: scaleX(0);
+  transition: transform var(--transition-base);
+  transform-origin: left;
 }
 
+.nav-menu a:hover { color: var(--color-text-primary); }
+.nav-menu a:hover::after { transform: scaleX(1); }
+
+/* Actions */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.theme-toggle {
+  width: 36px; height: 36px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.theme-toggle:hover {
+  border-color: var(--color-text-primary);
+  color: var(--color-text-primary);
+}
+
+/* Hamburger */
 .mobile-menu-toggle {
   display: none;
   flex-direction: column;
+  gap: 4px;
   cursor: pointer;
-  padding: var(--space-2);
-  border-radius: var(--radius-md);
   background: transparent;
   border: none;
+  padding: var(--space-2);
 }
 
 .mobile-menu-toggle span {
-  width: 24px;
-  height: 2px;
+  width: 20px;
+  height: 1px;
   background: var(--color-text-primary);
-  margin: 2px 0;
   transition: all 0.3s ease;
-  border-radius: 1px;
+  display: block;
 }
 
-.mobile-menu-toggle.active span:nth-child(1) {
-  transform: rotate(-45deg) translate(-5px, 6px);
-}
-
-.mobile-menu-toggle.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.mobile-menu-toggle.active span:nth-child(3) {
-  transform: rotate(45deg) translate(-5px, -6px);
-}
+.mobile-menu-toggle.active span:nth-child(1) { transform: rotate(-45deg) translate(-3px, 5px); }
+.mobile-menu-toggle.active span:nth-child(2) { opacity: 0; }
+.mobile-menu-toggle.active span:nth-child(3) { transform: rotate(45deg) translate(-3px, -5px); }
 
 @media (max-width: 768px) {
-  .nav {
-    padding: var(--space-4);
-  }
-  
-  .mobile-menu-toggle {
-    display: flex;
-  }
-  
+  .nav { padding: var(--space-4); }
+
+  .mobile-menu-toggle { display: flex; }
+
   .nav-menu {
     position: fixed;
-    top: 72px;
-    left: -100%;
+    top: 60px; left: -100%;
     width: 100%;
-    height: calc(100vh - 72px);
-    background: rgba(255, 255, 255, 0.95);
+    height: calc(100vh - 60px);
+    background: var(--color-background);
     backdrop-filter: blur(20px);
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    gap: var(--space-4);
-    padding: var(--space-8) 0;
+    gap: var(--space-8);
     transition: left 0.3s ease;
   }
-  
-  .nav-menu.active {
-    left: 0;
-  }
-  
-  .nav-menu a {
-    width: 200px;
-    text-align: center;
-    padding: var(--space-4) var(--space-6);
-    font-size: var(--text-base);
-  }
-  
-  .nav-brand h2 {
-    font-size: var(--text-xl);
-  }
-}
 
-@media (max-width: 480px) {
-  .nav {
-    padding: var(--space-3);
+  .nav-menu.active { left: 0; }
+
+  .nav-menu a {
+    font-size: var(--text-sm);
+    letter-spacing: 0.18em;
   }
-  
-  .nav-brand h2 {
-    font-size: var(--text-lg);
-  }
+
+  .nav-brand span { font-size: var(--text-lg); }
 }
 </style>
