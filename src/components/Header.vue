@@ -20,174 +20,148 @@
   </header>
 </template>
 
-<script>
-export default {
-  name: 'Header',
-  data() {
-    return {
-      isScrolled: false,
-      mobileMenuOpen: false,
-      activeLink: '#home',
-  sections: ['home', 'about', 'contact'],
-      observer: null,
-      scrollProgress: 0,
-      currentSection: 'home'
-    }
-  },
-  mounted() {
-    window.addEventListener('scroll', this.handleScroll);
-    window.addEventListener('resize', this.handleResize);
-    this.initIntersectionObserver();
-  },
-  beforeUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
-    window.removeEventListener('resize', this.handleResize);
-    if (this.observer) {
-      this.observer.disconnect();
-    }
-  },
-  methods: {
-    handleScroll() {
-      this.isScrolled = window.scrollY > 50;
-      
-      // Calculate scroll progress
-      const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-      this.scrollProgress = (window.scrollY / documentHeight) * 100;
-    },
-    handleResize() {
-      if (window.innerWidth > 768) {
-        this.mobileMenuOpen = false;
-      }
-    },
-    toggleMobileMenu() {
-      this.mobileMenuOpen = !this.mobileMenuOpen;
-    },
-    setActiveLink(link) {
-      this.activeLink = link;
-      this.mobileMenuOpen = false;
-      
-      // Smooth scroll to section
-      const targetSection = document.querySelector(link);
-      if (targetSection) {
-        targetSection.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
-    },
-    handleNavToSection(section) {
-      this.activeLink = `#${section}`;
-      this.mobileMenuOpen = false;
-      if (this.$route.path !== '/') {
-        this.$router.push('/').then(() => {
-          this.$nextTick(() => {
-            setTimeout(() => {
-              const targetSection = document.getElementById(section);
-              if (targetSection) {
-                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
-            }, 350);
-          });
-        });
-      } else {
-        const targetSection = document.getElementById(section);
-        if (targetSection) {
-          targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }
-    },
-    navigateToBlog() {
-      // For now, we'll open a placeholder - you can later replace with actual blog URL
-      window.open('/blog', '_blank') || (window.location.href = '/blog');
-    },
-    navigateToPhotography() {
-      // For now, we'll open a placeholder - you can later replace with actual photography URL
-      window.open('/photography', '_blank') || (window.location.href = '/photography');
-    },
-    initIntersectionObserver() {
-      const options = {
-        root: null,
-        rootMargin: '-10% 0px -50% 0px', // More responsive detection
-        threshold: 0.1
-      };
+<script setup>
+import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
-      this.observer = new IntersectionObserver((entries) => {
-        let foundActive = false;
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const sectionId = entry.target.id || entry.target.querySelector('[id]')?.id;
-            if (sectionId) {
-              this.activeLink = `#${sectionId}`;
-              this.currentSection = sectionId;
-              foundActive = true;
-            }
-          }
-        });
-        // If at the bottom of the page, force Contact as active
-        if (!foundActive && (window.innerHeight + window.scrollY >= document.body.offsetHeight - 2)) {
-          this.activeLink = '#contact';
-          this.currentSection = 'contact';
-        }
-      }, options);
+const router = useRouter()
+const route = useRoute()
 
-      // Start observing sections after a short delay to ensure DOM is ready
-      this.$nextTick(() => {
+const isScrolled = ref(false)
+const mobileMenuOpen = ref(false)
+const activeLink = ref('#home')
+const sections = ['home', 'about', 'contact']
+let observer = null
+const scrollProgress = ref(0)
+const currentSection = ref('home')
+
+const handleScroll = () => {
+  isScrolled.value = window.scrollY > 50
+  const documentHeight = document.documentElement.scrollHeight - window.innerHeight
+  scrollProgress.value = (window.scrollY / documentHeight) * 100
+}
+
+const handleResize = () => {
+  if (window.innerWidth > 768) {
+    mobileMenuOpen.value = false
+  }
+}
+
+const toggleMobileMenu = () => {
+  mobileMenuOpen.value = !mobileMenuOpen.value
+}
+
+const handleNavToSection = (section) => {
+  activeLink.value = `#${section}`
+  mobileMenuOpen.value = false
+  if (route.path !== '/') {
+    router.push('/').then(() => {
+      nextTick(() => {
         setTimeout(() => {
-          this.sections.forEach(sectionName => {
-            const section = document.getElementById(sectionName);
-            
-            if (section) {
-              this.observer.observe(section);
-            } else {
-              // Fallback for components that might not have direct IDs
-              const componentElement = this.findSectionByComponent(sectionName);
-              if (componentElement) {
-                this.observer.observe(componentElement);
-              }
-            }
-          });
-        }, 500);
-      });
-    },
-    findSectionByComponent(sectionName) {
-      // Try to find sections by common patterns
-      const selectors = [
-        `#${sectionName}`,
-        `.${sectionName}`,
-        `[data-section="${sectionName}"]`,
-        `section:has(.${sectionName})`,
-        `div:has(.${sectionName})`
-      ];
-      
-      for (const selector of selectors) {
-        try {
-          const element = document.querySelector(selector);
-          if (element) return element;
-        } catch (e) {
-          // Ignore selector errors
-        }
-      }
-      
-      // Special handling for home section
-      if (sectionName === 'home') {
-        const heroSection = document.querySelector('.hero') || document.querySelector('[id="home"]') || document.querySelector('section');
-        if (heroSection) return heroSection;
-      }
-      
-      // Fallback: find by component position
-      const components = document.querySelectorAll('main > *');
-      const componentMap = {
-        'home': 0,       // Hero component
-        'about': 1,      // About component
-        'experience': 2, // Experience component
-        'contact': 3     // Contact component
-      };
-      
-      const index = componentMap[sectionName];
-      return components[index] || null;
+          const targetSection = document.getElementById(section)
+          if (targetSection) {
+            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          }
+        }, 350)
+      })
+    })
+  } else {
+    const targetSection = document.getElementById(section)
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   }
 }
+
+const findSectionByComponent = (sectionName) => {
+  const selectors = [
+    `#${sectionName}`,
+    `.${sectionName}`,
+    `[data-section="${sectionName}"]`,
+    `section:has(.${sectionName})`,
+    `div:has(.${sectionName})`
+  ]
+
+  for (const selector of selectors) {
+    try {
+      const element = document.querySelector(selector)
+      if (element) return element
+    } catch (e) {
+      // Ignore selector errors
+    }
+  }
+
+  if (sectionName === 'home') {
+    const heroSection = document.querySelector('.hero') || document.querySelector('[id="home"]') || document.querySelector('section')
+    if (heroSection) return heroSection
+  }
+
+  const components = document.querySelectorAll('main > *')
+  const componentMap = {
+    'home': 0,
+    'about': 1,
+    'contact': 2
+  }
+
+  const index = componentMap[sectionName]
+  return components[index] || null
+}
+
+const initIntersectionObserver = () => {
+  const options = {
+    root: null,
+    rootMargin: '-10% 0px -50% 0px',
+    threshold: 0.1
+  }
+
+  observer = new IntersectionObserver((entries) => {
+    let foundActive = false
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const sectionId = entry.target.id || entry.target.querySelector('[id]')?.id
+        if (sectionId) {
+          activeLink.value = `#${sectionId}`
+          currentSection.value = sectionId
+          foundActive = true
+        }
+      }
+    })
+    if (!foundActive && (window.innerHeight + window.scrollY >= document.body.offsetHeight - 2)) {
+      activeLink.value = '#contact'
+      currentSection.value = 'contact'
+    }
+  }, options)
+
+  nextTick(() => {
+    setTimeout(() => {
+      sections.forEach(sectionName => {
+        const section = document.getElementById(sectionName)
+        if (section) {
+          observer.observe(section)
+        } else {
+          const componentElement = findSectionByComponent(sectionName)
+          if (componentElement) {
+            observer.observe(componentElement)
+          }
+        }
+      })
+    }, 500)
+  })
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+  window.addEventListener('resize', handleResize)
+  initIntersectionObserver()
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', handleScroll)
+  window.removeEventListener('resize', handleResize)
+  if (observer) {
+    observer.disconnect()
+  }
+})
 </script>
 
 

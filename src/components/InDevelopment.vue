@@ -7,10 +7,7 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: 'InDevelopment'
-}
+<script setup>
 </script>
 
 <style scoped>
@@ -22,18 +19,19 @@ export default {
 }
 .in-dev-container {
   text-align: center;
-  background: rgba(255,255,255,0.85);
-  padding: 3rem 2rem;
-  border-radius: 24px;
-  box-shadow: 0 8px 32px rgba(102,126,234,0.10);
+  background: var(--color-surface);
+  padding: var(--space-12) var(--space-8);
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-lg);
 }
 .in-dev h1 {
-  font-size: 2.2rem;
-  margin-bottom: 1rem;
-  color: #764ba2;
+  font-size: var(--text-3xl);
+  margin-bottom: var(--space-4);
+  color: var(--color-primary);
 }
 .in-dev p {
-  font-size: 1.2rem;
-  color: #444;
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
 }
 </style>

@@ -8,23 +8,9 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import Header from './components/Header.vue'
-import Home from './components/Home.vue'
-import About from './components/About.vue'
-import Contact from './components/Contact.vue'
 import Footer from './components/Footer.vue'
-
-export default {
-  name: 'App',
-  components: {
-    Header,
-    Home,
-    About,
-    Contact,
-    Footer,
-  }
-}
 </script>
 
 <style>
@@ -90,6 +76,22 @@ section {
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

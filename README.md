@@ -2,7 +2,7 @@
 
 A modern, responsive personal website built with Vue.js and Vite. This portfolio showcases skills, education, and provides a way for visitors to get in touch.
 
-## 🚀 Features
+## Features
 
 - **Modern Design**: Clean, professional layout with smooth animations
 - **Responsive**: Fully responsive design that works on all devices
@@ -12,14 +12,14 @@ A modern, responsive personal website built with Vue.js and Vite. This portfolio
 - **Skills Showcase**: Visual representation of technical and soft skills
 - **Education Timeline**: Professional education history and achievements
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Vue.js 3** - Progressive JavaScript framework
 - **Vite** - Next generation frontend tooling
 - **CSS3** - Modern styling with Grid and Flexbox
 - **JavaScript ES6+** - Modern JavaScript features
 
-## 📦 Installation
+## Installation
 
 1. Clone the repository:
 ```bash
@@ -42,7 +42,7 @@ npm run dev
 npm run build
 ```
 
-## 🎨 Customization
+## Customization
 
 To customize this website for your own use:
 
@@ -52,7 +52,7 @@ To customize this website for your own use:
 4. **Content**: Update the text content, skills, and project information
 5. **Contact Details**: Add your actual contact information and social media links
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/
@@ -68,7 +68,7 @@ src/
 └── style.css          # Global styles
 ```
 
-## 🚀 Deployment
+## Deployment
 
 This project can be deployed to various platforms:
 
@@ -77,14 +77,14 @@ This project can be deployed to various platforms:
 - **GitHub Pages**: Use GitHub Actions for automated deployment
 - **Firebase Hosting**: Deploy using Firebase CLI
 
-## 📝 License
+## License
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## 🤝 Contributing
+## Contributing
 
 Feel free to fork this project and customize it for your own use. If you have suggestions for improvements, please open an issue or submit a pull request.
 
 ---
 
-Built with ❤️ using Vue.js and Vite
+Built with Vue.js and Vite

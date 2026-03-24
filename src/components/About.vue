@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <section id="about" class="about">
     <!-- section-divider removed for seamless scroll -->
     <div class="container">
@@ -33,14 +33,14 @@
           <!-- Portal Links Section: Photograph and Blog in a single row under About Me -->
           <div class="about-portal-section">
             <div class="portal-cards">
-              <a class="portal-card" href="/photography">
+              <router-link class="portal-card" to="/photography">
                 <div class="portal-icon">📷</div>
                 <div class="portal-title">Photography</div>
-              </a>
-              <a class="portal-card" href="/blog">
+              </router-link>
+              <router-link class="portal-card" to="/blog">
                 <div class="portal-icon">📝</div>
                 <div class="portal-title">Blog</div>
-              </a>
+              </router-link>
             </div>
           </div>
       </div>
@@ -330,11 +330,6 @@ const filmImages = [about1, about3, about4];
 }
 
 /* Animations */
-@keyframes slideInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 @keyframes vertical-marquee {
   0% { transform: translate3d(0, 0, 0); }
   100% { transform: translate3d(0, -50%, 0); }

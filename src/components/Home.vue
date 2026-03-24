@@ -115,43 +115,6 @@ import profileImage from '../assets/images/profile.webp';
   gap: var(--space-4);
   flex-wrap: wrap;
 }
-
-.btn {
-  padding: var(--space-3) var(--space-6);
-  border-radius: var(--radius-full);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: var(--text-base);
-  transition: all 0.2s ease;
-  display: inline-block;
-  letter-spacing: 0.025em;
-}
-
-.btn-primary {
-  background: var(--color-primary);
-  color: white;
-  border: 2px solid var(--color-primary);
-}
-
-.btn-primary:hover {
-  background: var(--color-primary-dark);
-  border-color: var(--color-primary-dark);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-}
-
-.btn-secondary {
-  background: transparent;
-  color: var(--color-primary);
-  border: 2px solid var(--color-primary);
-}
-
-.btn-secondary:hover {
-  background: var(--color-primary);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-}
 /* ==============================================
    Overlapping Image Box
    ============================================== */
@@ -230,17 +193,5 @@ import profileImage from '../assets/images/profile.webp';
   }
 }
 
-/* ==============================================
-   Keyframe Animations
-   ============================================== */
-@keyframes slideInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideInRight {
-  from { opacity: 0; transform: translateX(30px); }
-  to { opacity: 1; transform: translateX(0); }
-}
 
 </style>
