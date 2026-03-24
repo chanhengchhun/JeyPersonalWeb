@@ -1,8 +1,14 @@
 <template>
   <section class="in-dev">
-    <div class="in-dev-container">
-      <h1>🚧 Page Under Construction</h1>
-      <p>This page is currently in development.<br />Please check back soon!</p>
+    <div class="in-dev-inner">
+      <p class="label">Coming Soon</p>
+      <h2>In Development</h2>
+      <div class="rule">
+        <span class="rule-line"></span>
+        <span class="rule-dot"></span>
+        <span class="rule-line"></span>
+      </div>
+      <p>This page is currently being crafted. Please check back soon.</p>
     </div>
   </section>
 </template>
@@ -12,26 +18,59 @@
 
 <style scoped>
 .in-dev {
-  min-height: 60vh;
+  min-height: 70vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: var(--space-20) var(--space-6);
+  background: var(--color-background);
 }
-.in-dev-container {
+
+.in-dev-inner {
   text-align: center;
-  background: var(--color-surface);
-  padding: var(--space-12) var(--space-8);
-  border-radius: var(--radius-2xl);
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-lg);
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
 }
-.in-dev h1 {
-  font-size: var(--text-3xl);
-  margin-bottom: var(--space-4);
-  color: var(--color-primary);
+
+.in-dev-inner .label { margin: 0; }
+
+.in-dev-inner h2 {
+  font-size: var(--text-5xl);
+  font-weight: 300;
+  margin: 0;
+  line-height: 1.05;
 }
-.in-dev p {
+
+.rule {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  width: 180px;
+}
+
+.rule-line {
+  flex: 1;
+  height: 1px;
+  background: var(--color-border-dark);
+  display: block;
+}
+
+.rule-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.in-dev-inner p {
+  font-family: var(--font-heading);
+  font-style: italic;
   font-size: var(--text-lg);
-  color: var(--color-text-secondary);
+  color: var(--color-text-tertiary);
+  margin: 0;
 }
 </style>

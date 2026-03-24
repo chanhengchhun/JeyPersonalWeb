@@ -1,140 +1,147 @@
 <template>
   <div id="app">
-    <Header />
+    <Header @toggle-theme="toggleTheme" :isDark="isDark" />
     <main>
-      <router-view />
+      <router-view v-slot="{ Component }">
+        <transition name="page-fade" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </main>
     <Footer />
   </div>
 </template>
 
 <script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
+
+const isDark = ref(false)
+
+const toggleTheme = () => {
+  isDark.value = !isDark.value
+  document.documentElement.setAttribute('data-theme', isDark.value ? 'dark' : 'light')
+  localStorage.setItem('theme', isDark.value ? 'dark' : 'light')
+}
+
+let revealObserver = null
+let mutationObserver = null
+
+const scanRevealElements = () => {
+  if (!revealObserver) return
+  document.querySelectorAll('.reveal:not(.observed)').forEach(el => {
+    revealObserver.observe(el)
+    el.classList.add('observed')
+  })
+}
+
+const initObservers = () => {
+  // 1. Intersection Observer for scroll reveal
+  revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible')
+      }
+    })
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' })
+
+  scanRevealElements()
+
+  // 2. Mutation Observer to catch newly added elements (e.g. on route change)
+  mutationObserver = new MutationObserver((mutations) => {
+    let shouldScan = false
+    for (const m of mutations) {
+      if (m.addedNodes.length > 0) {
+        shouldScan = true
+        break
+      }
+    }
+    if (shouldScan) scanRevealElements()
+  })
+
+  mutationObserver.observe(document.body, { childList: true, subtree: true })
+}
+
+onMounted(() => {
+  const saved = localStorage.getItem('theme')
+  if (saved === 'dark') {
+    isDark.value = true
+    document.documentElement.setAttribute('data-theme', 'dark')
+  }
+  setTimeout(initObservers, 120)
+})
+
+onBeforeUnmount(() => {
+  if (revealObserver) revealObserver.disconnect()
+  if (mutationObserver) mutationObserver.disconnect()
+})
 </script>
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 #app {
   width: 100%;
   min-height: 100vh;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-body);
 }
 
 main {
   width: 100%;
-  padding-top: 70px; /* Add padding to account for fixed header */
+  padding-top: 68px;
 }
 
 @media (max-width: 600px) {
-  main {
-    padding: 10px 0 10px 0; /* Reduced space for mobile header */
-  }
+  main { padding-top: 60px; }
 }
 
-/* Ensure sections don't have horizontal scroll */
 section {
   width: 100%;
   overflow-x: hidden;
 }
 
-/* Global animations for elements entering viewport */
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* ============================================
+   Page Transitions
+   ============================================ */
+.page-fade-enter-active,
+.page-fade-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
+.page-fade-enter-from { opacity: 0; transform: translateY(6px); }
+.page-fade-leave-to   { opacity: 0; transform: translateY(-6px); }
 
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
+/* ============================================
+   Scrollbar — warm minimal
+   ============================================ */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--color-background); }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  border-radius: 4px;
+  background: var(--color-border-dark);
+  border-radius: 2px;
 }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }
 
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #5a6fd8, #6a4190);
-}
-
-/* Selection color */
+/* Selection */
 ::selection {
-  background: rgba(102, 126, 234, 0.2);
-  color: #333;
+  background: rgba(139, 69, 19, 0.15);
+  color: var(--color-text-primary);
 }
 
-/* Focus outline improvements */
-button:focus,
-a:focus,
-input:focus,
-textarea:focus {
-  outline: 2px solid #667eea;
-  outline-offset: 2px;
+[data-theme="dark"] ::selection {
+  background: rgba(201, 169, 110, 0.2);
 }
 
-/* Loading animation for images */
-img {
-  transition: opacity 0.3s ease;
+/* Focus */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 1px solid var(--color-primary);
+  outline-offset: 3px;
 }
 
-/* Smooth transitions for all interactive elements */
-button, a, input, textarea {
-  transition: all 0.3s ease;
-}
+img { transition: opacity 0.3s ease; }
 </style>

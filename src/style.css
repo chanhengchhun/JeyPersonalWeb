@@ -4,44 +4,55 @@
   box-sizing: border-box;
 }
 
-/* Ensure no conflicting positioning */
 html, body {
   position: static !important;
   overflow-x: hidden;
 }
 
-
-/* Simplified Modern Color Palette */
+/* ============================================
+   Design System — Modern Vintage Light Theme
+   ============================================ */
 :root {
-  /* Primary colors */
-  --color-primary: #2563eb; /* Clean blue - primary accent */
-  --color-primary-light: #eff6ff; /* Very light blue background */
-  --color-primary-dark: #1d4ed8; /* Darker blue for hover states */
-  
-  /* Background and surface colors */
-  --color-background: #ffffff; /* Main background */
-  --color-surface: #f8fafc; /* Card backgrounds */
-  
-  /* Text colors */
-  --color-text-primary: #1e293b; /* Main text */
-  --color-text-secondary: #64748b; /* Secondary text */
-  
-  /* Border and accent colors */
-  --color-border: #e2e8f0; /* Subtle borders */
-  --color-accent: #06b6d4; /* Cyan accent for highlights */
-  
+  /* Font families */
+  --font-heading: 'Cormorant Garamond', 'Garamond', 'Times New Roman', serif;
+  --font-body: 'Jost', 'Gill Sans', 'Optima', sans-serif;
+
+  /* Color palette — warm cream / film photography */
+  --color-primary: #8B4513;        /* Burnt sienna — darkroom red */
+  --color-primary-light: #F9EFE3;  /* Very light warm tint */
+  --color-primary-dark: #6B3410;   /* Deeper sienna */
+
+  --color-accent: #A89070;         /* Warm tan */
+  --color-accent-light: #F5EDE0;   /* Very light tan */
+
+  /* Backgrounds */
+  --color-background: #F5F0E8;     /* Warm cream / aged paper */
+  --color-surface: #FDFAF4;        /* Off-white / photo paper */
+  --color-surface-alt: #EDE8DF;    /* Slightly darker warm surface */
+
+  /* Text — warm-toned darks */
+  --color-text-primary: #1A1410;   /* Near-black, warm */
+  --color-text-secondary: #5C4D3C; /* Warm medium brown */
+  --color-text-tertiary: #A89070;  /* Muted tan */
+
+  /* Borders */
+  --color-border: #D8CFC0;         /* Warm light border */
+  --color-border-dark: #B8A898;    /* Slightly more visible border */
+
   /* Layout */
   --max-width: 1200px;
 
   /* Typography Scale */
-  --text-xs: 0.75rem;
+  --text-xs: 0.8rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
   --text-lg: 1.125rem;
   --text-xl: 1.25rem;
   --text-2xl: 1.5rem;
-  --text-3xl: 1.875rem;
-  --text-4xl: 2.25rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.75rem;
+  --text-5xl: 3.75rem;
+  --text-6xl: 5rem;
 
   /* Spacing Scale */
   --space-1: 0.25rem;
@@ -50,35 +61,75 @@ html, body {
   --space-4: 1rem;
   --space-6: 1.5rem;
   --space-8: 2rem;
+  --space-10: 2.5rem;
   --space-12: 3rem;
   --space-16: 4rem;
   --space-20: 5rem;
+  --space-24: 6rem;
 
-  /* Shadow System */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  /* Shadows — warm toned */
+  --shadow-sm: 0 1px 3px 0 rgba(90, 60, 30, 0.06);
+  --shadow-md: 0 4px 12px -2px rgba(90, 60, 30, 0.1);
+  --shadow-lg: 0 12px 24px -4px rgba(90, 60, 30, 0.12);
+  --shadow-xl: 0 24px 48px -8px rgba(90, 60, 30, 0.14);
 
-  /* Border Radius System */
-  --radius-sm: 0.375rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.5rem;
-  --radius-2xl: 2rem;
+  /* Border Radius */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-xl: 10px;
+  --radius-2xl: 16px;
   --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.25s ease;
+  --transition-slow: 0.4s ease;
 }
 
+/* ============================================
+   Dark Theme — Darkroom aesthetic
+   ============================================ */
+[data-theme="dark"] {
+  --color-primary: #C9A96E;          /* Antique gold */
+  --color-primary-light: #1E1810;
+  --color-primary-dark: #E0C285;
+
+  --color-accent: #8B7355;
+  --color-accent-light: #1A1510;
+
+  --color-background: #0D0B09;       /* Warm black */
+  --color-surface: #1A1712;          /* Very dark warm brown */
+  --color-surface-alt: #231F1A;
+
+  --color-text-primary: #F5EFE4;     /* Aged cream */
+  --color-text-secondary: #B8A488;   /* Warm tan */
+  --color-text-tertiary: #6B5B4E;
+
+  --color-border: #2E2820;
+  --color-border-dark: #3D3428;
+
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 24px -4px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 24px 48px -8px rgba(0, 0, 0, 0.6);
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-  line-height: 1.6;
+  font-family: var(--font-body);
+  font-weight: 450;
+  line-height: 1.65;
   color: var(--color-text-primary);
-  margin: 0;
-  padding: 0;
   background: var(--color-background);
   font-size: var(--text-base);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background var(--transition-slow), color var(--transition-slow);
+  /* Subtle grain texture */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
 }
 
 html {
@@ -87,25 +138,16 @@ html {
   font-size: 16px;
 }
 
-/* Clean section styling */
 section {
   scroll-snap-align: start;
-  padding: var(--space-20) var(--space-4);
+  padding: var(--space-24) var(--space-4);
 }
 
-/* Simplified links */
 a {
-  color: var(--color-primary);
+  color: var(--color-text-primary);
   text-decoration: none;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-a:hover, a:focus {
-  color: var(--color-accent);
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 4px;
+  font-weight: 400;
+  transition: all var(--transition-fast);
 }
 
 #app {
@@ -113,60 +155,142 @@ a:hover, a:focus {
   min-height: 100vh;
 }
 
-/* Clean typography hierarchy */
-h1, h2, h3, h4, h5, h6 {
+/* ============================================
+   Typography — Cormorant headings, Jost body
+   ============================================ */
+h1, h2, h3 {
+  font-family: var(--font-heading);
   color: var(--color-text-primary);
-  font-weight: 700;
-  line-height: 1.2;
+  font-weight: 400;
+  line-height: 1.1;
   margin: 0 0 var(--space-4) 0;
+  letter-spacing: -0.01em;
 }
 
-h1 { font-size: var(--text-4xl); }
-h2 { font-size: var(--text-3xl); }
-h3 { font-size: var(--text-2xl); }
-h4 { font-size: var(--text-xl); }
-h5 { font-size: var(--text-lg); }
-h6 { font-size: var(--text-base); }
+h4, h5, h6 {
+  font-family: var(--font-body);
+  color: var(--color-text-primary);
+  font-weight: 500;
+  line-height: 1.3;
+  margin: 0 0 var(--space-3) 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: var(--text-xs);
+}
+
+h1 { font-size: var(--text-6xl); }
+h2 { font-size: var(--text-5xl); }
+h3 { font-size: var(--text-3xl); }
 
 p {
   margin: 0 0 var(--space-4) 0;
   color: var(--color-text-secondary);
+  font-size: var(--text-base);
+  line-height: 1.75;
 }
 
-/* Clean button styles */
+em, i {
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--color-primary);
+}
+
+/* ============================================
+   Decorative Elements — Vintage details
+   ============================================ */
+
+/* Section label — uppercase tracking */
+.label {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+/* ============================================
+   Buttons — Vintage style
+   ============================================ */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-3) var(--space-6);
-  border-radius: var(--radius-md);
-  font-weight: 600;
-  font-size: var(--text-sm);
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-8);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   text-decoration: none;
-  transition: all 0.2s ease;
-  border: none;
+  transition: all var(--transition-base);
   cursor: pointer;
+  border: 1px solid transparent;
 }
 
 .btn-primary {
-  background: var(--color-primary);
-  color: white;
-  box-shadow: var(--shadow-sm);
+  background: var(--color-text-primary);
+  color: var(--color-background);
+  border-color: var(--color-text-primary);
 }
 
 .btn-primary:hover {
-  background: var(--color-accent);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-1px);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
 }
 
 .btn-secondary {
   background: transparent;
-  color: var(--color-primary);
-  border: 2px solid var(--color-primary);
+  color: var(--color-text-primary);
+  border-color: var(--color-border-dark);
 }
 
 .btn-secondary:hover {
-  background: var(--color-primary);
-  color: white;
+  border-color: var(--color-text-primary);
+  color: var(--color-text-primary);
 }
+
+/* ============================================
+   Underline draw effect for links
+   ============================================ */
+.link-draw {
+  position: relative;
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.link-draw::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: var(--color-primary);
+  transition: width var(--transition-base);
+}
+
+.link-draw:hover::after {
+  width: 100%;
+}
+
+/* ============================================
+   Scroll-triggered reveal
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.12s; }
+.reveal-delay-2 { transition-delay: 0.24s; }
+.reveal-delay-3 { transition-delay: 0.36s; }
+.reveal-delay-4 { transition-delay: 0.48s; }

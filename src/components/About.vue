@@ -1,65 +1,99 @@
 <template>
   <section id="about" class="about">
-    <!-- section-divider removed for seamless scroll -->
     <div class="container">
-      <div class="about-content">
-        <div class="about-glass-unified">
-          <div class="section-header">
-            <h2>Get to Know Me</h2>
-            <div class="section-subtitle">Who I am</div>
-          </div>
-          <div class="about-two-col">
-            <div class="about-col about-col-text">
-              <div class="personal-intro">
-                <h3>About Me</h3>
-                <p>
-                  My name is Chanheng and you may call me Jey. I'm currently an international student at Capital University, pursuing a bachelor in computer science. If you’re looking on the world map, zooming around the south eastern part of Asia, you’d see where I’m from, it’s Cambodia.
-                  The reason behind why I chose my major is that I’ve always been curious about technology, and I want to dive deeper into its complexity and backbone of it. Studying in the U.S. has allowed me to satisfy that curiosity while learning to adapt to new cultures and environments. I really enjoy the puzzle of coding, the problem solving part of it keeps me curious. Ultimately, my goal is to build or develop something that makes a positive impact on humanity and the world.
-                  Outside of school, I also enjoy going out shooting photography, staying in playing video games, and getting fit at the gym. Hiking, bike cycling, and camping are also my favorite activities that I haven’t done much.
-                </p>
-              </div>
-            </div>
-            <div class="about-divider"></div>
-            <div class="about-col about-col-gallery">
-              <div class="scrolling-gallery">
-                <div class="scrolling-gallery-scrollable">
-                  <div class="scrolling-gallery-inner css-marquee">
-                    <img v-for="(img, i) in filmImages.concat(filmImages)" :key="'film-img-'+i" :src="img" class="film-img" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Portal Links Section: Photograph and Blog in a single row under About Me -->
-          <div class="about-portal-section">
-            <div class="portal-cards">
-              <router-link class="portal-card" to="/photography">
-                <div class="portal-icon">📷</div>
-                <div class="portal-title">Photography</div>
-              </router-link>
-              <router-link class="portal-card" to="/blog">
-                <div class="portal-icon">📝</div>
-                <div class="portal-title">Blog</div>
-              </router-link>
-            </div>
-          </div>
+
+      <!-- Section header -->
+      <div class="section-header reveal">
+        <p class="label">Who I Am</p>
+        <h2>Get to Know Me</h2>
       </div>
-    </div>
+
+      <!-- Two-column layout -->
+      <div class="about-grid reveal reveal-delay-1">
+
+        <!-- Text -->
+        <div class="about-text">
+          <!-- Pull-quote accent line -->
+          <div class="pullquote-bar"></div>
+          <h3 class="about-title">About Me</h3>
+          <p>
+            My name is Chanheng, you may also know me as Jey. I'm an international
+            student at Capital University, pursuing a bachelor in computer science with a minor in Data Science.
+          </p>
+          <p>
+            I've always been curious about technologies and I want to dive deeper into its
+            complexity. Studying in the U.S. has allowed me to satisfy that curiosity while
+            learning to adapt to new cultures and environments. I really enjoy the puzzle
+            of coding, the problem solving part keeps me curious.
+          </p>
+          <p>
+            Outside of school, I enjoy going out shooting photography, playing video games,
+            and getting fit at the gym. Hiking, cycling, and camping are also things I'd
+            like to do more.
+          </p>
+        </div>
+
+        <!-- Scrolling gallery column -->
+        <div class="about-gallery">
+          <div class="scrolling-gallery">
+            <div class="scrolling-gallery-scrollable">
+              <div class="scrolling-gallery-inner">
+                <img v-for="(img, i) in filmImages.concat(filmImages)" :key="'film-img-'+i"
+                  :src="img" class="film-img" alt="Film photograph" loading="lazy" decoding="async" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Portal cards: Photography & Blog -->
+      <div class="portal-section reveal reveal-delay-2">
+        <div class="portal-divider">
+          <span class="rule-line"></span>
+          <span class="portal-label label">Explore</span>
+          <span class="rule-line"></span>
+        </div>
+
+        <div class="portal-cards">
+          <router-link class="portal-card" to="/photography">
+            <!-- Camera SVG icon -->
+            <svg class="portal-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+              <circle cx="12" cy="13" r="4"/>
+            </svg>
+            <span class="portal-title">Photography</span>
+          </router-link>
+
+          <router-link class="portal-card" to="/blog">
+            <!-- Feather/pen SVG icon -->
+            <svg class="portal-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/>
+              <line x1="16" y1="8" x2="2" y2="22"/>
+              <line x1="17.5" y1="15" x2="9" y2="15"/>
+            </svg>
+            <span class="portal-title">Blog</span>
+          </router-link>
+        </div>
+      </div>
+
     </div>
   </section>
 </template>
 
 <script setup>
-import about1 from '../assets/images/about1.jpg';
-import about3 from '../assets/images/about3.jpg';
-import about4 from '../assets/images/about4.jpg';
-const filmImages = [about1, about3, about4];
+import about1 from '../assets/images/about1.jpg'
+import about3 from '../assets/images/about3.jpg'
+import about4 from '../assets/images/about4.jpg'
+const filmImages = [about1, about3, about4]
 </script>
 
 <style scoped>
 .about {
-  padding: var(--space-20) var(--space-6);
-  background: var(--color-background);
+  padding: var(--space-24) var(--space-6);
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .container {
@@ -68,103 +102,80 @@ const filmImages = [about1, about3, about4];
   width: 100%;
 }
 
-.about-content {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.about-glass-unified {
-  width: 100%;
-  max-width: 1200px;
-}
-
+/* Section header */
 .section-header {
   text-align: center;
   margin-bottom: var(--space-16);
-  animation: slideInUp 0.8s ease-out;
+}
+
+.section-header .label {
+  margin-bottom: var(--space-3);
 }
 
 .section-header h2 {
+  font-size: var(--text-5xl);
+  font-weight: 300;
+  margin: 0;
+  line-height: 1.05;
+}
+
+/* Two-column grid */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: start;
+  margin-bottom: var(--space-16);
+}
+
+/* Text side */
+.about-text {
+  position: relative;
+  padding-left: var(--space-8);
+}
+
+.pullquote-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--color-primary);
+  opacity: 0.4;
+}
+
+.about-title {
+  font-family: var(--font-heading);
   font-size: var(--text-3xl);
-  font-weight: 800;
+  font-weight: 400;
   color: var(--color-text-primary);
-  margin: 0 0 var(--space-4) 0;
-  line-height: 1.2;
+  margin-bottom: var(--space-6);
+  letter-spacing: 0;
+  text-transform: none;
 }
 
-.section-subtitle {
-  font-size: var(--text-lg);
+.about-text p {
+  font-size: var(--text-base);
+  line-height: 1.8;
   color: var(--color-text-secondary);
-  font-weight: 500;
-}
-
-.about-two-col {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-2xl);
-  padding: var(--space-12);
-  display: flex;
-  gap: var(--space-12);
-  box-shadow: var(--shadow-lg);
-  margin-bottom: var(--space-12);
-  animation: slideInUp 0.8s ease-out 0.4s both;
-}
-
-.about-col {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.about-col-text {
-  align-items: flex-start;
-}
-
-.about-col-gallery {
-  align-items: center;
-  justify-content: center;
-}
-
-.about-divider {
-  width: 1px;
-  background: var(--color-border);
-  margin: 0 var(--space-2);
-  border-radius: var(--radius-full);
-}
-
-.personal-intro h3 {
-  font-size: var(--text-xl);
-  font-weight: 700;
-  color: var(--color-text-primary);
   margin-bottom: var(--space-4);
 }
 
-.personal-intro p {
-  font-size: var(--text-base);
-  line-height: 1.7;
-  color: var(--color-text-secondary);
-  margin: 0;
-}
+/* Gallery side */
+.about-gallery { overflow: hidden; }
 
-/* Gallery Styles */
 .scrolling-gallery {
   overflow: hidden;
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-xl);
-  background: var(--color-surface);
-  box-shadow: var(--shadow-md);
-  transition: all 0.3s ease;
-}
-
-.scrolling-gallery:hover {
-  box-shadow: var(--shadow-lg);
-  border-color: var(--color-primary);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-alt);
+  box-shadow:
+    inset 0 0 0 4px var(--color-surface),
+    inset 0 0 0 5px var(--color-border),
+    var(--shadow-md);
 }
 
 .scrolling-gallery-scrollable {
-  height: 600px;
+  height: 560px;
   overflow: hidden;
   width: 100%;
 }
@@ -173,8 +184,7 @@ const filmImages = [about1, about3, about4];
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0;
-  animation: vertical-marquee 15s linear infinite;
+  animation: vertical-marquee 18s linear infinite;
 }
 
 .scrolling-gallery-inner:hover {
@@ -185,23 +195,35 @@ const filmImages = [about1, about3, about4];
   width: 100%;
   height: auto;
   display: block;
-  transition: transform 0.3s ease;
+  filter: sepia(12%);
+  transition: filter var(--transition-slow);
 }
 
-.film-img:hover {
-  transform: scale(1.02);
-}
+.film-img:hover { filter: sepia(0%); }
 
-/* Portal Links Section */
-.about-portal-section {
+/* Portal section */
+.portal-section { text-align: center; }
+
+.portal-divider {
   display: flex;
-  justify-content: center;
-  margin-top: var(--space-8);
+  align-items: center;
+  gap: var(--space-6);
+  margin-bottom: var(--space-10);
 }
+
+.rule-line {
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+  display: block;
+}
+
+.portal-label { margin: 0; }
 
 .portal-cards {
   display: flex;
   gap: var(--space-6);
+  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -209,129 +231,69 @@ const filmImages = [about1, about3, about4];
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-width: 200px;
-  padding: var(--space-8) var(--space-6);
-  background: var(--color-surface);
+  gap: var(--space-4);
+  min-width: 180px;
+  padding: var(--space-10) var(--space-8);
+  background: var(--color-background);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-md);
   text-decoration: none;
   color: var(--color-text-primary);
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
 }
 
 .portal-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
   border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
 }
 
 .portal-icon {
-  font-size: 2.5rem;
-  margin-bottom: var(--space-4);
+  width: 32px;
+  height: 32px;
+  color: var(--color-text-tertiary);
+  transition: color var(--transition-fast);
 }
+
+.portal-card:hover .portal-icon { color: var(--color-primary); }
 
 .portal-title {
-  font-size: var(--text-lg);
-  font-weight: 700;
-  margin-bottom: var(--space-2);
-  color: var(--color-text-primary);
-}
-
-.portal-desc {
-  font-size: var(--text-sm);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--color-text-secondary);
-  text-align: center;
+  transition: color var(--transition-fast);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .about {
-    padding: var(--space-16) var(--space-4);
-  }
+.portal-card:hover .portal-title { color: var(--color-primary); }
 
-  .about-two-col {
-    flex-direction: column;
-    padding: var(--space-8);
+/* Responsive */
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
     gap: var(--space-8);
   }
 
-  .about-col-text,
-  .about-col-gallery {
-    align-items: center;
-    width: 100%;
-  }
+  .about-text { padding-left: var(--space-6); }
 
-  .about-divider {
-    display: none;
-  }
-
-  .personal-intro {
-    text-align: center;
-  }
-
-  .scrolling-gallery {
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
-  }
-
-  .scrolling-gallery-scrollable {
-    height: 400px;
-    width: 100%;
-  }
-
-  .portal-cards {
-    flex-direction: column;
-    gap: var(--space-4);
-    align-items: center;
-  }
-
-  .portal-card {
-    min-width: 280px;
-    width: 100%;
-    max-width: 400px;
-  }
+  .scrolling-gallery-scrollable { height: 380px; }
 }
 
-@media (max-width: 480px) {
-  .about {
-    padding: var(--space-12) var(--space-2);
-  }
+@media (max-width: 600px) {
+  .about { padding: var(--space-16) var(--space-4); }
 
-  .about-two-col {
-    padding: var(--space-6);
-    gap: var(--space-6);
-  }
+  .section-header h2 { font-size: var(--text-4xl); }
 
-  .scrolling-gallery {
-    width: 100%;
-    max-width: 280px;
-    margin: 0 auto;
-  }
+  .portal-cards { flex-direction: column; align-items: center; }
 
-  .scrolling-gallery-scrollable {
-    height: 350px;
-    width: 100%;
-  }
+  .portal-card { width: 100%; max-width: 300px; }
 
-  .film-img {
-    width: 100%;
-    height: auto;
-    min-height: 150px;
-    object-fit: cover;
-  }
-
-  .portal-card {
-    min-width: auto;
-    padding: var(--space-6) var(--space-4);
-  }
+  .scrolling-gallery-scrollable { height: 300px; }
 }
 
-/* Animations */
+/* Marquee animation */
 @keyframes vertical-marquee {
-  0% { transform: translate3d(0, 0, 0); }
+  0%   { transform: translate3d(0, 0, 0); }
   100% { transform: translate3d(0, -50%, 0); }
 }
 </style>
