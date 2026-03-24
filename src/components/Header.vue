@@ -3,7 +3,7 @@
     <div class="scroll-progress" :style="{ width: scrollProgress + '%' }"></div>
     <nav class="nav">
       <div class="nav-brand">
-        <span @click="handleNavToSection('home')">Chanheng</span>
+        <span class="brand-name" @click="handleNavToSection('home')">Chanheng <span class="brand-nick">(Jey)</span></span>
       </div>
 
       <ul class="nav-menu" :class="{ 'active': mobileMenuOpen }">
@@ -167,18 +167,25 @@ onBeforeUnmount(() => {
 }
 
 /* Brand */
-.nav-brand span {
+.brand-name {
   font-family: var(--font-heading);
-  font-size: var(--text-xl);
-  font-weight: 500;
+  font-size: var(--text-2xl);
+  font-weight: 600;
   color: var(--color-text-primary);
   cursor: pointer;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   transition: color var(--transition-fast);
 }
 
-.nav-brand span:hover {
+.brand-name:hover {
   color: var(--color-primary);
+}
+
+.brand-nick {
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-text-tertiary);
+  font-size: var(--text-lg);
 }
 
 /* Nav links */

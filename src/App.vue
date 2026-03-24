@@ -13,13 +13,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 
 const isDark = ref(false)
-const route = useRoute()
 
 const toggleTheme = () => {
   isDark.value = !isDark.value
@@ -28,14 +26,18 @@ const toggleTheme = () => {
 }
 
 let revealObserver = null
+let mutationObserver = null
 
 const scanRevealElements = () => {
-  document.querySelectorAll('.reveal').forEach(el => {
-    if (revealObserver) revealObserver.observe(el)
+  if (!revealObserver) return
+  document.querySelectorAll('.reveal:not(.observed)').forEach(el => {
+    revealObserver.observe(el)
+    el.classList.add('observed')
   })
 }
 
-const initRevealObserver = () => {
+const initObservers = () => {
+  // 1. Intersection Observer for scroll reveal
   revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -43,13 +45,23 @@ const initRevealObserver = () => {
       }
     })
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' })
-  scanRevealElements()
-}
 
-// Re-scan after every route change so new pages' .reveal elements get observed
-watch(() => route.path, () => {
-  setTimeout(scanRevealElements, 150)
-})
+  scanRevealElements()
+
+  // 2. Mutation Observer to catch newly added elements (e.g. on route change)
+  mutationObserver = new MutationObserver((mutations) => {
+    let shouldScan = false
+    for (const m of mutations) {
+      if (m.addedNodes.length > 0) {
+        shouldScan = true
+        break
+      }
+    }
+    if (shouldScan) scanRevealElements()
+  })
+
+  mutationObserver.observe(document.body, { childList: true, subtree: true })
+}
 
 onMounted(() => {
   const saved = localStorage.getItem('theme')
@@ -57,11 +69,12 @@ onMounted(() => {
     isDark.value = true
     document.documentElement.setAttribute('data-theme', 'dark')
   }
-  setTimeout(initRevealObserver, 120)
+  setTimeout(initObservers, 120)
 })
 
 onBeforeUnmount(() => {
   if (revealObserver) revealObserver.disconnect()
+  if (mutationObserver) mutationObserver.disconnect()
 })
 </script>
 
@@ -88,24 +101,6 @@ main {
 section {
   width: 100%;
   overflow-x: hidden;
-}
-
-/* ============================================
-   Global Keyframes
-   ============================================ */
-@keyframes slideInUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideInRight {
-  from { opacity: 0; transform: translateX(24px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
 }
 
 /* ============================================

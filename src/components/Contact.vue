@@ -6,8 +6,7 @@
         <p class="label">Say Hello</p>
         <h2>Let's Connect</h2>
         <p class="contact-intro">
-          I'm always down to spark conversations — send a message, say hi, or tell me
-          what's on your mind. Prefer in person? Let's brew some conversation at a café.
+          I'm always down to spark conversations so feel free to reach out!
         </p>
       </div>
 

@@ -2,7 +2,7 @@
   <section id="home" class="home">
     <div class="home-inner">
 
-      <!-- Name — large centered serif -->
+      <!-- Name -->
       <h1 class="hero-name reveal reveal-delay-1">
         Chanheng<br>
         <em class="hero-name-italic">Chhun</em>
@@ -15,21 +15,24 @@
         <span class="rule-line"></span>
       </div>
 
-      <!-- Profile image — below the name, framed like a print -->
+      <!-- Profile image -->
       <div class="hero-image-wrap reveal reveal-delay-2">
         <div class="hero-image-frame">
           <img :src="profileImage" alt="Portrait of Chanheng Chhun" class="hero-image" loading="eager" />
         </div>
       </div>
 
-      <!-- Tagline / quote -->
+      <!-- Personal tagline — separated from quote -->
+      <p class="hero-tagline reveal reveal-delay-3">
+        It feels like life is a constant journey of learning new things
+        and embracing challenges. It always feels like there's something
+        I don't know, or didn't know enough.
+      </p>
+
+      <!-- Aristotle quote — smaller, attributed -->
       <blockquote class="hero-quote reveal reveal-delay-3">
-        <p>
-          It feels like life is a constant journey of learning new things
-          and embracing challenges. It always feels like there's something
-          I don't know, or didn't know enough.
-        </p>
-        <cite>— Aristotle: <em>"The more you know, the more you realize you don't know."</em></cite>
+        <p><em>"The more you know, the more you realize you don't know."</em></p>
+        <cite>— Aristotle</cite>
       </blockquote>
 
       <!-- CTA buttons -->
@@ -57,19 +60,13 @@ import profileImage from '../assets/images/profile.webp'
 }
 
 .home-inner {
-  max-width: 680px;
+  max-width: 640px;
   width: 100%;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-6);
-}
-
-/* Label */
-.label {
-  margin: 0;
-  color: var(--color-text-tertiary);
 }
 
 /* Hero name */
@@ -117,12 +114,10 @@ import profileImage from '../assets/images/profile.webp'
   aspect-ratio: 4 / 5;
   overflow: hidden;
   border: 1px solid var(--color-border-dark);
-  /* Thin warm inner shadow — like a photo print edge */
   box-shadow:
     inset 0 0 0 6px var(--color-surface),
     inset 0 0 0 7px var(--color-border),
     var(--shadow-lg);
-  position: relative;
   transition: box-shadow var(--transition-base);
 }
 
@@ -148,10 +143,20 @@ import profileImage from '../assets/images/profile.webp'
   filter: sepia(0%);
 }
 
-/* Quote */
+/* Personal tagline — your own words, prominent */
+.hero-tagline {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: 450;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  max-width: 520px;
+  margin: 0;
+}
+
+/* Quote — Aristotle attribution, smaller and lighter */
 .hero-quote {
-  max-width: 540px;
-  border-left: none;
+  max-width: 520px;
   text-align: center;
   padding: 0;
   margin: 0;
@@ -159,26 +164,21 @@ import profileImage from '../assets/images/profile.webp'
 
 .hero-quote p {
   font-family: var(--font-heading);
-  font-size: var(--text-2xl);
+  font-size: var(--text-xl);
   font-weight: 400;
   font-style: italic;
-  color: var(--color-text-secondary);
-  line-height: 1.7;
-  margin-bottom: var(--space-3);
+  color: var(--color-text-tertiary);
+  line-height: 1.6;
+  margin: 0 0 var(--space-2) 0;
 }
 
 .hero-quote cite {
   font-family: var(--font-body);
   font-size: var(--text-sm);
   letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--color-text-tertiary);
   font-style: normal;
-}
-
-.hero-quote cite em {
-  font-family: var(--font-heading);
-  font-size: var(--text-base);
-  letter-spacing: normal;
 }
 
 /* CTA */
@@ -192,14 +192,11 @@ import profileImage from '../assets/images/profile.webp'
 
 @media (max-width: 600px) {
   .home { padding: var(--space-12) var(--space-4); }
-
   .hero-image-wrap { max-width: 300px; }
-
   .hero-actions {
     flex-direction: column;
     align-items: center;
   }
-
   .btn { width: 200px; justify-content: center; }
 }
 </style>

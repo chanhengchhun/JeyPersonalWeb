@@ -209,26 +209,6 @@ em, i {
   color: var(--color-text-tertiary);
 }
 
-/* Ornamental divider */
-.divider {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-  margin: var(--space-8) 0;
-  color: var(--color-border-dark);
-  font-family: var(--font-heading);
-  font-size: var(--text-lg);
-  letter-spacing: 0.2em;
-}
-
-.divider::before,
-.divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--color-border);
-}
-
 /* ============================================
    Buttons — Vintage style
    ============================================ */

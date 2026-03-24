@@ -17,21 +17,19 @@
           <div class="pullquote-bar"></div>
           <h3 class="about-title">About Me</h3>
           <p>
-            My name is Chanheng and you may call me Jey. I'm currently an international
-            student at Capital University, pursuing a bachelor in computer science.
-            If you're looking on the world map, zooming around the south eastern part of
-            Asia, you'd see where I'm from — it's Cambodia.
+            My name is Chanheng, you may also know me as Jey. I'm an international
+            student at Capital University, pursuing a bachelor in computer science with a minor in Data Science.
           </p>
           <p>
-            I've always been curious about technology and I want to dive deeper into its
+            I've always been curious about technologies and I want to dive deeper into its
             complexity. Studying in the U.S. has allowed me to satisfy that curiosity while
             learning to adapt to new cultures and environments. I really enjoy the puzzle
-            of coding — the problem solving part keeps me curious.
+            of coding, the problem solving part keeps me curious.
           </p>
           <p>
             Outside of school, I enjoy going out shooting photography, playing video games,
             and getting fit at the gym. Hiking, cycling, and camping are also things I'd
-            like to do more of.
+            like to do more.
           </p>
         </div>
 
@@ -41,7 +39,7 @@
             <div class="scrolling-gallery-scrollable">
               <div class="scrolling-gallery-inner">
                 <img v-for="(img, i) in filmImages.concat(filmImages)" :key="'film-img-'+i"
-                  :src="img" class="film-img" alt="Film photograph" />
+                  :src="img" class="film-img" alt="Film photograph" loading="lazy" decoding="async" />
               </div>
             </div>
           </div>

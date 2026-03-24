@@ -4,7 +4,7 @@
 
       <div class="footer-top">
         <!-- Brand signature -->
-        <div class="footer-brand">Chanheng</div>
+        <div class="footer-brand">Chanheng <span class="footer-nick">(Jey)</span></div>
 
         <!-- Nav links -->
         <nav class="footer-nav" aria-label="Footer Navigation">
@@ -60,9 +60,16 @@ const currentYear = computed(() => new Date().getFullYear())
 .footer-brand {
   font-family: var(--font-heading);
   font-size: var(--text-2xl);
-  font-weight: 400;
+  font-weight: 600;
   color: var(--color-text-primary);
   letter-spacing: 0.01em;
+}
+
+.footer-nick {
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-text-tertiary);
+  font-size: var(--text-lg);
 }
 
 .footer-nav {

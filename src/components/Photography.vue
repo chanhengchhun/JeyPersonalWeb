@@ -22,6 +22,8 @@
             :src="photo.thumbnail"
             :alt="photo.title || `Photo ${index + 1}`"
             class="masonry-img"
+            loading="lazy"
+            decoding="async"
           />
           <div class="photo-overlay">
             <span v-if="photo.location" class="overlay-location">{{ photo.location }}</span>
