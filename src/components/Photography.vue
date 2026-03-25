@@ -79,13 +79,13 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
-import photo1 from '../assets/photography/photo1.jpg'
-import photo2 from '../assets/photography/photo2.jpg'
-import photo3 from '../assets/photography/photo3.jpg'
-import photo4 from '../assets/photography/photo4.jpg'
-import photo5 from '../assets/photography/photo5.jpg'
-import photo6 from '../assets/photography/photo6.jpg'
-import photo7 from '../assets/photography/photo7.jpg'
+import photo1 from '../assets/photography/photo1.webp'
+import photo2 from '../assets/photography/photo2.webp'
+import photo3 from '../assets/photography/photo3.webp'
+import photo4 from '../assets/photography/photo4.webp'
+import photo5 from '../assets/photography/photo5.webp'
+import photo6 from '../assets/photography/photo6.webp'
+import photo7 from '../assets/photography/photo7.webp'
 
 const lightboxOpen      = ref(false)
 const currentPhotoIndex = ref(0)
