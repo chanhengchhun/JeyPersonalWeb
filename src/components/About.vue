@@ -39,7 +39,7 @@
             <div class="scrolling-gallery-scrollable">
               <div class="scrolling-gallery-inner">
                 <img v-for="(img, i) in filmImages.concat(filmImages)" :key="'film-img-'+i"
-                  :src="img" class="film-img" alt="Film photograph" loading="lazy" decoding="async" />
+                  :src="img" class="film-img" alt="Film photograph" loading="eager" />
               </div>
             </div>
           </div>
