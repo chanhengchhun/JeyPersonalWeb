@@ -82,9 +82,9 @@
 </template>
 
 <script setup>
-import about1 from '../assets/images/about1.jpg'
-import about3 from '../assets/images/about3.jpg'
-import about4 from '../assets/images/about4.jpg'
+import about1 from '../assets/images/about1.webp'
+import about3 from '../assets/images/about3.webp'
+import about4 from '../assets/images/about4.webp'
 const filmImages = [about1, about3, about4]
 </script>
 
