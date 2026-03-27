@@ -178,7 +178,10 @@ onUnmounted(() => {
 }
 
 .masonry-item {
+  display: inline-block;
+  width: 100%;
   break-inside: avoid;
+  page-break-inside: avoid;
   margin-bottom: var(--space-3);
   overflow: hidden;
   cursor: pointer;

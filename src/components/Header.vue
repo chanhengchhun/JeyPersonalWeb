@@ -3,13 +3,15 @@
     <div class="scroll-progress" :style="{ width: scrollProgress + '%' }"></div>
     <nav class="nav">
       <div class="nav-brand">
-        <span class="brand-name" @click="handleNavToSection('home')">Chanheng <span class="brand-nick">(Jey)</span></span>
+        <router-link :to="{ path: '/', hash: '#home' }" custom v-slot="{ navigate }">
+          <span class="brand-name" @click="navigate; mobileMenuOpen = false">Chanheng <span class="brand-nick">(Jey)</span></span>
+        </router-link>
       </div>
 
       <ul class="nav-menu" :class="{ 'active': mobileMenuOpen }">
-        <li><a href="#home"    @click.prevent="handleNavToSection('home')">Home</a></li>
-        <li><a href="#about"   @click.prevent="handleNavToSection('about')">About</a></li>
-        <li><a href="#contact" @click.prevent="handleNavToSection('contact')">Contact</a></li>
+        <li><router-link :to="{ path: '/', hash: '#home' }" @click="mobileMenuOpen = false">Home</router-link></li>
+        <li><router-link :to="{ path: '/', hash: '#about' }" @click="mobileMenuOpen = false">About</router-link></li>
+        <li><router-link :to="{ path: '/', hash: '#contact' }" @click="mobileMenuOpen = false">Contact</router-link></li>
       </ul>
 
       <div class="nav-actions">
@@ -48,13 +50,9 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
 
 defineProps({ isDark: Boolean })
 defineEmits(['toggle-theme'])
-
-const router = useRouter()
-const route  = useRoute()
 
 const isScrolled       = ref(false)
 const mobileMenuOpen   = ref(false)
@@ -75,20 +73,6 @@ const handleResize = () => {
 
 const toggleMobileMenu = () => {
   mobileMenuOpen.value = !mobileMenuOpen.value
-}
-
-const scrollTo = (sectionId) => {
-  const el = document.getElementById(sectionId)
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-}
-
-const handleNavToSection = (section) => {
-  mobileMenuOpen.value = false
-  if (route.path !== '/') {
-    router.push('/').then(() => nextTick(() => setTimeout(() => scrollTo(section), 350)))
-  } else {
-    scrollTo(section)
-  }
 }
 
 const initObserver = () => {
