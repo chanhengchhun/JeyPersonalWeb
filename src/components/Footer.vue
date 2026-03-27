@@ -8,11 +8,11 @@
 
         <!-- Nav links -->
         <nav class="footer-nav" aria-label="Footer Navigation">
-          <a href="#home">Home</a>
+          <router-link :to="{ path: '/', hash: '#home' }">Home</router-link>
           <span class="footer-dot"></span>
-          <a href="#about">About</a>
+          <router-link :to="{ path: '/', hash: '#about' }">About</router-link>
           <span class="footer-dot"></span>
-          <a href="#contact">Contact</a>
+          <router-link :to="{ path: '/', hash: '#contact' }">Contact</router-link>
           <span class="footer-dot"></span>
           <router-link to="/photography">Photography</router-link>
           <span class="footer-dot"></span>
@@ -32,6 +32,7 @@
 
 <script setup>
 import { computed } from 'vue'
+
 const currentYear = computed(() => new Date().getFullYear())
 </script>
 
