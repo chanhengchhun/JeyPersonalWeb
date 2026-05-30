@@ -1,14 +1,13 @@
 <template>
   <section class="in-dev">
     <div class="in-dev-inner">
-      <p class="label">Coming Soon</p>
       <h2>In Development</h2>
       <div class="rule">
         <span class="rule-line"></span>
         <span class="rule-dot"></span>
         <span class="rule-line"></span>
       </div>
-      <p>This page is currently being crafted. Please check back soon.</p>
+      <p>Look like you hit a snail! This page is currently being developed.</p>
     </div>
   </section>
 </template>
@@ -34,8 +33,6 @@
   align-items: center;
   gap: var(--space-6);
 }
-
-.in-dev-inner .label { margin: 0; }
 
 .in-dev-inner h2 {
   font-size: var(--text-5xl);

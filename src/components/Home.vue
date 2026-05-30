@@ -37,13 +37,6 @@
           <p><em>"The more you know, the more you realize you don't know."</em></p>
           <cite>— Aristotle</cite>
         </blockquote>
-
-        <!-- CTA buttons -->
-        <div class="hero-actions reveal reveal-delay-4">
-          <a href="#about"   class="btn btn-primary">Learn More</a>
-          <a href="#contact" class="btn btn-secondary">Get in Touch</a>
-        </div>
-
       </div>
     </div>
   </section>
@@ -195,14 +188,6 @@ import profileImage from '../assets/images/profile.webp'
   font-style: normal;
 }
 
-/* CTA */
-.hero-actions {
-  display: flex;
-  gap: var(--space-4);
-  flex-wrap: wrap;
-  padding-top: var(--space-2);
-}
-
 /* ========== Responsive ========== */
 
 /* Medium desktops & large laptops (≤1200px) */
@@ -230,7 +215,6 @@ import profileImage from '../assets/images/profile.webp'
   .hero-name { font-size: clamp(2.2rem, 4.5vw, 3.5rem); }
   .hero-tagline { font-size: var(--text-sm); line-height: 1.5; }
   .hero-quote p { font-size: var(--text-base); }
-  .hero-actions { padding-top: 0; }
 }
 
 /* Height-based: very short viewports (13" MacBook, etc.) */
@@ -243,7 +227,6 @@ import profileImage from '../assets/images/profile.webp'
   .hero-tagline { font-size: var(--text-sm); line-height: 1.4; }
   .hero-quote p { font-size: var(--text-sm); }
   .hero-quote cite { font-size: 0.7rem; }
-  .hero-actions { padding-top: 0; gap: var(--space-3); }
 }
 
 /* Tablet portrait & small tablets (≤768px) — stack vertically */
@@ -278,10 +261,6 @@ import profileImage from '../assets/images/profile.webp'
   .hero-rule { margin: 0 auto; }
   .hero-tagline { text-align: center; font-size: var(--text-base); }
   .hero-quote { text-align: center; }
-
-  .hero-actions {
-    justify-content: center;
-  }
 }
 
 /* Phone screens (≤480px) */
@@ -299,14 +278,6 @@ import profileImage from '../assets/images/profile.webp'
   .hero-tagline { font-size: var(--text-sm); line-height: 1.5; }
   .hero-quote p { font-size: var(--text-base); }
   .hero-quote cite { font-size: 0.7rem; }
-
-  .hero-actions {
-    flex-direction: column;
-    align-items: center;
-    padding-top: 0;
-  }
-
-  .btn { width: 200px; justify-content: center; }
 }
 
 /* Small phones (≤360px) */
