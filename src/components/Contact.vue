@@ -3,10 +3,9 @@
     <div class="container">
 
       <div class="section-header reveal">
-        <p class="label">Say Hello</p>
         <h2>Let's Connect</h2>
         <p class="contact-intro">
-          I'm always down to spark conversations so feel free to reach out!
+          I'm always down to have conversations so feel free to reach out!
         </p>
       </div>
 
@@ -39,8 +38,6 @@
           <span class="social-dot"></span>
           <a href="https://github.com/chanhengchhun" target="_blank" rel="noopener" class="social-link">GitHub</a>
           <span class="social-dot"></span>
-          <a href="https://www.instagram.com/jey.chanh/" target="_blank" rel="noopener" class="social-link">Instagram</a>
-          <span class="social-dot"></span>
           <a href="https://vsco.co/jeiidany/gallery" target="_blank" rel="noopener" class="social-link">VSCO</a>
         </div>
 
@@ -69,9 +66,6 @@
   margin-bottom: var(--space-12);
 }
 
-.section-header .label {
-  margin-bottom: var(--space-3);
-}
 
 .section-header h2 {
   font-size: var(--text-5xl);

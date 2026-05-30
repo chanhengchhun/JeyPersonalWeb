@@ -4,7 +4,6 @@
 
       <!-- Section header -->
       <div class="section-header reveal">
-        <p class="label">Who I Am</p>
         <h2>Get to Know Me</h2>
       </div>
 
@@ -51,7 +50,6 @@
       <div class="portal-section reveal reveal-delay-2">
         <div class="portal-divider">
           <span class="rule-line"></span>
-          <span class="portal-label label">Explore</span>
           <span class="rule-line"></span>
         </div>
 
@@ -106,10 +104,6 @@ const filmImages = [about1, about3, about4]
 .section-header {
   text-align: center;
   margin-bottom: var(--space-16);
-}
-
-.section-header .label {
-  margin-bottom: var(--space-3);
 }
 
 .section-header h2 {
@@ -217,8 +211,6 @@ const filmImages = [about1, about3, about4]
   background: var(--color-border);
   display: block;
 }
-
-.portal-label { margin: 0; }
 
 .portal-cards {
   display: flex;
