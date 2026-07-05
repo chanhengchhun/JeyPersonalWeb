@@ -23,12 +23,11 @@
             I've always been curious about technologies and I want to dive deeper into its
             complexity. Studying in the U.S. has allowed me to satisfy that curiosity while
             learning to adapt to new cultures and environments. I really enjoy the puzzle
-            of coding, the problem solving part keeps me curious.
+            of coding, the problem-solving part keeps me curious. I'm currently exploring .NET (ASP.NET Core), so if you're a .NET dev, I'd like to connect!
           </p>
           <p>
             Outside of school, I enjoy going out shooting photography, playing video games,
-            and getting fit at the gym. Hiking, cycling, and camping are also things I'd
-            like to do more.
+            and going on adventures. Hiking, cycling, and camping are also my things.
           </p>
         </div>
 
