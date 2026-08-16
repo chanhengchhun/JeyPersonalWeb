@@ -31,12 +31,6 @@
           and embracing challenges. It always feels like there's something
           I don't know, or didn't know enough.
         </p>
-
-        <!-- Aristotle quote -->
-        <blockquote class="hero-quote reveal reveal-delay-3">
-          <p><em>"The more you know, the more you realize you don't know."</em></p>
-          <cite>— Aristotle</cite>
-        </blockquote>
       </div>
     </div>
   </section>
@@ -115,7 +109,7 @@ import profileImage from '../assets/images/profile.webp'
 
 /* Hero name */
 .hero-name {
-  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 300;
   letter-spacing: -0.02em;
   line-height: 1;
@@ -161,32 +155,6 @@ import profileImage from '../assets/images/profile.webp'
   margin: 0;
 }
 
-/* Quote */
-.hero-quote {
-  max-width: 480px;
-  text-align: left;
-  padding: 0;
-  margin: 0;
-}
-
-.hero-quote p {
-  font-family: var(--font-heading);
-  font-size: var(--text-xl);
-  font-weight: 400;
-  font-style: italic;
-  color: var(--color-text-tertiary);
-  line-height: 1.6;
-  margin: 0 0 var(--space-2) 0;
-}
-
-.hero-quote cite {
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-text-tertiary);
-  font-style: normal;
-}
 
 /* ========== Responsive ========== */
 
@@ -202,9 +170,7 @@ import profileImage from '../assets/images/profile.webp'
   .home-inner { gap: var(--space-8); max-width: 900px; }
   .hero-col-left { flex: 0 0 38%; }
   .hero-col-right { gap: var(--space-4); }
-  .hero-name { font-size: clamp(2.5rem, 5vw, 4rem); }
   .hero-tagline { font-size: var(--text-base); line-height: 1.6; }
-  .hero-quote p { font-size: var(--text-lg); }
 }
 
 /* Height-based: short viewports while still wide (e.g., laptop screens) */
@@ -214,7 +180,6 @@ import profileImage from '../assets/images/profile.webp'
   .hero-col-right { gap: var(--space-3); }
   .hero-name { font-size: clamp(2.2rem, 4.5vw, 3.5rem); }
   .hero-tagline { font-size: var(--text-sm); line-height: 1.5; }
-  .hero-quote p { font-size: var(--text-base); }
 }
 
 /* Height-based: very short viewports (13" MacBook, etc.) */
@@ -225,8 +190,6 @@ import profileImage from '../assets/images/profile.webp'
   .hero-col-right { gap: var(--space-2); }
   .hero-name { font-size: clamp(1.8rem, 4vw, 3rem); }
   .hero-tagline { font-size: var(--text-sm); line-height: 1.4; }
-  .hero-quote p { font-size: var(--text-sm); }
-  .hero-quote cite { font-size: 0.7rem; }
 }
 
 /* Tablet portrait & small tablets (≤768px) — stack vertically */
@@ -260,7 +223,6 @@ import profileImage from '../assets/images/profile.webp'
   .hero-name { font-size: clamp(2.5rem, 10vw, 4rem); }
   .hero-rule { margin: 0 auto; }
   .hero-tagline { text-align: center; font-size: var(--text-base); }
-  .hero-quote { text-align: center; }
 }
 
 /* Phone screens (≤480px) */
@@ -276,8 +238,6 @@ import profileImage from '../assets/images/profile.webp'
 
   .hero-name { font-size: clamp(2rem, 10vw, 3rem); }
   .hero-tagline { font-size: var(--text-sm); line-height: 1.5; }
-  .hero-quote p { font-size: var(--text-base); }
-  .hero-quote cite { font-size: 0.7rem; }
 }
 
 /* Small phones (≤360px) */
@@ -286,7 +246,6 @@ import profileImage from '../assets/images/profile.webp'
   .hero-col-left { max-width: 150px; }
   .hero-name { font-size: clamp(1.8rem, 10vw, 2.5rem); }
   .hero-tagline { font-size: var(--text-xs); }
-  .hero-quote p { font-size: var(--text-sm); }
   .hero-rule { width: 140px; }
 }
 </style>

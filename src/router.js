@@ -1,37 +1,31 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import InDevelopment from './components/InDevelopment.vue'
 import HomePage from './components/HomePage.vue'
-import Photography from './components/Photography.vue'
+import NotFound from './components/NotFound.vue'
 
+/*
+ * A single scrolling page (bio, photos) whose sections are
+ * anchor targets (#home, #about), plus a catch-all 404. Contact
+ * info lives in the shared Footer rather than its own section.
+ */
 const routes = [
   {
     path: '/',
     component: HomePage
   },
   {
-    path: '/photography',
-    component: Photography
-  },
-  {
-    path: '/blog',
-    component: InDevelopment
-  },
-  {
     path: '/:pathMatch(.*)*',
-    component: InDevelopment
+    component: NotFound
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior(to) {
+    // Anchor links scroll to their section, clearing the fixed
+    // header; everything else starts at the top of the page.
     if (to.hash) {
-      return {
-        el: to.hash,
-        behavior: 'smooth',
-        top: 80, // Offset for sticky header
-      }
+      return { el: to.hash, behavior: 'smooth', top: 80 }
     }
     return { top: 0, behavior: 'smooth' }
   }

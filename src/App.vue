@@ -1,13 +1,17 @@
 <template>
   <div id="app">
     <Header @toggle-theme="toggleTheme" :isDark="isDark" />
-    <main>
-      <router-view v-slot="{ Component }">
-        <transition name="page-fade" mode="out-in">
-          <component :is="Component" />
-        </transition>
-      </router-view>
+
+    <!-- No page transition here on purpose. A <transition> with
+         mode="out-in" holds the incoming page back until the
+         outgoing one has finished leaving, so if that leave
+         transition never completes the new page never mounts at
+         all. Swapping routes directly keeps navigation reliable;
+         content still eases in via the .reveal animations. -->
+    <main ref="mainEl">
+      <router-view />
     </main>
+
     <Footer />
   </div>
 </template>
@@ -17,16 +21,46 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 
-const isDark = ref(false)
+/* ---- Theme ----------------------------------------------
+   The active theme is stored on <html data-theme> so that
+   style.css can swap its color variables, and mirrored to
+   localStorage so it survives a reload. index.html applies the
+   saved value before first paint to avoid a flash of the wrong
+   theme; this ref just keeps the toggle button in sync.
+---------------------------------------------------------- */
+const isDark = ref(document.documentElement.dataset.theme === 'dark')
 
 const toggleTheme = () => {
   isDark.value = !isDark.value
-  document.documentElement.setAttribute('data-theme', isDark.value ? 'dark' : 'light')
-  localStorage.setItem('theme', isDark.value ? 'dark' : 'light')
+  const theme = isDark.value ? 'dark' : 'light'
+  document.documentElement.dataset.theme = theme
+  localStorage.setItem('theme', theme)
 }
 
+/* ---- Scroll reveal --------------------------------------
+   Elements tagged .reveal start at opacity 0 and fade in as
+   they enter the viewport.
+
+   Two observers cooperate:
+
+   - revealObserver (IntersectionObserver) adds .visible to an
+     element once it scrolls into view.
+   - contentObserver (MutationObserver) watches <main> so that
+     pages added by a route change get handed to revealObserver.
+
+   The MutationObserver is what makes this reliable. Route
+   changes insert their content asynchronously — the page
+   transition's mode="out-in" holds it back until the outgoing
+   page has finished leaving — so there is no single moment
+   after navigation when the new elements are guaranteed to
+   exist. Watching for the insertion itself avoids having to
+   guess. It is scoped to <main> rather than document.body so
+   it only wakes for page content, not every DOM change.
+---------------------------------------------------------- */
+const mainEl = ref(null)
+
 let revealObserver = null
-let mutationObserver = null
+let contentObserver = null
 
 const scanRevealElements = () => {
   if (!revealObserver) return
@@ -36,112 +70,29 @@ const scanRevealElements = () => {
   })
 }
 
-const initObservers = () => {
-  // 1. Intersection Observer for scroll reveal
+onMounted(() => {
   revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible')
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible')
     })
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' })
 
+  // main.js waits for router.isReady() before mounting, so the
+  // first page is already in the DOM here.
   scanRevealElements()
 
-  // 2. Mutation Observer to catch newly added elements (e.g. on route change)
-  mutationObserver = new MutationObserver((mutations) => {
-    let shouldScan = false
-    for (const m of mutations) {
-      if (m.addedNodes.length > 0) {
-        shouldScan = true
-        break
-      }
-    }
-    if (shouldScan) scanRevealElements()
+  contentObserver = new MutationObserver((mutations) => {
+    if (mutations.some(m => m.addedNodes.length > 0)) scanRevealElements()
   })
 
-  mutationObserver.observe(document.body, { childList: true, subtree: true })
-}
-
-onMounted(() => {
-  const saved = localStorage.getItem('theme')
-  if (saved === 'dark') {
-    isDark.value = true
-    document.documentElement.setAttribute('data-theme', 'dark')
+  if (mainEl.value) {
+    contentObserver.observe(mainEl.value, { childList: true, subtree: true })
   }
-  setTimeout(initObservers, 120)
 })
 
 onBeforeUnmount(() => {
   if (revealObserver) revealObserver.disconnect()
-  if (mutationObserver) mutationObserver.disconnect()
+  if (contentObserver) contentObserver.disconnect()
 })
 </script>
 
-<style>
-* { box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-#app {
-  width: 100%;
-  min-height: 100vh;
-  font-family: var(--font-body);
-}
-
-main {
-  width: 100%;
-  padding-top: 68px;
-}
-
-@media (max-width: 600px) {
-  main { padding-top: 60px; }
-}
-
-section {
-  width: 100%;
-  overflow-x: hidden;
-}
-
-/* ============================================
-   Page Transitions
-   ============================================ */
-.page-fade-enter-active,
-.page-fade-leave-active {
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-.page-fade-enter-from { opacity: 0; transform: translateY(6px); }
-.page-fade-leave-to   { opacity: 0; transform: translateY(-6px); }
-
-/* ============================================
-   Scrollbar — warm minimal
-   ============================================ */
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--color-background); }
-::-webkit-scrollbar-thumb {
-  background: var(--color-border-dark);
-  border-radius: 2px;
-}
-::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }
-
-/* Selection */
-::selection {
-  background: rgba(139, 69, 19, 0.15);
-  color: var(--color-text-primary);
-}
-
-[data-theme="dark"] ::selection {
-  background: rgba(201, 169, 110, 0.2);
-}
-
-/* Focus */
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-textarea:focus-visible {
-  outline: 1px solid var(--color-primary);
-  outline-offset: 3px;
-}
-
-img { transition: opacity 0.3s ease; }
-</style>
