@@ -1,13 +1,20 @@
 <template>
-  <section class="in-dev">
-    <div class="in-dev-inner">
-      <h2>In Development</h2>
+  <!-- Catch-all 404. Reached only via a mistyped or stale URL,
+       so it offers a way back rather than just an apology. -->
+  <section class="not-found">
+    <div class="not-found-inner">
+      <span class="label">Error 404</span>
+      <h2>Page not found</h2>
+
       <div class="rule">
         <span class="rule-line"></span>
         <span class="rule-dot"></span>
         <span class="rule-line"></span>
       </div>
-      <p>Look like you hit a snail! This page is currently being developed.</p>
+
+      <p>This page doesn't exist &mdash; it may have moved, or the link may be out of date.</p>
+
+      <router-link to="/" class="link-draw">Back to home</router-link>
     </div>
   </section>
 </template>
@@ -16,7 +23,7 @@
 </script>
 
 <style scoped>
-.in-dev {
+.not-found {
   min-height: 70vh;
   display: flex;
   align-items: center;
@@ -25,7 +32,7 @@
   background: var(--color-background);
 }
 
-.in-dev-inner {
+.not-found-inner {
   text-align: center;
   max-width: 480px;
   display: flex;
@@ -34,7 +41,7 @@
   gap: var(--space-6);
 }
 
-.in-dev-inner h2 {
+.not-found-inner h2 {
   font-size: var(--text-5xl);
   font-weight: 300;
   margin: 0;
@@ -63,7 +70,7 @@
   flex-shrink: 0;
 }
 
-.in-dev-inner p {
+.not-found-inner p {
   font-family: var(--font-heading);
   font-style: italic;
   font-size: var(--text-lg);

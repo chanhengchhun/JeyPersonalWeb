@@ -7,8 +7,17 @@
     <meta name="description" content="Chanheng Chhun — Computer science student, photographer, and developer based in Columbus, Ohio." />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <title>Chanheng</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <title>Chanheng Chhun</title>
+
+    <!-- Apply the saved theme before first paint. If this ran inside
+         the Vue app instead, the page would paint in light mode and
+         then visibly flip to dark. -->
+    <script>
+      if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.dataset.theme = 'dark'
+      }
+    </script>
   </head>
   <body>
     <div id="app"></div>
