@@ -26,18 +26,18 @@
         </div>
 
         <!-- Personal tagline -->
-        <p class="hero-tagline reveal reveal-delay-3">
-          It feels like life is a constant journey of learning new things
-          and embracing challenges. It always feels like there's something
-          I don't know, or didn't know enough.
-        </p>
+        <div class="hero-tagline reveal reveal-delay-3" v-html="taglineHtml"></div>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
+import { marked } from 'marked'
 import profileImage from '../assets/images/profile.webp'
+import taglineMd from '../content/home.md?raw'
+
+const taglineHtml = marked.parse(taglineMd)
 </script>
 
 <style scoped>
@@ -146,12 +146,15 @@ import profileImage from '../assets/images/profile.webp'
 
 /* Personal tagline */
 .hero-tagline {
+  max-width: 480px;
+}
+
+.hero-tagline :deep(p) {
   font-family: var(--font-body);
   font-size: var(--text-lg);
   font-weight: 450;
   color: var(--color-text-secondary);
   line-height: 1.8;
-  max-width: 480px;
   margin: 0;
 }
 

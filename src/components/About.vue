@@ -10,15 +10,7 @@
           <!-- Pull-quote accent line -->
           <div class="pullquote-bar"></div>
           <h3 class="about-title">About Me</h3>
-          <p>
-            This part of the text is in the consideration of re-writing.
-          </p>
-          <p>
-            This part of the text is in the consideration of re-writing.
-          </p>
-          <p>
-            This part of the text is in the consideration of re-writing.
-          </p>
+          <div class="about-text-body" v-html="aboutHtml"></div>
         </div>
 
         <!-- Scrolling gallery column -->
@@ -40,10 +32,14 @@
 </template>
 
 <script setup>
+import { marked } from 'marked'
 import about1 from '../assets/images/about1.webp'
 import about3 from '../assets/images/about3.webp'
 import about4 from '../assets/images/about4.webp'
+import aboutMd from '../content/about.md?raw'
+
 const filmImages = [about1, about3, about4]
+const aboutHtml = marked.parse(aboutMd)
 </script>
 
 <style scoped>
@@ -94,7 +90,7 @@ const filmImages = [about1, about3, about4]
   text-transform: none;
 }
 
-.about-text p {
+.about-text :deep(p) {
   font-size: var(--text-base);
   line-height: 1.8;
   color: var(--color-text-secondary);
