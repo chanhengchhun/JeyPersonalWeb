@@ -8,7 +8,7 @@
       <div class="footer-meta">
         <nav class="footer-links" aria-label="Contact">
           <a href="mailto:chhun.chanheng@icloud.com">Email</a>
-          <a href="https://www.linkedin.com/in/chanheng-chh/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://vsco.co/jeiidany/gallery" target="_blank" rel="noopener">VSCO</a>
           <a href="https://github.com/chanhengchhun" target="_blank" rel="noopener">GitHub</a>
         </nav>
         <span class="footer-dot"></span>
